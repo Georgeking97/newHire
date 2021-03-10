@@ -33,7 +33,7 @@ public class CreateEmailServer extends newHireImplBase {
 		// telling the user I got their message
 		System.out.println("Recieving message " + request.getText());
 		// creating the response to send back to the user
-		MessageReply reply = MessageReply.newBuilder().setValue("Hi out there " + request.getText()).build();
+		MessageReply reply = MessageReply.newBuilder().setValue("Your email is " + request.getText()).build();
 		// sending back the response to the user
 		responseObserver.onNext(reply);
 		// the action is completed and all actions are executed

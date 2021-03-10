@@ -3,15 +3,14 @@ syntax = "proto3";
 
 //give a number of configuration options
 option java_multiple_files = true;
-option java_package = "newHire.create.email";
+option java_package = "newHire.create.security.card";
 option java_outer_classname = "newHire2ServiceImpl";
 
 package newHire;
 
 service newHire{
 	//specify the RPC
-	rpc sendMessage(MessageRequest) returns (MessageReply);
-	
+	rpc sendMessage(stream MessageRequest) returns (MessageReply);
 }
 
 //here I am going to specify the messages used from RPC

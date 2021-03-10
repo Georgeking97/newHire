@@ -10,7 +10,8 @@ package newHire;
 
 service newHire{
 	//specify the RPC
-	rpc sendMessage(MessageRequest) returns (MessageReply); 
+	rpc sendMessage(MessageRequest) returns (MessageReply);
+	
 }
 
 //here I am going to specify the messages used from RPC
