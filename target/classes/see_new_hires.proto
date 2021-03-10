@@ -1,0 +1,23 @@
+//this provides the version of protocol buffers to use
+syntax = "proto3";
+
+//give a number of configuration options
+option java_multiple_files = true;
+option java_package = "newHire.find.newhires";
+option java_outer_classname = "newHire2ServiceImpl";
+
+package newHire;
+
+service newHire{
+	//specify the RPC
+	rpc sendMessage(MessageRequest) returns (stream MessageReply);
+}
+
+//here I am going to specify the messages used from RPC
+message MessageRequest{
+	string text = 1;
+}
+
+message MessageReply{
+	string value = 1;
+}
