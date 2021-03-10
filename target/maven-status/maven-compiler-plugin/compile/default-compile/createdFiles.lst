@@ -24,6 +24,7 @@ newHire\create\email\NewHireRegistration.class
 newHire\create\email\newHireGrpc.class
 newHire\create\email\newHireGrpc$newHireBaseDescriptorSupplier.class
 newHire\create\permissions\MessageRequest$Builder.class
+newHire\find\newhires\findNewHiresServer.class
 newHire\create\email\newHireGrpc$newHireImplBase.class
 newHire\create\security\card\newHireGrpc$newHireBaseDescriptorSupplier.class
 newHire\find\newhires\newHireGrpc$1.class
