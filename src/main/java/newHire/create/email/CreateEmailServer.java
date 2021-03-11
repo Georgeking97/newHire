@@ -1,5 +1,7 @@
 package newHire.create.email;
 
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
+
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.ArrayList;
@@ -13,8 +15,8 @@ import io.grpc.stub.StreamObserver;
 import newHire.create.email.newHireGrpc.newHireImplBase;
 
 public class CreateEmailServer extends newHireImplBase {
-	
-	ArrayList<String> list = new ArrayList<>();
+
+	ArrayList<String> emails = new ArrayList<>();
 
 	public static void main(String[] args) {
 		// object of server class
@@ -26,7 +28,7 @@ public class CreateEmailServer extends newHireImplBase {
 			// setting the port to connect to, building & starting the server
 			Server server = ServerBuilder.forPort(port).addService(emailservice).build().start();
 			System.out.println("Server started, waiting for rpc...");
-			
+
 			// get an instance of a JmDNS
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 			// setting service information to be passed into service info below
@@ -39,10 +41,11 @@ public class CreateEmailServer extends newHireImplBase {
 			// registering the service I just made
 			jmdns.registerService(serviceinfo);
 			// feedback for the user
-			System.out.printf("Registering service with type %s and name %s on port %d", service_type, service_name,service_port);
+			System.out.printf("Registering service with type %s and name %s on port %d", service_type, service_name,
+					service_port);
 			// good idea to wait a bit
 			Thread.sleep(20000);
-			
+
 			server.awaitTermination();
 
 		} catch (IOException e) {
@@ -52,13 +55,13 @@ public class CreateEmailServer extends newHireImplBase {
 		}
 	}
 
-	//Simple RPC - creating the email
+	// Simple RPC - creating the email
 	@Override
 	public void sendMessage(MessageRequest request, StreamObserver<MessageReply> responseObserver) {
 		// telling the user I got their message
 		System.out.println("Recieving message " + request.getText());
-		String email = request.getText()+"@gmail.com";
-		list.add(email);
+		String email = request.getText() + "@gmail.com";
+		emails.add(email);
 		// creating the response to send back to the user
 		MessageReply reply = MessageReply.newBuilder().setValue(email).build();
 		// sending back the response to the user
@@ -66,8 +69,32 @@ public class CreateEmailServer extends newHireImplBase {
 		// the action is completed and all actions are executed
 		responseObserver.onCompleted();
 	}
-	
-	//deleting the email
-	
-	//see all emails
+
+	// deleting the email
+	public void deleteEmail(EmailToDelete request, StreamObserver<EmailDeleted> responseObserver) {
+		//for each email in the array check if the passed in name matches and if so delete the matching email
+		for (int i = 0; i < emails.size(); i++) {
+			if (emails.get(i).contains(request.getText())) {
+				emails.remove(i);
+				break;
+			}
+		}
+		//responding to the client 
+		String response = "Email deleted...";
+		EmailDeleted reply = EmailDeleted.newBuilder().setValue(response).build();
+		responseObserver.onNext(reply);
+		responseObserver.onCompleted();
+	}
+
+	// see all email's
+	public void seeEmails(Emails request, StreamObserver<AllEmails> responseObserver) {
+		//for each email in the array respond to the client with the email
+		for (int i = 0; i < emails.size(); i++) {
+			String email = emails.get(i);
+			AllEmails reply = AllEmails.newBuilder().setValue(email).build();
+			responseObserver.onNext(reply);
+		}
+		responseObserver.onCompleted();
+
+	}
 }
