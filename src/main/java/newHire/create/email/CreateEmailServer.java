@@ -2,6 +2,7 @@ package newHire.create.email;
 
 import java.io.IOException;
 import java.net.InetAddress;
+import java.util.ArrayList;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
@@ -12,6 +13,8 @@ import io.grpc.stub.StreamObserver;
 import newHire.create.email.newHireGrpc.newHireImplBase;
 
 public class CreateEmailServer extends newHireImplBase {
+	
+	ArrayList<String> list = new ArrayList<>();
 
 	public static void main(String[] args) {
 		// object of server class
@@ -28,7 +31,7 @@ public class CreateEmailServer extends newHireImplBase {
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 			// setting service information to be passed into service info below
 			String service_type = "_http._tcp.local.";
-			String service_name = "Creating email";
+			String service_name = "emails";
 			String service_description = "Service for creating an email for a new hire";
 			int service_port = 9080;
 			// create a service - with ServiceInfo
@@ -49,16 +52,22 @@ public class CreateEmailServer extends newHireImplBase {
 		}
 	}
 
-	//Simple RPC
+	//Simple RPC - creating the email
 	@Override
 	public void sendMessage(MessageRequest request, StreamObserver<MessageReply> responseObserver) {
 		// telling the user I got their message
 		System.out.println("Recieving message " + request.getText());
+		String email = request.getText()+"@gmail.com";
+		list.add(email);
 		// creating the response to send back to the user
-		MessageReply reply = MessageReply.newBuilder().setValue("Your email is " + request.getText()).build();
+		MessageReply reply = MessageReply.newBuilder().setValue(email).build();
 		// sending back the response to the user
 		responseObserver.onNext(reply);
 		// the action is completed and all actions are executed
 		responseObserver.onCompleted();
 	}
+	
+	//deleting the email
+	
+	//see all emails
 }

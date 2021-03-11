@@ -66,5 +66,4 @@ public class findNewHiresServer extends newHireImplBase {
 		
 		responseObserver.onCompleted();
 	}
-
 }
