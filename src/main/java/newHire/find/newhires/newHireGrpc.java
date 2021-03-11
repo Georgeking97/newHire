@@ -59,6 +59,38 @@ public final class newHireGrpc {
      return getSendMessageMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<newHire.find.newhires.Letter,
+      newHire.find.newhires.namesContaining> getRequestHiresMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "requestHires",
+      requestType = newHire.find.newhires.Letter.class,
+      responseType = newHire.find.newhires.namesContaining.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<newHire.find.newhires.Letter,
+      newHire.find.newhires.namesContaining> getRequestHiresMethod() {
+    io.grpc.MethodDescriptor<newHire.find.newhires.Letter, newHire.find.newhires.namesContaining> getRequestHiresMethod;
+    if ((getRequestHiresMethod = newHireGrpc.getRequestHiresMethod) == null) {
+      synchronized (newHireGrpc.class) {
+        if ((getRequestHiresMethod = newHireGrpc.getRequestHiresMethod) == null) {
+          newHireGrpc.getRequestHiresMethod = getRequestHiresMethod = 
+              io.grpc.MethodDescriptor.<newHire.find.newhires.Letter, newHire.find.newhires.namesContaining>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "newHire.newHire", "requestHires"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  newHire.find.newhires.Letter.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  newHire.find.newhires.namesContaining.getDefaultInstance()))
+                  .setSchemaDescriptor(new newHireMethodDescriptorSupplier("requestHires"))
+                  .build();
+          }
+        }
+     }
+     return getRequestHiresMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -96,6 +128,16 @@ public final class newHireGrpc {
       asyncUnimplementedUnaryCall(getSendMessageMethod(), responseObserver);
     }
 
+    /**
+     * <pre>
+     *see all new hires if their name contains the letter passed in
+     * </pre>
+     */
+    public void requestHires(newHire.find.newhires.Letter request,
+        io.grpc.stub.StreamObserver<newHire.find.newhires.namesContaining> responseObserver) {
+      asyncUnimplementedUnaryCall(getRequestHiresMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -105,6 +147,13 @@ public final class newHireGrpc {
                 newHire.find.newhires.MessageRequest,
                 newHire.find.newhires.MessageReply>(
                   this, METHODID_SEND_MESSAGE)))
+          .addMethod(
+            getRequestHiresMethod(),
+            asyncServerStreamingCall(
+              new MethodHandlers<
+                newHire.find.newhires.Letter,
+                newHire.find.newhires.namesContaining>(
+                  this, METHODID_REQUEST_HIRES)))
           .build();
     }
   }
@@ -137,6 +186,17 @@ public final class newHireGrpc {
       asyncServerStreamingCall(
           getChannel().newCall(getSendMessageMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     *see all new hires if their name contains the letter passed in
+     * </pre>
+     */
+    public void requestHires(newHire.find.newhires.Letter request,
+        io.grpc.stub.StreamObserver<newHire.find.newhires.namesContaining> responseObserver) {
+      asyncServerStreamingCall(
+          getChannel().newCall(getRequestHiresMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -167,6 +227,17 @@ public final class newHireGrpc {
       return blockingServerStreamingCall(
           getChannel(), getSendMessageMethod(), getCallOptions(), request);
     }
+
+    /**
+     * <pre>
+     *see all new hires if their name contains the letter passed in
+     * </pre>
+     */
+    public java.util.Iterator<newHire.find.newhires.namesContaining> requestHires(
+        newHire.find.newhires.Letter request) {
+      return blockingServerStreamingCall(
+          getChannel(), getRequestHiresMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -189,6 +260,7 @@ public final class newHireGrpc {
   }
 
   private static final int METHODID_SEND_MESSAGE = 0;
+  private static final int METHODID_REQUEST_HIRES = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -210,6 +282,10 @@ public final class newHireGrpc {
         case METHODID_SEND_MESSAGE:
           serviceImpl.sendMessage((newHire.find.newhires.MessageRequest) request,
               (io.grpc.stub.StreamObserver<newHire.find.newhires.MessageReply>) responseObserver);
+          break;
+        case METHODID_REQUEST_HIRES:
+          serviceImpl.requestHires((newHire.find.newhires.Letter) request,
+              (io.grpc.stub.StreamObserver<newHire.find.newhires.namesContaining>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -273,6 +349,7 @@ public final class newHireGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new newHireFileDescriptorSupplier())
               .addMethod(getSendMessageMethod())
+              .addMethod(getRequestHiresMethod())
               .build();
         }
       }

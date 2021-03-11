@@ -24,6 +24,16 @@ public final class newHire2ServiceImpl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_newHire_MessageReply_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_newHire_Letter_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_newHire_Letter_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_newHire_namesContaining_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_newHire_namesContaining_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -35,9 +45,12 @@ public final class newHire2ServiceImpl {
     java.lang.String[] descriptorData = {
       "\n\023see_new_hires.proto\022\007newHire\"\036\n\016Messag" +
       "eRequest\022\014\n\004text\030\001 \001(\t\"\035\n\014MessageReply\022\r" +
-      "\n\005value\030\001 \001(\t2J\n\007newHire\022?\n\013sendMessage\022" +
-      "\027.newHire.MessageRequest\032\025.newHire.Messa" +
-      "geReply0\001B.\n\025newHire.find.newhiresB\023newH" +
+      "\n\005value\030\001 \001(\t\"\026\n\006Letter\022\014\n\004text\030\001 \001(\t\" \n" +
+      "\017namesContaining\022\r\n\005value\030\001 \001(\t2\207\001\n\007newH" +
+      "ire\022?\n\013sendMessage\022\027.newHire.MessageRequ" +
+      "est\032\025.newHire.MessageReply0\001\022;\n\014requestH" +
+      "ires\022\017.newHire.Letter\032\030.newHire.namesCon" +
+      "taining0\001B.\n\025newHire.find.newhiresB\023newH" +
       "ire2ServiceImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
@@ -63,6 +76,18 @@ public final class newHire2ServiceImpl {
     internal_static_newHire_MessageReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_newHire_MessageReply_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_newHire_Letter_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_newHire_Letter_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_newHire_Letter_descriptor,
+        new java.lang.String[] { "Text", });
+    internal_static_newHire_namesContaining_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_newHire_namesContaining_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_newHire_namesContaining_descriptor,
         new java.lang.String[] { "Value", });
   }
 

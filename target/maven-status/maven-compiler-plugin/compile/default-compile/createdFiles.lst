@@ -22,6 +22,7 @@ newHire\create\email\newHireGrpc$newHireImplBase.class
 newHire\create\security\card\newHireGrpc$newHireBaseDescriptorSupplier.class
 newHire\find\newhires\newHireGrpc$1.class
 newHire\create\permissions\MessageReplyOrBuilder.class
+newHire\find\newhires\namesContaining$Builder.class
 newHire\create\permissions\newHireGrpc$newHireImplBase.class
 newHire\create\permissions\newHireGrpc$newHireFutureStub.class
 newHire\create\email\CreateEmailServer.class
@@ -36,6 +37,7 @@ newHire\find\newhires\newHireGrpc$newHireMethodDescriptorSupplier.class
 newHire\create\permissions\RequestPermissions$Builder.class
 newHire\create\security\card\CardsReturned.class
 newHire\find\newhires\MessageReply$Builder.class
+newHire\find\newhires\namesContaining$1.class
 newHire\create\permissions\newHireGrpc.class
 newHire\create\permissions\NewPermissionOrBuilder.class
 newHire\create\permissions\newHireGrpc$newHireBaseDescriptorSupplier.class
@@ -46,6 +48,7 @@ newHire\create\email\newHireGrpc$newHireFutureStub.class
 newHire\create\email\newHireGrpc$newHireFileDescriptorSupplier.class
 newHire\create\permissions\NewPermission$1.class
 newHire\create\permissions\MessageRequestOrBuilder.class
+newHire\find\newhires\namesContainingOrBuilder.class
 newHire\find\newhires\MessageRequest.class
 newHire\create\permissions\AllPermissions.class
 newHire\find\newhires\newHireGrpc$newHireImplBase.class
@@ -79,11 +82,13 @@ newHire\find\newhires\MessageReplyOrBuilder.class
 newHire\find\newhires\newHireGrpc$newHireFutureStub.class
 newHire\find\newhires\MessageReply$1.class
 newHire\create\permissions\NewPermission$Builder.class
+newHire\find\newhires\Letter.class
 newHire\create\email\EmailDeletedOrBuilder.class
 newHire\create\permissions\CreatedPermission$Builder.class
 newHire\create\permissions\AllPermissions$1.class
 newHire\create\permissions\MessageReply.class
 newHire\create\permissions\newHireGrpc$newHireStub.class
+newHire\find\newhires\namesContaining.class
 newHire\create\email\newHireGrpc.class
 newHire\create\email\newHireGrpc$newHireBaseDescriptorSupplier.class
 newHire\create\permissions\MessageRequest$Builder.class
@@ -95,6 +100,7 @@ newHire\find\newhires\MessageRequest$Builder.class
 newHire\create\permissions\newHireGrpc$1.class
 newHire\create\security\card\newHireGrpc$newHireFileDescriptorSupplier.class
 newHire\find\newhires\newHireGrpc$newHireStub.class
+newHire\find\newhires\LetterOrBuilder.class
 newHire\find\newhires\newHireGrpc$newHireFileDescriptorSupplier.class
 newHire\create\security\card\CardsReturned$Builder.class
 newHire\create\email\AllEmails$Builder.class
@@ -107,7 +113,9 @@ newHire\create\email\MessageReply$Builder.class
 newHire\create\email\Emails.class
 newHire\find\newhires\newHireGrpc$MethodHandlers.class
 newHire\create\email\MessageReplyOrBuilder.class
+newHire\find\newhires\Letter$Builder.class
 newHire\create\security\card\newHireGrpc$newHireBlockingStub.class
+newHire\find\newhires\Letter$1.class
 newHire\create\email\EmailToDelete$1.class
 newHire\create\permissions\newHireGrpc$newHireMethodDescriptorSupplier.class
 newHire\find\newhires\newHireGrpc$newHireBlockingStub.class

@@ -12,6 +12,7 @@ service newHire{
 	//see all current new hires
 	rpc sendMessage(MessageRequest) returns (stream MessageReply);
 	//see all new hires if their name contains the letter passed in
+	rpc requestHires(Letter) returns (stream namesContaining);
 }
 
 //here I am going to specify the messages used from RPC
@@ -20,5 +21,13 @@ message MessageRequest{
 }
 
 message MessageReply{
+	string value = 1;
+}
+
+message Letter{
+	string text = 1;
+}
+
+message namesContaining{
 	string value = 1;
 }
