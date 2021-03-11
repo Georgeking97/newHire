@@ -9,16 +9,35 @@ option java_outer_classname = "newHire2ServiceImpl";
 package newHire;
 
 service newHire{
-	//specify the RPC
+	//setting permissions 
 	rpc sendMessage(stream MessageRequest) returns (stream MessageReply);
+	//seeing all available permissions
+	rpc seePermissions(RequestPermissions) returns (stream AllPermissions);
+	//creating a new permission
+	rpc setPermissions(NewPermission) returns (CreatedPermission);
 	
 }
 
-//here I am going to specify the messages used from RPC
 message MessageRequest{
 	string text = 1;
 }
 
 message MessageReply{
 	string value = 1;
+}
+
+message RequestPermissions{
+	string text = 1;
+}
+
+message AllPermissions{
+	string value = 1;
+}
+
+message NewPermission{
+	string text = 1;
+}
+
+message CreatedPermission{
+	string value =1;
 }

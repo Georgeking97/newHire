@@ -4,18 +4,18 @@
 package newHire.create.permissions;
 
 /**
- * Protobuf type {@code newHire.MessageRequest}
+ * Protobuf type {@code newHire.RequestPermissions}
  */
-public  final class MessageRequest extends
+public  final class RequestPermissions extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:newHire.MessageRequest)
-    MessageRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:newHire.RequestPermissions)
+    RequestPermissionsOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use MessageRequest.newBuilder() to construct.
-  private MessageRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use RequestPermissions.newBuilder() to construct.
+  private RequestPermissions(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private MessageRequest() {
+  private RequestPermissions() {
     text_ = "";
   }
 
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private MessageRequest(
+  private RequestPermissions(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -70,15 +70,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return newHire.create.permissions.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+    return newHire.create.permissions.newHire2ServiceImpl.internal_static_newHire_RequestPermissions_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return newHire.create.permissions.newHire2ServiceImpl.internal_static_newHire_MessageRequest_fieldAccessorTable
+    return newHire.create.permissions.newHire2ServiceImpl.internal_static_newHire_RequestPermissions_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            newHire.create.permissions.MessageRequest.class, newHire.create.permissions.MessageRequest.Builder.class);
+            newHire.create.permissions.RequestPermissions.class, newHire.create.permissions.RequestPermissions.Builder.class);
   }
 
   public static final int TEXT_FIELD_NUMBER = 1;
@@ -154,10 +154,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof newHire.create.permissions.MessageRequest)) {
+    if (!(obj instanceof newHire.create.permissions.RequestPermissions)) {
       return super.equals(obj);
     }
-    newHire.create.permissions.MessageRequest other = (newHire.create.permissions.MessageRequest) obj;
+    newHire.create.permissions.RequestPermissions other = (newHire.create.permissions.RequestPermissions) obj;
 
     boolean result = true;
     result = result && getText()
@@ -180,69 +180,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static newHire.create.permissions.MessageRequest parseFrom(
+  public static newHire.create.permissions.RequestPermissions parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.permissions.MessageRequest parseFrom(
+  public static newHire.create.permissions.RequestPermissions parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.permissions.MessageRequest parseFrom(
+  public static newHire.create.permissions.RequestPermissions parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.permissions.MessageRequest parseFrom(
+  public static newHire.create.permissions.RequestPermissions parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.permissions.MessageRequest parseFrom(byte[] data)
+  public static newHire.create.permissions.RequestPermissions parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.permissions.MessageRequest parseFrom(
+  public static newHire.create.permissions.RequestPermissions parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.permissions.MessageRequest parseFrom(java.io.InputStream input)
+  public static newHire.create.permissions.RequestPermissions parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static newHire.create.permissions.MessageRequest parseFrom(
+  public static newHire.create.permissions.RequestPermissions parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static newHire.create.permissions.MessageRequest parseDelimitedFrom(java.io.InputStream input)
+  public static newHire.create.permissions.RequestPermissions parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static newHire.create.permissions.MessageRequest parseDelimitedFrom(
+  public static newHire.create.permissions.RequestPermissions parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static newHire.create.permissions.MessageRequest parseFrom(
+  public static newHire.create.permissions.RequestPermissions parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static newHire.create.permissions.MessageRequest parseFrom(
+  public static newHire.create.permissions.RequestPermissions parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -255,7 +255,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(newHire.create.permissions.MessageRequest prototype) {
+  public static Builder newBuilder(newHire.create.permissions.RequestPermissions prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -271,26 +271,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code newHire.MessageRequest}
+   * Protobuf type {@code newHire.RequestPermissions}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:newHire.MessageRequest)
-      newHire.create.permissions.MessageRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:newHire.RequestPermissions)
+      newHire.create.permissions.RequestPermissionsOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return newHire.create.permissions.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+      return newHire.create.permissions.newHire2ServiceImpl.internal_static_newHire_RequestPermissions_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return newHire.create.permissions.newHire2ServiceImpl.internal_static_newHire_MessageRequest_fieldAccessorTable
+      return newHire.create.permissions.newHire2ServiceImpl.internal_static_newHire_RequestPermissions_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              newHire.create.permissions.MessageRequest.class, newHire.create.permissions.MessageRequest.Builder.class);
+              newHire.create.permissions.RequestPermissions.class, newHire.create.permissions.RequestPermissions.Builder.class);
     }
 
-    // Construct using newHire.create.permissions.MessageRequest.newBuilder()
+    // Construct using newHire.create.permissions.RequestPermissions.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -316,17 +316,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return newHire.create.permissions.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+      return newHire.create.permissions.newHire2ServiceImpl.internal_static_newHire_RequestPermissions_descriptor;
     }
 
     @java.lang.Override
-    public newHire.create.permissions.MessageRequest getDefaultInstanceForType() {
-      return newHire.create.permissions.MessageRequest.getDefaultInstance();
+    public newHire.create.permissions.RequestPermissions getDefaultInstanceForType() {
+      return newHire.create.permissions.RequestPermissions.getDefaultInstance();
     }
 
     @java.lang.Override
-    public newHire.create.permissions.MessageRequest build() {
-      newHire.create.permissions.MessageRequest result = buildPartial();
+    public newHire.create.permissions.RequestPermissions build() {
+      newHire.create.permissions.RequestPermissions result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -334,8 +334,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public newHire.create.permissions.MessageRequest buildPartial() {
-      newHire.create.permissions.MessageRequest result = new newHire.create.permissions.MessageRequest(this);
+    public newHire.create.permissions.RequestPermissions buildPartial() {
+      newHire.create.permissions.RequestPermissions result = new newHire.create.permissions.RequestPermissions(this);
       result.text_ = text_;
       onBuilt();
       return result;
@@ -375,16 +375,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof newHire.create.permissions.MessageRequest) {
-        return mergeFrom((newHire.create.permissions.MessageRequest)other);
+      if (other instanceof newHire.create.permissions.RequestPermissions) {
+        return mergeFrom((newHire.create.permissions.RequestPermissions)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(newHire.create.permissions.MessageRequest other) {
-      if (other == newHire.create.permissions.MessageRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(newHire.create.permissions.RequestPermissions other) {
+      if (other == newHire.create.permissions.RequestPermissions.getDefaultInstance()) return this;
       if (!other.getText().isEmpty()) {
         text_ = other.text_;
         onChanged();
@@ -404,11 +404,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      newHire.create.permissions.MessageRequest parsedMessage = null;
+      newHire.create.permissions.RequestPermissions parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (newHire.create.permissions.MessageRequest) e.getUnfinishedMessage();
+        parsedMessage = (newHire.create.permissions.RequestPermissions) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -499,41 +499,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:newHire.MessageRequest)
+    // @@protoc_insertion_point(builder_scope:newHire.RequestPermissions)
   }
 
-  // @@protoc_insertion_point(class_scope:newHire.MessageRequest)
-  private static final newHire.create.permissions.MessageRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:newHire.RequestPermissions)
+  private static final newHire.create.permissions.RequestPermissions DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new newHire.create.permissions.MessageRequest();
+    DEFAULT_INSTANCE = new newHire.create.permissions.RequestPermissions();
   }
 
-  public static newHire.create.permissions.MessageRequest getDefaultInstance() {
+  public static newHire.create.permissions.RequestPermissions getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<MessageRequest>
-      PARSER = new com.google.protobuf.AbstractParser<MessageRequest>() {
+  private static final com.google.protobuf.Parser<RequestPermissions>
+      PARSER = new com.google.protobuf.AbstractParser<RequestPermissions>() {
     @java.lang.Override
-    public MessageRequest parsePartialFrom(
+    public RequestPermissions parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MessageRequest(input, extensionRegistry);
+      return new RequestPermissions(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<MessageRequest> parser() {
+  public static com.google.protobuf.Parser<RequestPermissions> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<MessageRequest> getParserForType() {
+  public com.google.protobuf.Parser<RequestPermissions> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public newHire.create.permissions.MessageRequest getDefaultInstanceForType() {
+  public newHire.create.permissions.RequestPermissions getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

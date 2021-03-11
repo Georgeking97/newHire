@@ -59,6 +59,70 @@ public final class newHireGrpc {
      return getSendMessageMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<newHire.create.permissions.RequestPermissions,
+      newHire.create.permissions.AllPermissions> getSeePermissionsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "seePermissions",
+      requestType = newHire.create.permissions.RequestPermissions.class,
+      responseType = newHire.create.permissions.AllPermissions.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+  public static io.grpc.MethodDescriptor<newHire.create.permissions.RequestPermissions,
+      newHire.create.permissions.AllPermissions> getSeePermissionsMethod() {
+    io.grpc.MethodDescriptor<newHire.create.permissions.RequestPermissions, newHire.create.permissions.AllPermissions> getSeePermissionsMethod;
+    if ((getSeePermissionsMethod = newHireGrpc.getSeePermissionsMethod) == null) {
+      synchronized (newHireGrpc.class) {
+        if ((getSeePermissionsMethod = newHireGrpc.getSeePermissionsMethod) == null) {
+          newHireGrpc.getSeePermissionsMethod = getSeePermissionsMethod = 
+              io.grpc.MethodDescriptor.<newHire.create.permissions.RequestPermissions, newHire.create.permissions.AllPermissions>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
+              .setFullMethodName(generateFullMethodName(
+                  "newHire.newHire", "seePermissions"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  newHire.create.permissions.RequestPermissions.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  newHire.create.permissions.AllPermissions.getDefaultInstance()))
+                  .setSchemaDescriptor(new newHireMethodDescriptorSupplier("seePermissions"))
+                  .build();
+          }
+        }
+     }
+     return getSeePermissionsMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<newHire.create.permissions.NewPermission,
+      newHire.create.permissions.CreatedPermission> getSetPermissionsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "setPermissions",
+      requestType = newHire.create.permissions.NewPermission.class,
+      responseType = newHire.create.permissions.CreatedPermission.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<newHire.create.permissions.NewPermission,
+      newHire.create.permissions.CreatedPermission> getSetPermissionsMethod() {
+    io.grpc.MethodDescriptor<newHire.create.permissions.NewPermission, newHire.create.permissions.CreatedPermission> getSetPermissionsMethod;
+    if ((getSetPermissionsMethod = newHireGrpc.getSetPermissionsMethod) == null) {
+      synchronized (newHireGrpc.class) {
+        if ((getSetPermissionsMethod = newHireGrpc.getSetPermissionsMethod) == null) {
+          newHireGrpc.getSetPermissionsMethod = getSetPermissionsMethod = 
+              io.grpc.MethodDescriptor.<newHire.create.permissions.NewPermission, newHire.create.permissions.CreatedPermission>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "newHire.newHire", "setPermissions"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  newHire.create.permissions.NewPermission.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  newHire.create.permissions.CreatedPermission.getDefaultInstance()))
+                  .setSchemaDescriptor(new newHireMethodDescriptorSupplier("setPermissions"))
+                  .build();
+          }
+        }
+     }
+     return getSetPermissionsMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -88,12 +152,32 @@ public final class newHireGrpc {
 
     /**
      * <pre>
-     *specify the RPC
+     *setting permissions 
      * </pre>
      */
     public io.grpc.stub.StreamObserver<newHire.create.permissions.MessageRequest> sendMessage(
         io.grpc.stub.StreamObserver<newHire.create.permissions.MessageReply> responseObserver) {
       return asyncUnimplementedStreamingCall(getSendMessageMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *seeing all available permissions
+     * </pre>
+     */
+    public void seePermissions(newHire.create.permissions.RequestPermissions request,
+        io.grpc.stub.StreamObserver<newHire.create.permissions.AllPermissions> responseObserver) {
+      asyncUnimplementedUnaryCall(getSeePermissionsMethod(), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *creating a new permission
+     * </pre>
+     */
+    public void setPermissions(newHire.create.permissions.NewPermission request,
+        io.grpc.stub.StreamObserver<newHire.create.permissions.CreatedPermission> responseObserver) {
+      asyncUnimplementedUnaryCall(getSetPermissionsMethod(), responseObserver);
     }
 
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
@@ -105,6 +189,20 @@ public final class newHireGrpc {
                 newHire.create.permissions.MessageRequest,
                 newHire.create.permissions.MessageReply>(
                   this, METHODID_SEND_MESSAGE)))
+          .addMethod(
+            getSeePermissionsMethod(),
+            asyncServerStreamingCall(
+              new MethodHandlers<
+                newHire.create.permissions.RequestPermissions,
+                newHire.create.permissions.AllPermissions>(
+                  this, METHODID_SEE_PERMISSIONS)))
+          .addMethod(
+            getSetPermissionsMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                newHire.create.permissions.NewPermission,
+                newHire.create.permissions.CreatedPermission>(
+                  this, METHODID_SET_PERMISSIONS)))
           .build();
     }
   }
@@ -129,13 +227,35 @@ public final class newHireGrpc {
 
     /**
      * <pre>
-     *specify the RPC
+     *setting permissions 
      * </pre>
      */
     public io.grpc.stub.StreamObserver<newHire.create.permissions.MessageRequest> sendMessage(
         io.grpc.stub.StreamObserver<newHire.create.permissions.MessageReply> responseObserver) {
       return asyncBidiStreamingCall(
           getChannel().newCall(getSendMessageMethod(), getCallOptions()), responseObserver);
+    }
+
+    /**
+     * <pre>
+     *seeing all available permissions
+     * </pre>
+     */
+    public void seePermissions(newHire.create.permissions.RequestPermissions request,
+        io.grpc.stub.StreamObserver<newHire.create.permissions.AllPermissions> responseObserver) {
+      asyncServerStreamingCall(
+          getChannel().newCall(getSeePermissionsMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     * <pre>
+     *creating a new permission
+     * </pre>
+     */
+    public void setPermissions(newHire.create.permissions.NewPermission request,
+        io.grpc.stub.StreamObserver<newHire.create.permissions.CreatedPermission> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getSetPermissionsMethod(), getCallOptions()), request, responseObserver);
     }
   }
 
@@ -156,6 +276,27 @@ public final class newHireGrpc {
         io.grpc.CallOptions callOptions) {
       return new newHireBlockingStub(channel, callOptions);
     }
+
+    /**
+     * <pre>
+     *seeing all available permissions
+     * </pre>
+     */
+    public java.util.Iterator<newHire.create.permissions.AllPermissions> seePermissions(
+        newHire.create.permissions.RequestPermissions request) {
+      return blockingServerStreamingCall(
+          getChannel(), getSeePermissionsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *creating a new permission
+     * </pre>
+     */
+    public newHire.create.permissions.CreatedPermission setPermissions(newHire.create.permissions.NewPermission request) {
+      return blockingUnaryCall(
+          getChannel(), getSetPermissionsMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -175,9 +316,22 @@ public final class newHireGrpc {
         io.grpc.CallOptions callOptions) {
       return new newHireFutureStub(channel, callOptions);
     }
+
+    /**
+     * <pre>
+     *creating a new permission
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<newHire.create.permissions.CreatedPermission> setPermissions(
+        newHire.create.permissions.NewPermission request) {
+      return futureUnaryCall(
+          getChannel().newCall(getSetPermissionsMethod(), getCallOptions()), request);
+    }
   }
 
-  private static final int METHODID_SEND_MESSAGE = 0;
+  private static final int METHODID_SEE_PERMISSIONS = 0;
+  private static final int METHODID_SET_PERMISSIONS = 1;
+  private static final int METHODID_SEND_MESSAGE = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -196,6 +350,14 @@ public final class newHireGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_SEE_PERMISSIONS:
+          serviceImpl.seePermissions((newHire.create.permissions.RequestPermissions) request,
+              (io.grpc.stub.StreamObserver<newHire.create.permissions.AllPermissions>) responseObserver);
+          break;
+        case METHODID_SET_PERMISSIONS:
+          serviceImpl.setPermissions((newHire.create.permissions.NewPermission) request,
+              (io.grpc.stub.StreamObserver<newHire.create.permissions.CreatedPermission>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -261,6 +423,8 @@ public final class newHireGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new newHireFileDescriptorSupplier())
               .addMethod(getSendMessageMethod())
+              .addMethod(getSeePermissionsMethod())
+              .addMethod(getSetPermissionsMethod())
               .build();
         }
       }
