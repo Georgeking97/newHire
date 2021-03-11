@@ -13,6 +13,8 @@ service newHire{
 	rpc sendMessage(stream MessageRequest) returns (MessageReply);
 	//seeing all security cards
 	rpc seeCards(RequestCards) returns (CardsReturned);
+	//delete security card
+	rpc deleteCard(SpecifyCard) returns (CardDeleted);
 }
 
 message MessageRequest{
@@ -29,4 +31,12 @@ message RequestCards{
 
 message CardsReturned{
 	string value = 1;
+}
+
+message SpecifyCard{
+	string text = 1;
+}
+
+message CardDeleted{
+	string value =1;
 }

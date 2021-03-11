@@ -85,23 +85,30 @@ public class CreatePermissionsServer extends newHireImplBase {
 		};
 	}
 
-	// creating permissions
+	// creating permissions simple rpc
 	public void setPermissions(NewPermission request, StreamObserver<CreatedPermission> responseObserver) {
-		//getting the value the user sent from the client to create the permission
+		// getting the value the user sent from the client to create the permission
 		String permission = request.getText();
-		//adding the new permission to the array of permissions
+		// adding the new permission to the array of permissions
 		permissions.add(permission);
-		//creating the message for the reply
+		// creating the message for the reply
 		String response = "Your permission has been created ";
-		//creating the reply for the client
-		CreatedPermission reply  = CreatedPermission.newBuilder().setValue(response+permission).build();
-		//sending the reply to the client
+		// creating the reply for the client
+		CreatedPermission reply = CreatedPermission.newBuilder().setValue(response + permission).build();
+		// sending the reply to the client
 		responseObserver.onNext(reply);
 		responseObserver.onCompleted();
 	}
 
-	// seeing all available permissions
+	// seeing all available permissions server side rpc streaming
 	public void seePermissions(RequestPermissions request, StreamObserver<AllPermissions> responseObserver) {
-		
+		// for each permission in the array create a reply and send it back to the
+		// client
+		for (int i = 0; i < permissions.size(); i++) {
+			String permission = permissions.get(i);
+			AllPermissions reply = AllPermissions.newBuilder().setValue(permission).build();
+			responseObserver.onNext(reply);
+		}
+		responseObserver.onCompleted();
 	}
 }

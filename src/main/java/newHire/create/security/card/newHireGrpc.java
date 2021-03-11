@@ -91,6 +91,38 @@ public final class newHireGrpc {
      return getSeeCardsMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<newHire.create.security.card.SpecifyCard,
+      newHire.create.security.card.CardDeleted> getDeleteCardMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "deleteCard",
+      requestType = newHire.create.security.card.SpecifyCard.class,
+      responseType = newHire.create.security.card.CardDeleted.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<newHire.create.security.card.SpecifyCard,
+      newHire.create.security.card.CardDeleted> getDeleteCardMethod() {
+    io.grpc.MethodDescriptor<newHire.create.security.card.SpecifyCard, newHire.create.security.card.CardDeleted> getDeleteCardMethod;
+    if ((getDeleteCardMethod = newHireGrpc.getDeleteCardMethod) == null) {
+      synchronized (newHireGrpc.class) {
+        if ((getDeleteCardMethod = newHireGrpc.getDeleteCardMethod) == null) {
+          newHireGrpc.getDeleteCardMethod = getDeleteCardMethod = 
+              io.grpc.MethodDescriptor.<newHire.create.security.card.SpecifyCard, newHire.create.security.card.CardDeleted>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "newHire.newHire", "deleteCard"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  newHire.create.security.card.SpecifyCard.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  newHire.create.security.card.CardDeleted.getDefaultInstance()))
+                  .setSchemaDescriptor(new newHireMethodDescriptorSupplier("deleteCard"))
+                  .build();
+          }
+        }
+     }
+     return getDeleteCardMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -138,6 +170,16 @@ public final class newHireGrpc {
       asyncUnimplementedUnaryCall(getSeeCardsMethod(), responseObserver);
     }
 
+    /**
+     * <pre>
+     *delete security card
+     * </pre>
+     */
+    public void deleteCard(newHire.create.security.card.SpecifyCard request,
+        io.grpc.stub.StreamObserver<newHire.create.security.card.CardDeleted> responseObserver) {
+      asyncUnimplementedUnaryCall(getDeleteCardMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -154,6 +196,13 @@ public final class newHireGrpc {
                 newHire.create.security.card.RequestCards,
                 newHire.create.security.card.CardsReturned>(
                   this, METHODID_SEE_CARDS)))
+          .addMethod(
+            getDeleteCardMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                newHire.create.security.card.SpecifyCard,
+                newHire.create.security.card.CardDeleted>(
+                  this, METHODID_DELETE_CARD)))
           .build();
     }
   }
@@ -197,6 +246,17 @@ public final class newHireGrpc {
       asyncUnaryCall(
           getChannel().newCall(getSeeCardsMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     * <pre>
+     *delete security card
+     * </pre>
+     */
+    public void deleteCard(newHire.create.security.card.SpecifyCard request,
+        io.grpc.stub.StreamObserver<newHire.create.security.card.CardDeleted> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getDeleteCardMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -225,6 +285,16 @@ public final class newHireGrpc {
     public newHire.create.security.card.CardsReturned seeCards(newHire.create.security.card.RequestCards request) {
       return blockingUnaryCall(
           getChannel(), getSeeCardsMethod(), getCallOptions(), request);
+    }
+
+    /**
+     * <pre>
+     *delete security card
+     * </pre>
+     */
+    public newHire.create.security.card.CardDeleted deleteCard(newHire.create.security.card.SpecifyCard request) {
+      return blockingUnaryCall(
+          getChannel(), getDeleteCardMethod(), getCallOptions(), request);
     }
   }
 
@@ -256,10 +326,22 @@ public final class newHireGrpc {
       return futureUnaryCall(
           getChannel().newCall(getSeeCardsMethod(), getCallOptions()), request);
     }
+
+    /**
+     * <pre>
+     *delete security card
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<newHire.create.security.card.CardDeleted> deleteCard(
+        newHire.create.security.card.SpecifyCard request) {
+      return futureUnaryCall(
+          getChannel().newCall(getDeleteCardMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_SEE_CARDS = 0;
-  private static final int METHODID_SEND_MESSAGE = 1;
+  private static final int METHODID_DELETE_CARD = 1;
+  private static final int METHODID_SEND_MESSAGE = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -281,6 +363,10 @@ public final class newHireGrpc {
         case METHODID_SEE_CARDS:
           serviceImpl.seeCards((newHire.create.security.card.RequestCards) request,
               (io.grpc.stub.StreamObserver<newHire.create.security.card.CardsReturned>) responseObserver);
+          break;
+        case METHODID_DELETE_CARD:
+          serviceImpl.deleteCard((newHire.create.security.card.SpecifyCard) request,
+              (io.grpc.stub.StreamObserver<newHire.create.security.card.CardDeleted>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -348,6 +434,7 @@ public final class newHireGrpc {
               .setSchemaDescriptor(new newHireFileDescriptorSupplier())
               .addMethod(getSendMessageMethod())
               .addMethod(getSeeCardsMethod())
+              .addMethod(getDeleteCardMethod())
               .build();
         }
       }

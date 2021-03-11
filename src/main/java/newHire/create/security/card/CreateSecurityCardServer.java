@@ -15,6 +15,7 @@ import io.grpc.stub.StreamObserver;
 import newHire.create.security.card.newHireGrpc.newHireImplBase;
 
 public class CreateSecurityCardServer extends newHireImplBase {
+	ArrayList<String> cards = new ArrayList<>();
 
 	public static void main(String[] args) {
 		// creating an object of the class to add the service to the server
@@ -84,6 +85,7 @@ public class CreateSecurityCardServer extends newHireImplBase {
 					// get the message sent and append it to the response (temp)
 					result = sb.append(" " + p + " ").toString();
 				}
+				cards.add(result);
 				System.out.println("Your security badge has been created with said permissions: " + result);
 				// creating the reply to send back
 				MessageReply reply = MessageReply.newBuilder().setValue(result).build();

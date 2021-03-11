@@ -10,9 +10,11 @@ C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\permission
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\security\card\RequestCardsOrBuilder.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\security\card\CardsReturned.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\email\MessageReplyOrBuilder.java
+C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\security\card\SpecifyCardOrBuilder.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\email\CreateEmailServer.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\security\card\CardsReturnedOrBuilder.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\security\card\MessageReply.java
+C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\security\card\CardDeletedOrBuilder.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\email\MessageReply.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\permissions\RequestPermissions.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\find\newhires\newHire2ServiceImpl.java
@@ -23,6 +25,7 @@ C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\email\Emai
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\permissions\RequestPermissionsOrBuilder.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\find\newhires\findNewHiresServer.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\permissions\CreatedPermission.java
+C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\security\card\CardDeleted.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\permissions\newHire2ServiceImpl.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\permissions\AllPermissions.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\find\newhires\MessageRequestOrBuilder.java
@@ -33,6 +36,7 @@ C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\security\c
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\email\EmailToDeleteOrBuilder.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\find\newhires\LetterOrBuilder.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\email\AllEmailsOrBuilder.java
+C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\security\card\SpecifyCard.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\find\newhires\Letter.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\email\EmailToDelete.java
 C:\Users\georg\eclipse-workspace\newHire\src\main\java\newHire\create\security\card\MessageRequest.java
