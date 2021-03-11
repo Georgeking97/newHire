@@ -4,18 +4,18 @@
 package newHire.create.security.card;
 
 /**
- * Protobuf type {@code newHire.MessageRequest}
+ * Protobuf type {@code newHire.RequestCards}
  */
-public  final class MessageRequest extends
+public  final class RequestCards extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:newHire.MessageRequest)
-    MessageRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:newHire.RequestCards)
+    RequestCardsOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use MessageRequest.newBuilder() to construct.
-  private MessageRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use RequestCards.newBuilder() to construct.
+  private RequestCards(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private MessageRequest() {
+  private RequestCards() {
     text_ = "";
   }
 
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private MessageRequest(
+  private RequestCards(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -70,15 +70,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return newHire.create.security.card.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+    return newHire.create.security.card.newHire2ServiceImpl.internal_static_newHire_RequestCards_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return newHire.create.security.card.newHire2ServiceImpl.internal_static_newHire_MessageRequest_fieldAccessorTable
+    return newHire.create.security.card.newHire2ServiceImpl.internal_static_newHire_RequestCards_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            newHire.create.security.card.MessageRequest.class, newHire.create.security.card.MessageRequest.Builder.class);
+            newHire.create.security.card.RequestCards.class, newHire.create.security.card.RequestCards.Builder.class);
   }
 
   public static final int TEXT_FIELD_NUMBER = 1;
@@ -154,10 +154,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof newHire.create.security.card.MessageRequest)) {
+    if (!(obj instanceof newHire.create.security.card.RequestCards)) {
       return super.equals(obj);
     }
-    newHire.create.security.card.MessageRequest other = (newHire.create.security.card.MessageRequest) obj;
+    newHire.create.security.card.RequestCards other = (newHire.create.security.card.RequestCards) obj;
 
     boolean result = true;
     result = result && getText()
@@ -180,69 +180,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static newHire.create.security.card.MessageRequest parseFrom(
+  public static newHire.create.security.card.RequestCards parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.security.card.MessageRequest parseFrom(
+  public static newHire.create.security.card.RequestCards parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.security.card.MessageRequest parseFrom(
+  public static newHire.create.security.card.RequestCards parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.security.card.MessageRequest parseFrom(
+  public static newHire.create.security.card.RequestCards parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.security.card.MessageRequest parseFrom(byte[] data)
+  public static newHire.create.security.card.RequestCards parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.security.card.MessageRequest parseFrom(
+  public static newHire.create.security.card.RequestCards parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.security.card.MessageRequest parseFrom(java.io.InputStream input)
+  public static newHire.create.security.card.RequestCards parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static newHire.create.security.card.MessageRequest parseFrom(
+  public static newHire.create.security.card.RequestCards parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static newHire.create.security.card.MessageRequest parseDelimitedFrom(java.io.InputStream input)
+  public static newHire.create.security.card.RequestCards parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static newHire.create.security.card.MessageRequest parseDelimitedFrom(
+  public static newHire.create.security.card.RequestCards parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static newHire.create.security.card.MessageRequest parseFrom(
+  public static newHire.create.security.card.RequestCards parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static newHire.create.security.card.MessageRequest parseFrom(
+  public static newHire.create.security.card.RequestCards parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -255,7 +255,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(newHire.create.security.card.MessageRequest prototype) {
+  public static Builder newBuilder(newHire.create.security.card.RequestCards prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -271,26 +271,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code newHire.MessageRequest}
+   * Protobuf type {@code newHire.RequestCards}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:newHire.MessageRequest)
-      newHire.create.security.card.MessageRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:newHire.RequestCards)
+      newHire.create.security.card.RequestCardsOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return newHire.create.security.card.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+      return newHire.create.security.card.newHire2ServiceImpl.internal_static_newHire_RequestCards_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return newHire.create.security.card.newHire2ServiceImpl.internal_static_newHire_MessageRequest_fieldAccessorTable
+      return newHire.create.security.card.newHire2ServiceImpl.internal_static_newHire_RequestCards_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              newHire.create.security.card.MessageRequest.class, newHire.create.security.card.MessageRequest.Builder.class);
+              newHire.create.security.card.RequestCards.class, newHire.create.security.card.RequestCards.Builder.class);
     }
 
-    // Construct using newHire.create.security.card.MessageRequest.newBuilder()
+    // Construct using newHire.create.security.card.RequestCards.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -316,17 +316,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return newHire.create.security.card.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+      return newHire.create.security.card.newHire2ServiceImpl.internal_static_newHire_RequestCards_descriptor;
     }
 
     @java.lang.Override
-    public newHire.create.security.card.MessageRequest getDefaultInstanceForType() {
-      return newHire.create.security.card.MessageRequest.getDefaultInstance();
+    public newHire.create.security.card.RequestCards getDefaultInstanceForType() {
+      return newHire.create.security.card.RequestCards.getDefaultInstance();
     }
 
     @java.lang.Override
-    public newHire.create.security.card.MessageRequest build() {
-      newHire.create.security.card.MessageRequest result = buildPartial();
+    public newHire.create.security.card.RequestCards build() {
+      newHire.create.security.card.RequestCards result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -334,8 +334,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public newHire.create.security.card.MessageRequest buildPartial() {
-      newHire.create.security.card.MessageRequest result = new newHire.create.security.card.MessageRequest(this);
+    public newHire.create.security.card.RequestCards buildPartial() {
+      newHire.create.security.card.RequestCards result = new newHire.create.security.card.RequestCards(this);
       result.text_ = text_;
       onBuilt();
       return result;
@@ -375,16 +375,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof newHire.create.security.card.MessageRequest) {
-        return mergeFrom((newHire.create.security.card.MessageRequest)other);
+      if (other instanceof newHire.create.security.card.RequestCards) {
+        return mergeFrom((newHire.create.security.card.RequestCards)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(newHire.create.security.card.MessageRequest other) {
-      if (other == newHire.create.security.card.MessageRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(newHire.create.security.card.RequestCards other) {
+      if (other == newHire.create.security.card.RequestCards.getDefaultInstance()) return this;
       if (!other.getText().isEmpty()) {
         text_ = other.text_;
         onChanged();
@@ -404,11 +404,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      newHire.create.security.card.MessageRequest parsedMessage = null;
+      newHire.create.security.card.RequestCards parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (newHire.create.security.card.MessageRequest) e.getUnfinishedMessage();
+        parsedMessage = (newHire.create.security.card.RequestCards) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -499,41 +499,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:newHire.MessageRequest)
+    // @@protoc_insertion_point(builder_scope:newHire.RequestCards)
   }
 
-  // @@protoc_insertion_point(class_scope:newHire.MessageRequest)
-  private static final newHire.create.security.card.MessageRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:newHire.RequestCards)
+  private static final newHire.create.security.card.RequestCards DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new newHire.create.security.card.MessageRequest();
+    DEFAULT_INSTANCE = new newHire.create.security.card.RequestCards();
   }
 
-  public static newHire.create.security.card.MessageRequest getDefaultInstance() {
+  public static newHire.create.security.card.RequestCards getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<MessageRequest>
-      PARSER = new com.google.protobuf.AbstractParser<MessageRequest>() {
+  private static final com.google.protobuf.Parser<RequestCards>
+      PARSER = new com.google.protobuf.AbstractParser<RequestCards>() {
     @java.lang.Override
-    public MessageRequest parsePartialFrom(
+    public RequestCards parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MessageRequest(input, extensionRegistry);
+      return new RequestCards(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<MessageRequest> parser() {
+  public static com.google.protobuf.Parser<RequestCards> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<MessageRequest> getParserForType() {
+  public com.google.protobuf.Parser<RequestCards> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public newHire.create.security.card.MessageRequest getDefaultInstanceForType() {
+  public newHire.create.security.card.RequestCards getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

@@ -59,6 +59,38 @@ public final class newHireGrpc {
      return getSendMessageMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<newHire.create.security.card.RequestCards,
+      newHire.create.security.card.CardsReturned> getSeeCardsMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "seeCards",
+      requestType = newHire.create.security.card.RequestCards.class,
+      responseType = newHire.create.security.card.CardsReturned.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<newHire.create.security.card.RequestCards,
+      newHire.create.security.card.CardsReturned> getSeeCardsMethod() {
+    io.grpc.MethodDescriptor<newHire.create.security.card.RequestCards, newHire.create.security.card.CardsReturned> getSeeCardsMethod;
+    if ((getSeeCardsMethod = newHireGrpc.getSeeCardsMethod) == null) {
+      synchronized (newHireGrpc.class) {
+        if ((getSeeCardsMethod = newHireGrpc.getSeeCardsMethod) == null) {
+          newHireGrpc.getSeeCardsMethod = getSeeCardsMethod = 
+              io.grpc.MethodDescriptor.<newHire.create.security.card.RequestCards, newHire.create.security.card.CardsReturned>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(
+                  "newHire.newHire", "seeCards"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  newHire.create.security.card.RequestCards.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  newHire.create.security.card.CardsReturned.getDefaultInstance()))
+                  .setSchemaDescriptor(new newHireMethodDescriptorSupplier("seeCards"))
+                  .build();
+          }
+        }
+     }
+     return getSeeCardsMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -96,6 +128,16 @@ public final class newHireGrpc {
       return asyncUnimplementedStreamingCall(getSendMessageMethod(), responseObserver);
     }
 
+    /**
+     * <pre>
+     *seeing all security cards
+     * </pre>
+     */
+    public void seeCards(newHire.create.security.card.RequestCards request,
+        io.grpc.stub.StreamObserver<newHire.create.security.card.CardsReturned> responseObserver) {
+      asyncUnimplementedUnaryCall(getSeeCardsMethod(), responseObserver);
+    }
+
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -105,6 +147,13 @@ public final class newHireGrpc {
                 newHire.create.security.card.MessageRequest,
                 newHire.create.security.card.MessageReply>(
                   this, METHODID_SEND_MESSAGE)))
+          .addMethod(
+            getSeeCardsMethod(),
+            asyncUnaryCall(
+              new MethodHandlers<
+                newHire.create.security.card.RequestCards,
+                newHire.create.security.card.CardsReturned>(
+                  this, METHODID_SEE_CARDS)))
           .build();
     }
   }
@@ -137,6 +186,17 @@ public final class newHireGrpc {
       return asyncClientStreamingCall(
           getChannel().newCall(getSendMessageMethod(), getCallOptions()), responseObserver);
     }
+
+    /**
+     * <pre>
+     *seeing all security cards
+     * </pre>
+     */
+    public void seeCards(newHire.create.security.card.RequestCards request,
+        io.grpc.stub.StreamObserver<newHire.create.security.card.CardsReturned> responseObserver) {
+      asyncUnaryCall(
+          getChannel().newCall(getSeeCardsMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -155,6 +215,16 @@ public final class newHireGrpc {
     protected newHireBlockingStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new newHireBlockingStub(channel, callOptions);
+    }
+
+    /**
+     * <pre>
+     *seeing all security cards
+     * </pre>
+     */
+    public newHire.create.security.card.CardsReturned seeCards(newHire.create.security.card.RequestCards request) {
+      return blockingUnaryCall(
+          getChannel(), getSeeCardsMethod(), getCallOptions(), request);
     }
   }
 
@@ -175,9 +245,21 @@ public final class newHireGrpc {
         io.grpc.CallOptions callOptions) {
       return new newHireFutureStub(channel, callOptions);
     }
+
+    /**
+     * <pre>
+     *seeing all security cards
+     * </pre>
+     */
+    public com.google.common.util.concurrent.ListenableFuture<newHire.create.security.card.CardsReturned> seeCards(
+        newHire.create.security.card.RequestCards request) {
+      return futureUnaryCall(
+          getChannel().newCall(getSeeCardsMethod(), getCallOptions()), request);
+    }
   }
 
-  private static final int METHODID_SEND_MESSAGE = 0;
+  private static final int METHODID_SEE_CARDS = 0;
+  private static final int METHODID_SEND_MESSAGE = 1;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -196,6 +278,10 @@ public final class newHireGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
+        case METHODID_SEE_CARDS:
+          serviceImpl.seeCards((newHire.create.security.card.RequestCards) request,
+              (io.grpc.stub.StreamObserver<newHire.create.security.card.CardsReturned>) responseObserver);
+          break;
         default:
           throw new AssertionError();
       }
@@ -261,6 +347,7 @@ public final class newHireGrpc {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new newHireFileDescriptorSupplier())
               .addMethod(getSendMessageMethod())
+              .addMethod(getSeeCardsMethod())
               .build();
         }
       }

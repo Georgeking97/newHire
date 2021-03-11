@@ -24,6 +24,16 @@ public final class newHire2ServiceImpl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_newHire_MessageReply_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_newHire_RequestCards_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_newHire_RequestCards_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_newHire_CardsReturned_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_newHire_CardsReturned_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -35,10 +45,14 @@ public final class newHire2ServiceImpl {
     java.lang.String[] descriptorData = {
       "\n\032create_security_card.proto\022\007newHire\"\036\n" +
       "\016MessageRequest\022\014\n\004text\030\001 \001(\t\"\035\n\014Message" +
-      "Reply\022\r\n\005value\030\001 \001(\t2J\n\007newHire\022?\n\013sendM" +
-      "essage\022\027.newHire.MessageRequest\032\025.newHir" +
-      "e.MessageReply(\001B5\n\034newHire.create.secur" +
-      "ity.cardB\023newHire2ServiceImplP\001b\006proto3"
+      "Reply\022\r\n\005value\030\001 \001(\t\"\034\n\014RequestCards\022\014\n\004" +
+      "text\030\001 \001(\t\"\036\n\rCardsReturned\022\r\n\005value\030\001 \001" +
+      "(\t2\205\001\n\007newHire\022?\n\013sendMessage\022\027.newHire." +
+      "MessageRequest\032\025.newHire.MessageReply(\001\022" +
+      "9\n\010seeCards\022\025.newHire.RequestCards\032\026.new" +
+      "Hire.CardsReturnedB5\n\034newHire.create.sec" +
+      "urity.cardB\023newHire2ServiceImplP\001b\006proto" +
+      "3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -63,6 +77,18 @@ public final class newHire2ServiceImpl {
     internal_static_newHire_MessageReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_newHire_MessageReply_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_newHire_RequestCards_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_newHire_RequestCards_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_newHire_RequestCards_descriptor,
+        new java.lang.String[] { "Text", });
+    internal_static_newHire_CardsReturned_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_newHire_CardsReturned_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_newHire_CardsReturned_descriptor,
         new java.lang.String[] { "Value", });
   }
 
