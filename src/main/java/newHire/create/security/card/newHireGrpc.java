@@ -88,7 +88,7 @@ public final class newHireGrpc {
 
     /**
      * <pre>
-     *specify the RPC
+     *creating the security card 
      * </pre>
      */
     public io.grpc.stub.StreamObserver<newHire.create.security.card.MessageRequest> sendMessage(
@@ -129,7 +129,7 @@ public final class newHireGrpc {
 
     /**
      * <pre>
-     *specify the RPC
+     *creating the security card 
      * </pre>
      */
     public io.grpc.stub.StreamObserver<newHire.create.security.card.MessageRequest> sendMessage(

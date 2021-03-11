@@ -9,7 +9,7 @@ option java_outer_classname = "newHire2ServiceImpl";
 package newHire;
 
 service newHire{
-	//specify the RPC
+	//creating the security card 
 	rpc sendMessage(stream MessageRequest) returns (MessageReply);
 }
 

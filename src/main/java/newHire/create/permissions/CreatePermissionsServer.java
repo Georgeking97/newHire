@@ -18,7 +18,7 @@ public class CreatePermissionsServer extends newHireImplBase {
 
 	public static void main(String[] args) {
 		CreatePermissionsServer classObj = new CreatePermissionsServer();
-		int port = 50051;
+		int port = 50052;
 
 		try {
 			// setting the port, adding the service and starting the server

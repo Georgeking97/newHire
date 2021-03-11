@@ -20,7 +20,7 @@ public class CreateSecurityCardServer extends newHireImplBase {
 		// creating an object of the class to add the service to the server
 		CreateSecurityCardServer classObj = new CreateSecurityCardServer();
 		// default port
-		int port = 50051;
+		int port = 50053;
 
 		try {
 			// setting the port, adding the service and starting the server

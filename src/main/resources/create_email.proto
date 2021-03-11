@@ -9,16 +9,35 @@ option java_outer_classname = "newHire2ServiceImpl";
 package newHire;
 
 service newHire{
-	//specify the RPC
+	//create an email
 	rpc sendMessage(MessageRequest) returns (MessageReply);
+	//delete an email
+	rpc deleteEmail(EmailToDelete) returns (EmailDeleted);
+	//see all email
+	rpc seeEmails(Emails) returns (stream AllEmails);
 	
 }
 
-//here I am going to specify the messages used from RPC
 message MessageRequest{
 	string text = 1;
 }
 
 message MessageReply{
+	string value = 1;
+}
+
+message EmailToDelete{
+	string text = 1;
+}
+
+message EmailDeleted{
+	string value = 1;
+}
+
+message Emails{
+	string text = 1;
+}
+
+message AllEmails{
 	string value = 1;
 }

@@ -24,6 +24,26 @@ public final class newHire2ServiceImpl {
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internal_static_newHire_MessageReply_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_newHire_EmailToDelete_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_newHire_EmailToDelete_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_newHire_EmailDeleted_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_newHire_EmailDeleted_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_newHire_Emails_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_newHire_Emails_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_newHire_AllEmails_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
+      internal_static_newHire_AllEmails_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -35,10 +55,16 @@ public final class newHire2ServiceImpl {
     java.lang.String[] descriptorData = {
       "\n\022create_email.proto\022\007newHire\"\036\n\016Message" +
       "Request\022\014\n\004text\030\001 \001(\t\"\035\n\014MessageReply\022\r\n" +
-      "\005value\030\001 \001(\t2H\n\007newHire\022=\n\013sendMessage\022\027" +
-      ".newHire.MessageRequest\032\025.newHire.Messag" +
-      "eReplyB-\n\024newHire.create.emailB\023newHire2" +
-      "ServiceImplP\001b\006proto3"
+      "\005value\030\001 \001(\t\"\035\n\rEmailToDelete\022\014\n\004text\030\001 " +
+      "\001(\t\"\035\n\014EmailDeleted\022\r\n\005value\030\001 \001(\t\"\026\n\006Em" +
+      "ails\022\014\n\004text\030\001 \001(\t\"\032\n\tAllEmails\022\r\n\005value" +
+      "\030\001 \001(\t2\272\001\n\007newHire\022=\n\013sendMessage\022\027.newH" +
+      "ire.MessageRequest\032\025.newHire.MessageRepl" +
+      "y\022<\n\013deleteEmail\022\026.newHire.EmailToDelete" +
+      "\032\025.newHire.EmailDeleted\0222\n\tseeEmails\022\017.n" +
+      "ewHire.Emails\032\022.newHire.AllEmails0\001B-\n\024n" +
+      "ewHire.create.emailB\023newHire2ServiceImpl" +
+      "P\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -63,6 +89,30 @@ public final class newHire2ServiceImpl {
     internal_static_newHire_MessageReply_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
         internal_static_newHire_MessageReply_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_newHire_EmailToDelete_descriptor =
+      getDescriptor().getMessageTypes().get(2);
+    internal_static_newHire_EmailToDelete_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_newHire_EmailToDelete_descriptor,
+        new java.lang.String[] { "Text", });
+    internal_static_newHire_EmailDeleted_descriptor =
+      getDescriptor().getMessageTypes().get(3);
+    internal_static_newHire_EmailDeleted_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_newHire_EmailDeleted_descriptor,
+        new java.lang.String[] { "Value", });
+    internal_static_newHire_Emails_descriptor =
+      getDescriptor().getMessageTypes().get(4);
+    internal_static_newHire_Emails_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_newHire_Emails_descriptor,
+        new java.lang.String[] { "Text", });
+    internal_static_newHire_AllEmails_descriptor =
+      getDescriptor().getMessageTypes().get(5);
+    internal_static_newHire_AllEmails_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
+        internal_static_newHire_AllEmails_descriptor,
         new java.lang.String[] { "Value", });
   }
 

@@ -88,7 +88,7 @@ public final class newHireGrpc {
 
     /**
      * <pre>
-     *specify the RPC
+     *see all current new hires
      * </pre>
      */
     public void sendMessage(newHire.find.newhires.MessageRequest request,
@@ -129,7 +129,7 @@ public final class newHireGrpc {
 
     /**
      * <pre>
-     *specify the RPC
+     *see all current new hires
      * </pre>
      */
     public void sendMessage(newHire.find.newhires.MessageRequest request,
@@ -159,7 +159,7 @@ public final class newHireGrpc {
 
     /**
      * <pre>
-     *specify the RPC
+     *see all current new hires
      * </pre>
      */
     public java.util.Iterator<newHire.find.newhires.MessageReply> sendMessage(

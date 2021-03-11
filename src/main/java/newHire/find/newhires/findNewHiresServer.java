@@ -18,7 +18,7 @@ public class findNewHiresServer extends newHireImplBase {
 
 	public static void main(String[] args) {
 		findNewHiresServer classObj = new findNewHiresServer();
-		int port = 50051;
+		int port = 50054;
 
 		try {
 			// setting the port to connect to, building & starting the server

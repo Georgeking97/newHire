@@ -4,19 +4,19 @@
 package newHire.create.email;
 
 /**
- * Protobuf type {@code newHire.MessageRequest}
+ * Protobuf type {@code newHire.EmailDeleted}
  */
-public  final class MessageRequest extends
+public  final class EmailDeleted extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:newHire.MessageRequest)
-    MessageRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:newHire.EmailDeleted)
+    EmailDeletedOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use MessageRequest.newBuilder() to construct.
-  private MessageRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use EmailDeleted.newBuilder() to construct.
+  private EmailDeleted(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private MessageRequest() {
-    text_ = "";
+  private EmailDeleted() {
+    value_ = "";
   }
 
   @java.lang.Override
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private MessageRequest(
+  private EmailDeleted(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -46,7 +46,7 @@ private static final long serialVersionUID = 0L;
           case 10: {
             java.lang.String s = input.readStringRequireUtf8();
 
-            text_ = s;
+            value_ = s;
             break;
           }
           default: {
@@ -70,45 +70,45 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+    return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_EmailDeleted_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_MessageRequest_fieldAccessorTable
+    return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_EmailDeleted_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            newHire.create.email.MessageRequest.class, newHire.create.email.MessageRequest.Builder.class);
+            newHire.create.email.EmailDeleted.class, newHire.create.email.EmailDeleted.Builder.class);
   }
 
-  public static final int TEXT_FIELD_NUMBER = 1;
-  private volatile java.lang.Object text_;
+  public static final int VALUE_FIELD_NUMBER = 1;
+  private volatile java.lang.Object value_;
   /**
-   * <code>string text = 1;</code>
+   * <code>string value = 1;</code>
    */
-  public java.lang.String getText() {
-    java.lang.Object ref = text_;
+  public java.lang.String getValue() {
+    java.lang.Object ref = value_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      text_ = s;
+      value_ = s;
       return s;
     }
   }
   /**
-   * <code>string text = 1;</code>
+   * <code>string value = 1;</code>
    */
   public com.google.protobuf.ByteString
-      getTextBytes() {
-    java.lang.Object ref = text_;
+      getValueBytes() {
+    java.lang.Object ref = value_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      text_ = b;
+      value_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -129,8 +129,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!getTextBytes().isEmpty()) {
-      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, text_);
+    if (!getValueBytes().isEmpty()) {
+      com.google.protobuf.GeneratedMessageV3.writeString(output, 1, value_);
     }
     unknownFields.writeTo(output);
   }
@@ -141,8 +141,8 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!getTextBytes().isEmpty()) {
-      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, text_);
+    if (!getValueBytes().isEmpty()) {
+      size += com.google.protobuf.GeneratedMessageV3.computeStringSize(1, value_);
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -154,14 +154,14 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof newHire.create.email.MessageRequest)) {
+    if (!(obj instanceof newHire.create.email.EmailDeleted)) {
       return super.equals(obj);
     }
-    newHire.create.email.MessageRequest other = (newHire.create.email.MessageRequest) obj;
+    newHire.create.email.EmailDeleted other = (newHire.create.email.EmailDeleted) obj;
 
     boolean result = true;
-    result = result && getText()
-        .equals(other.getText());
+    result = result && getValue()
+        .equals(other.getValue());
     result = result && unknownFields.equals(other.unknownFields);
     return result;
   }
@@ -173,76 +173,76 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + TEXT_FIELD_NUMBER;
-    hash = (53 * hash) + getText().hashCode();
+    hash = (37 * hash) + VALUE_FIELD_NUMBER;
+    hash = (53 * hash) + getValue().hashCode();
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.EmailDeleted parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.EmailDeleted parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.EmailDeleted parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.EmailDeleted parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.email.MessageRequest parseFrom(byte[] data)
+  public static newHire.create.email.EmailDeleted parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.EmailDeleted parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.email.MessageRequest parseFrom(java.io.InputStream input)
+  public static newHire.create.email.EmailDeleted parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.EmailDeleted parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static newHire.create.email.MessageRequest parseDelimitedFrom(java.io.InputStream input)
+  public static newHire.create.email.EmailDeleted parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static newHire.create.email.MessageRequest parseDelimitedFrom(
+  public static newHire.create.email.EmailDeleted parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.EmailDeleted parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.EmailDeleted parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -255,7 +255,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(newHire.create.email.MessageRequest prototype) {
+  public static Builder newBuilder(newHire.create.email.EmailDeleted prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -271,26 +271,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code newHire.MessageRequest}
+   * Protobuf type {@code newHire.EmailDeleted}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:newHire.MessageRequest)
-      newHire.create.email.MessageRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:newHire.EmailDeleted)
+      newHire.create.email.EmailDeletedOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_EmailDeleted_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_MessageRequest_fieldAccessorTable
+      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_EmailDeleted_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              newHire.create.email.MessageRequest.class, newHire.create.email.MessageRequest.Builder.class);
+              newHire.create.email.EmailDeleted.class, newHire.create.email.EmailDeleted.Builder.class);
     }
 
-    // Construct using newHire.create.email.MessageRequest.newBuilder()
+    // Construct using newHire.create.email.EmailDeleted.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -308,7 +308,7 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public Builder clear() {
       super.clear();
-      text_ = "";
+      value_ = "";
 
       return this;
     }
@@ -316,17 +316,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_EmailDeleted_descriptor;
     }
 
     @java.lang.Override
-    public newHire.create.email.MessageRequest getDefaultInstanceForType() {
-      return newHire.create.email.MessageRequest.getDefaultInstance();
+    public newHire.create.email.EmailDeleted getDefaultInstanceForType() {
+      return newHire.create.email.EmailDeleted.getDefaultInstance();
     }
 
     @java.lang.Override
-    public newHire.create.email.MessageRequest build() {
-      newHire.create.email.MessageRequest result = buildPartial();
+    public newHire.create.email.EmailDeleted build() {
+      newHire.create.email.EmailDeleted result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -334,9 +334,9 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public newHire.create.email.MessageRequest buildPartial() {
-      newHire.create.email.MessageRequest result = new newHire.create.email.MessageRequest(this);
-      result.text_ = text_;
+    public newHire.create.email.EmailDeleted buildPartial() {
+      newHire.create.email.EmailDeleted result = new newHire.create.email.EmailDeleted(this);
+      result.value_ = value_;
       onBuilt();
       return result;
     }
@@ -375,18 +375,18 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof newHire.create.email.MessageRequest) {
-        return mergeFrom((newHire.create.email.MessageRequest)other);
+      if (other instanceof newHire.create.email.EmailDeleted) {
+        return mergeFrom((newHire.create.email.EmailDeleted)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(newHire.create.email.MessageRequest other) {
-      if (other == newHire.create.email.MessageRequest.getDefaultInstance()) return this;
-      if (!other.getText().isEmpty()) {
-        text_ = other.text_;
+    public Builder mergeFrom(newHire.create.email.EmailDeleted other) {
+      if (other == newHire.create.email.EmailDeleted.getDefaultInstance()) return this;
+      if (!other.getValue().isEmpty()) {
+        value_ = other.value_;
         onChanged();
       }
       this.mergeUnknownFields(other.unknownFields);
@@ -404,11 +404,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      newHire.create.email.MessageRequest parsedMessage = null;
+      newHire.create.email.EmailDeleted parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (newHire.create.email.MessageRequest) e.getUnfinishedMessage();
+        parsedMessage = (newHire.create.email.EmailDeleted) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -418,71 +418,71 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.lang.Object text_ = "";
+    private java.lang.Object value_ = "";
     /**
-     * <code>string text = 1;</code>
+     * <code>string value = 1;</code>
      */
-    public java.lang.String getText() {
-      java.lang.Object ref = text_;
+    public java.lang.String getValue() {
+      java.lang.Object ref = value_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        text_ = s;
+        value_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string text = 1;</code>
+     * <code>string value = 1;</code>
      */
     public com.google.protobuf.ByteString
-        getTextBytes() {
-      java.lang.Object ref = text_;
+        getValueBytes() {
+      java.lang.Object ref = value_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        text_ = b;
+        value_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string text = 1;</code>
+     * <code>string value = 1;</code>
      */
-    public Builder setText(
+    public Builder setValue(
         java.lang.String value) {
       if (value == null) {
     throw new NullPointerException();
   }
   
-      text_ = value;
+      value_ = value;
       onChanged();
       return this;
     }
     /**
-     * <code>string text = 1;</code>
+     * <code>string value = 1;</code>
      */
-    public Builder clearText() {
+    public Builder clearValue() {
       
-      text_ = getDefaultInstance().getText();
+      value_ = getDefaultInstance().getValue();
       onChanged();
       return this;
     }
     /**
-     * <code>string text = 1;</code>
+     * <code>string value = 1;</code>
      */
-    public Builder setTextBytes(
+    public Builder setValueBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) {
     throw new NullPointerException();
   }
   checkByteStringIsUtf8(value);
       
-      text_ = value;
+      value_ = value;
       onChanged();
       return this;
     }
@@ -499,41 +499,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:newHire.MessageRequest)
+    // @@protoc_insertion_point(builder_scope:newHire.EmailDeleted)
   }
 
-  // @@protoc_insertion_point(class_scope:newHire.MessageRequest)
-  private static final newHire.create.email.MessageRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:newHire.EmailDeleted)
+  private static final newHire.create.email.EmailDeleted DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new newHire.create.email.MessageRequest();
+    DEFAULT_INSTANCE = new newHire.create.email.EmailDeleted();
   }
 
-  public static newHire.create.email.MessageRequest getDefaultInstance() {
+  public static newHire.create.email.EmailDeleted getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<MessageRequest>
-      PARSER = new com.google.protobuf.AbstractParser<MessageRequest>() {
+  private static final com.google.protobuf.Parser<EmailDeleted>
+      PARSER = new com.google.protobuf.AbstractParser<EmailDeleted>() {
     @java.lang.Override
-    public MessageRequest parsePartialFrom(
+    public EmailDeleted parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MessageRequest(input, extensionRegistry);
+      return new EmailDeleted(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<MessageRequest> parser() {
+  public static com.google.protobuf.Parser<EmailDeleted> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<MessageRequest> getParserForType() {
+  public com.google.protobuf.Parser<EmailDeleted> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public newHire.create.email.MessageRequest getDefaultInstanceForType() {
+  public newHire.create.email.EmailDeleted getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

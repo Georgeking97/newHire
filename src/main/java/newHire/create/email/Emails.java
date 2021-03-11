@@ -4,18 +4,18 @@
 package newHire.create.email;
 
 /**
- * Protobuf type {@code newHire.MessageRequest}
+ * Protobuf type {@code newHire.Emails}
  */
-public  final class MessageRequest extends
+public  final class Emails extends
     com.google.protobuf.GeneratedMessageV3 implements
-    // @@protoc_insertion_point(message_implements:newHire.MessageRequest)
-    MessageRequestOrBuilder {
+    // @@protoc_insertion_point(message_implements:newHire.Emails)
+    EmailsOrBuilder {
 private static final long serialVersionUID = 0L;
-  // Use MessageRequest.newBuilder() to construct.
-  private MessageRequest(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
+  // Use Emails.newBuilder() to construct.
+  private Emails(com.google.protobuf.GeneratedMessageV3.Builder<?> builder) {
     super(builder);
   }
-  private MessageRequest() {
+  private Emails() {
     text_ = "";
   }
 
@@ -24,7 +24,7 @@ private static final long serialVersionUID = 0L;
   getUnknownFields() {
     return this.unknownFields;
   }
-  private MessageRequest(
+  private Emails(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
@@ -70,15 +70,15 @@ private static final long serialVersionUID = 0L;
   }
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+    return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_Emails_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_MessageRequest_fieldAccessorTable
+    return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_Emails_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            newHire.create.email.MessageRequest.class, newHire.create.email.MessageRequest.Builder.class);
+            newHire.create.email.Emails.class, newHire.create.email.Emails.Builder.class);
   }
 
   public static final int TEXT_FIELD_NUMBER = 1;
@@ -154,10 +154,10 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof newHire.create.email.MessageRequest)) {
+    if (!(obj instanceof newHire.create.email.Emails)) {
       return super.equals(obj);
     }
-    newHire.create.email.MessageRequest other = (newHire.create.email.MessageRequest) obj;
+    newHire.create.email.Emails other = (newHire.create.email.Emails) obj;
 
     boolean result = true;
     result = result && getText()
@@ -180,69 +180,69 @@ private static final long serialVersionUID = 0L;
     return hash;
   }
 
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.Emails parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.Emails parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.Emails parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.Emails parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.email.MessageRequest parseFrom(byte[] data)
+  public static newHire.create.email.Emails parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.Emails parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static newHire.create.email.MessageRequest parseFrom(java.io.InputStream input)
+  public static newHire.create.email.Emails parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.Emails parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
-  public static newHire.create.email.MessageRequest parseDelimitedFrom(java.io.InputStream input)
+  public static newHire.create.email.Emails parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input);
   }
-  public static newHire.create.email.MessageRequest parseDelimitedFrom(
+  public static newHire.create.email.Emails parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.Emails parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessageV3
         .parseWithIOException(PARSER, input);
   }
-  public static newHire.create.email.MessageRequest parseFrom(
+  public static newHire.create.email.Emails parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -255,7 +255,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(newHire.create.email.MessageRequest prototype) {
+  public static Builder newBuilder(newHire.create.email.Emails prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -271,26 +271,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code newHire.MessageRequest}
+   * Protobuf type {@code newHire.Emails}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessageV3.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:newHire.MessageRequest)
-      newHire.create.email.MessageRequestOrBuilder {
+      // @@protoc_insertion_point(builder_implements:newHire.Emails)
+      newHire.create.email.EmailsOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_Emails_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_MessageRequest_fieldAccessorTable
+      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_Emails_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              newHire.create.email.MessageRequest.class, newHire.create.email.MessageRequest.Builder.class);
+              newHire.create.email.Emails.class, newHire.create.email.Emails.Builder.class);
     }
 
-    // Construct using newHire.create.email.MessageRequest.newBuilder()
+    // Construct using newHire.create.email.Emails.newBuilder()
     private Builder() {
       maybeForceBuilderInitialization();
     }
@@ -316,17 +316,17 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_MessageRequest_descriptor;
+      return newHire.create.email.newHire2ServiceImpl.internal_static_newHire_Emails_descriptor;
     }
 
     @java.lang.Override
-    public newHire.create.email.MessageRequest getDefaultInstanceForType() {
-      return newHire.create.email.MessageRequest.getDefaultInstance();
+    public newHire.create.email.Emails getDefaultInstanceForType() {
+      return newHire.create.email.Emails.getDefaultInstance();
     }
 
     @java.lang.Override
-    public newHire.create.email.MessageRequest build() {
-      newHire.create.email.MessageRequest result = buildPartial();
+    public newHire.create.email.Emails build() {
+      newHire.create.email.Emails result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -334,8 +334,8 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public newHire.create.email.MessageRequest buildPartial() {
-      newHire.create.email.MessageRequest result = new newHire.create.email.MessageRequest(this);
+    public newHire.create.email.Emails buildPartial() {
+      newHire.create.email.Emails result = new newHire.create.email.Emails(this);
       result.text_ = text_;
       onBuilt();
       return result;
@@ -375,16 +375,16 @@ private static final long serialVersionUID = 0L;
     }
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof newHire.create.email.MessageRequest) {
-        return mergeFrom((newHire.create.email.MessageRequest)other);
+      if (other instanceof newHire.create.email.Emails) {
+        return mergeFrom((newHire.create.email.Emails)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(newHire.create.email.MessageRequest other) {
-      if (other == newHire.create.email.MessageRequest.getDefaultInstance()) return this;
+    public Builder mergeFrom(newHire.create.email.Emails other) {
+      if (other == newHire.create.email.Emails.getDefaultInstance()) return this;
       if (!other.getText().isEmpty()) {
         text_ = other.text_;
         onChanged();
@@ -404,11 +404,11 @@ private static final long serialVersionUID = 0L;
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      newHire.create.email.MessageRequest parsedMessage = null;
+      newHire.create.email.Emails parsedMessage = null;
       try {
         parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
       } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        parsedMessage = (newHire.create.email.MessageRequest) e.getUnfinishedMessage();
+        parsedMessage = (newHire.create.email.Emails) e.getUnfinishedMessage();
         throw e.unwrapIOException();
       } finally {
         if (parsedMessage != null) {
@@ -499,41 +499,41 @@ private static final long serialVersionUID = 0L;
     }
 
 
-    // @@protoc_insertion_point(builder_scope:newHire.MessageRequest)
+    // @@protoc_insertion_point(builder_scope:newHire.Emails)
   }
 
-  // @@protoc_insertion_point(class_scope:newHire.MessageRequest)
-  private static final newHire.create.email.MessageRequest DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:newHire.Emails)
+  private static final newHire.create.email.Emails DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new newHire.create.email.MessageRequest();
+    DEFAULT_INSTANCE = new newHire.create.email.Emails();
   }
 
-  public static newHire.create.email.MessageRequest getDefaultInstance() {
+  public static newHire.create.email.Emails getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<MessageRequest>
-      PARSER = new com.google.protobuf.AbstractParser<MessageRequest>() {
+  private static final com.google.protobuf.Parser<Emails>
+      PARSER = new com.google.protobuf.AbstractParser<Emails>() {
     @java.lang.Override
-    public MessageRequest parsePartialFrom(
+    public Emails parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return new MessageRequest(input, extensionRegistry);
+      return new Emails(input, extensionRegistry);
     }
   };
 
-  public static com.google.protobuf.Parser<MessageRequest> parser() {
+  public static com.google.protobuf.Parser<Emails> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<MessageRequest> getParserForType() {
+  public com.google.protobuf.Parser<Emails> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public newHire.create.email.MessageRequest getDefaultInstanceForType() {
+  public newHire.create.email.Emails getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 
