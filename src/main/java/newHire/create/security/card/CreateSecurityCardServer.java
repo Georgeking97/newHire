@@ -1,6 +1,7 @@
 package newHire.create.security.card;
 
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -12,6 +13,7 @@ import javax.jmdns.ServiceInfo;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
+import newHire.create.email.EmailDeleted;
 import newHire.create.security.card.newHireGrpc.newHireImplBase;
 
 public class CreateSecurityCardServer extends newHireImplBase {
@@ -29,7 +31,7 @@ public class CreateSecurityCardServer extends newHireImplBase {
 			// Providing feedback letting the user know the server started successfully
 			System.out.println("Server started, awaiting RPC...");
 			// get an instance of a JmDNS
-			
+
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
 			// setting service information to be passed into service info below
 			String service_type = "_http._tcp.local.";
@@ -41,7 +43,8 @@ public class CreateSecurityCardServer extends newHireImplBase {
 			// registering the service I just made
 			jmdns.registerService(serviceinfo);
 			// feedback for the user
-			System.out.printf("Registering service with type %s and name %s on port %d", service_type, service_name, service_port);
+			System.out.printf("Registering service with type %s and name %s on port %d", service_type, service_name,
+					service_port);
 			// good idea to wait a bit
 			Thread.sleep(20000);
 
@@ -85,7 +88,8 @@ public class CreateSecurityCardServer extends newHireImplBase {
 					// get the message sent and append it to the response (temp)
 					result = sb.append(" " + p + " ").toString();
 				}
-				cards.add(result);
+				// adding each card to the global array for system access
+				cards.add(result.toString());
 				System.out.println("Your security badge has been created with said permissions: " + result);
 				// creating the reply to send back
 				MessageReply reply = MessageReply.newBuilder().setValue(result).build();
@@ -94,5 +98,30 @@ public class CreateSecurityCardServer extends newHireImplBase {
 				responseObserver.onCompleted();
 			}
 		};
+	}
+
+	public void seeCards(RequestCards request, StreamObserver<CardsReturned> responseObserver) {
+		for (int i = 0; i < cards.size(); i++) {
+			String card = cards.get(i);
+			CardsReturned reply = CardsReturned.newBuilder().setValue(card).build();
+			responseObserver.onNext(reply);
+		}
+		responseObserver.onCompleted();
+	}
+
+	public void deleteCard(SpecifyCard request, StreamObserver<CardDeleted> responseObserver) {
+		// for each card in the array check if the passed in name matches and if so
+		// delete the matching email
+		for (int i = 0; i < cards.size(); i++) {
+			if (cards.get(i).contains(request.getText())) {
+				cards.remove(i);
+				break;
+			}
+		}
+		// responding to the client
+		String response = "Card deleted...";
+		CardDeleted reply = CardDeleted.newBuilder().setValue(response).build();
+		responseObserver.onNext(reply);
+		responseObserver.onCompleted();
 	}
 }

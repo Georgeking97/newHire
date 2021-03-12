@@ -2,9 +2,12 @@ package newHire.create.email;
 
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
@@ -21,35 +24,68 @@ public class CreateEmailServer extends newHireImplBase {
 	public static void main(String[] args) {
 		// object of server class
 		CreateEmailServer emailservice = new CreateEmailServer();
+		// getting access for the properties file for registration method
+		Properties prop = emailservice.getProperties();
+		// calling the register service method to register the server
+		emailservice.registerService(prop);
+
 		// default port for connecting to
-		int port = 50051;
+		int port = Integer.valueOf(prop.getProperty("service_port"));
 
 		try {
 			// setting the port to connect to, building & starting the server
 			Server server = ServerBuilder.forPort(port).addService(emailservice).build().start();
 			System.out.println("Server started, waiting for rpc...");
 
-			// get an instance of a JmDNS
-			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
-			// setting service information to be passed into service info below
-			String service_type = "_http._tcp.local.";
-			String service_name = "emails";
-			String service_description = "Service for creating an email for a new hire";
-			int service_port = 9080;
-			// create a service - with ServiceInfo
-			ServiceInfo serviceinfo = ServiceInfo.create(service_type, service_name, service_port, service_description);
-			// registering the service I just made
-			jmdns.registerService(serviceinfo);
-			// feedback for the user
-			System.out.printf("Registering service with type %s and name %s on port %d", service_type, service_name,
-					service_port);
-			// good idea to wait a bit
-			Thread.sleep(20000);
-
 			server.awaitTermination();
 
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private Properties getProperties() {
+		Properties prop = null;
+		// providing path to the properties file
+		try (InputStream input = new FileInputStream("src/main/resources/email.properties")) {
+			prop = new Properties();
+			// loading the properties file
+			prop.load(input);
+			// get the property values and printing them out
+			System.out.println("Math Service properies ...");
+			System.out.println("\t service_type: " + prop.getProperty("service_type"));
+			System.out.println("\t service_name: " + prop.getProperty("service_name"));
+			System.out.println("\t service_description: " + prop.getProperty("service_description"));
+			System.out.println("\t service_port: " + prop.getProperty("service_port"));
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		return prop;
+	}
+
+	private void registerService(Properties prop) {
+
+		try {
+			// creating an instance of JmDNS
+			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+			// setting the values required to register my service
+			String service_type = prop.getProperty("service_type");
+			String service_name = prop.getProperty("service_name");
+			String service_description_properties = prop.getProperty("service_description");
+			int service_port = Integer.valueOf(prop.getProperty("service_port"));
+
+			// creating the service for registration
+			ServiceInfo serviceInfo = ServiceInfo.create(service_type, service_name, service_port,
+					service_description_properties);
+			// registering the service
+			jmdns.registerService(serviceInfo);
+			System.out.printf("registrering service with type %s and name %s \n", service_type, service_name);
+			// good practice to wait some time
+			Thread.sleep(1000);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
@@ -72,14 +108,15 @@ public class CreateEmailServer extends newHireImplBase {
 
 	// deleting the email
 	public void deleteEmail(EmailToDelete request, StreamObserver<EmailDeleted> responseObserver) {
-		//for each email in the array check if the passed in name matches and if so delete the matching email
+		// for each email in the array check if the passed in name matches and if so
+		// delete the matching email
 		for (int i = 0; i < emails.size(); i++) {
 			if (emails.get(i).contains(request.getText())) {
 				emails.remove(i);
 				break;
 			}
 		}
-		//responding to the client 
+		// responding to the client
 		String response = "Email deleted...";
 		EmailDeleted reply = EmailDeleted.newBuilder().setValue(response).build();
 		responseObserver.onNext(reply);
@@ -88,7 +125,7 @@ public class CreateEmailServer extends newHireImplBase {
 
 	// see all email's
 	public void seeEmails(Emails request, StreamObserver<AllEmails> responseObserver) {
-		//for each email in the array respond to the client with the email
+		// for each email in the array respond to the client with the email
 		for (int i = 0; i < emails.size(); i++) {
 			String email = emails.get(i);
 			AllEmails reply = AllEmails.newBuilder().setValue(email).build();

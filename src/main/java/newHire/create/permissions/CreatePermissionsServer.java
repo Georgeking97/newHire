@@ -63,10 +63,8 @@ public class CreatePermissionsServer extends newHireImplBase {
 			public void onNext(MessageRequest value) {
 				// letting the user know we recieved the message and what that message was
 				System.out.println("Messaged recieved: " + value.getText());
-				// making sure the message is in a string format for response
-				message = value.toString();
 				// creating the reply to send back to the user
-				MessageReply reply = MessageReply.newBuilder().setValue(message).build();
+				MessageReply reply = MessageReply.newBuilder().setValue(message.toString()).build();
 				// sending the reply back to the user
 				responseObserver.onNext(reply);
 			}
