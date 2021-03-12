@@ -24,11 +24,11 @@ public class CreatePermissionsServer extends newHireImplBase {
 
 	public static void main(String[] args) {
 		CreatePermissionsServer classObj = new CreatePermissionsServer();
-		//creating the obj to register
+		// creating the obj to register
 		Properties prop = classObj.getProperties();
-		//setting the port for hosting the server
+		// setting the port for hosting the server
 		int port = Integer.valueOf(prop.getProperty("service_port"));
-		//registering the obj created
+		// registering the obj created
 		classObj.registerService(prop);
 
 		try {
@@ -44,7 +44,7 @@ public class CreatePermissionsServer extends newHireImplBase {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private Properties getProperties() {
 		Properties prop = null;
 		// providing path to the properties file
@@ -63,7 +63,7 @@ public class CreatePermissionsServer extends newHireImplBase {
 		}
 		return prop;
 	}
-	
+
 	private void registerService(Properties prop) {
 		try {
 			// creating an instance of JmDNS
