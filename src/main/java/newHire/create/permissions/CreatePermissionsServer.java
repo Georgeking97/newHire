@@ -3,9 +3,13 @@ package newHire.create.permissions;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
 import static io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall;
 
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.InetAddress;
+import java.security.Permissions;
 import java.util.ArrayList;
+import java.util.Properties;
 
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
@@ -20,7 +24,12 @@ public class CreatePermissionsServer extends newHireImplBase {
 
 	public static void main(String[] args) {
 		CreatePermissionsServer classObj = new CreatePermissionsServer();
-		int port = 50052;
+		//creating the obj to register
+		Properties prop = classObj.getProperties();
+		//setting the port for hosting the server
+		int port = Integer.valueOf(prop.getProperty("service_port"));
+		//registering the obj created
+		classObj.registerService(prop);
 
 		try {
 			// setting the port, adding the service and starting the server
@@ -28,26 +37,53 @@ public class CreatePermissionsServer extends newHireImplBase {
 			// Providing feedback letting the user know the server started successfully
 			System.out.println("Server started, awaiting RPC...");
 
-			// get an instance of a JmDNS
-			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
-			// setting service information to be passed into service info below
-			String service_type = "_http._tcp.local.";
-			String service_name = "Creating permissions";
-			String service_description = "Service for creating permissions for a new hire";
-			int service_port = 9080;
-			// create a service - with ServiceInfo
-			ServiceInfo serviceinfo = ServiceInfo.create(service_type, service_name, service_port, service_description);
-			// registering the service I just made
-			jmdns.registerService(serviceinfo);
-			// feedback for the user
-			System.out.printf("Registering service with type %s and name %s on port %d", service_type, service_name,
-					service_port);
-			// good idea to wait a bit
-			Thread.sleep(20000);
-
 			server.awaitTermination();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private Properties getProperties() {
+		Properties prop = null;
+		// providing path to the properties file
+		try (InputStream input = new FileInputStream("src/main/resources/permissions.properties")) {
+			prop = new Properties();
+			// loading the properties file
+			prop.load(input);
+			// get the property values and printing them out
+			System.out.println("Math Service properies ...");
+			System.out.println("\t service_type: " + prop.getProperty("service_type"));
+			System.out.println("\t service_name: " + prop.getProperty("service_name"));
+			System.out.println("\t service_description: " + prop.getProperty("service_description"));
+			System.out.println("\t service_port: " + prop.getProperty("service_port"));
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+		return prop;
+	}
+	
+	private void registerService(Properties prop) {
+		try {
+			// creating an instance of JmDNS
+			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
+			// setting the values required to register my service
+			String service_type = prop.getProperty("service_type");
+			String service_name = prop.getProperty("service_name");
+			String service_description_properties = prop.getProperty("service_description");
+			int service_port = Integer.valueOf(prop.getProperty("service_port"));
+
+			// creating the service for registration
+			ServiceInfo serviceInfo = ServiceInfo.create(service_type, service_name, service_port,
+					service_description_properties);
+			// registering the service
+			jmdns.registerService(serviceInfo);
+			System.out.printf("registrering service with type %s and name %s \n", service_type, service_name);
+			// good practice to wait some time
+			Thread.sleep(1000);
+		} catch (IOException e) {
+			System.out.println(e.getMessage());
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
