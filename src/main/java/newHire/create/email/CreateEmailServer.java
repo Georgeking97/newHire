@@ -95,7 +95,7 @@ public class CreateEmailServer extends newHireImplBase {
 	@Override
 	public void sendMessage(MessageRequest request, StreamObserver<MessageReply> responseObserver) {
 		// telling the user I got their message
-		System.out.println("Recieving message " + request.getText());
+		System.out.println("Recieving message: " + request.getText());
 		String email = request.getText() + "@gmail.com";
 		emails.add(email);
 		// creating the response to send back to the user
@@ -110,28 +110,40 @@ public class CreateEmailServer extends newHireImplBase {
 	public void deleteEmail(EmailToDelete request, StreamObserver<EmailDeleted> responseObserver) {
 		// for each email in the array check if the passed in name matches and if so
 		// delete the matching email
+		String email = "deleted";
+		System.out.print(emails.size());
 		for (int i = 0; i < emails.size(); i++) {
+			System.out.print(emails.get(i));
 			if (emails.get(i).contains(request.getText())) {
 				emails.remove(i);
+				EmailDeleted reply = EmailDeleted.newBuilder().setValue(email).build();
+				responseObserver.onNext(reply);
 				break;
+			} else {
+				String noEmail = "No email was found";
+				EmailDeleted reply = EmailDeleted.newBuilder().setValue(noEmail).build();
+				responseObserver.onNext(reply);
 			}
 		}
 		// responding to the client
-		String response = "Email deleted...";
-		EmailDeleted reply = EmailDeleted.newBuilder().setValue(response).build();
-		responseObserver.onNext(reply);
 		responseObserver.onCompleted();
 	}
 
 	// see all email's
 	public void seeEmails(Emails request, StreamObserver<AllEmails> responseObserver) {
 		// for each email in the array respond to the client with the email
-		for (int i = 0; i < emails.size(); i++) {
-			String email = emails.get(i);
-			AllEmails reply = AllEmails.newBuilder().setValue(email).build();
+		System.out.println("array size: "+emails.size());
+		if (emails.size() > 0) {
+			for (int i = 0; i < emails.size(); i++) {
+				String email = emails.get(i);
+				AllEmails reply = AllEmails.newBuilder().setValue(email).build();
+				responseObserver.onNext(reply);
+			}
+		} else {
+			String response = "There was no emails";
+			AllEmails reply = AllEmails.newBuilder().setValue(response).build();
 			responseObserver.onNext(reply);
 		}
 		responseObserver.onCompleted();
-
 	}
 }
