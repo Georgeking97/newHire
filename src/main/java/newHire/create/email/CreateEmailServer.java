@@ -95,8 +95,8 @@ public class CreateEmailServer extends newHireImplBase {
 	@Override
 	public void sendMessage(MessageRequest request, StreamObserver<MessageReply> responseObserver) {
 		// telling the user I got their message
-		System.out.println("Recieving message: " + request.getText());
 		String email = request.getText() + "@gmail.com";
+		System.out.println("Email created: "+email);
 		emails.add(email);
 		// creating the response to send back to the user
 		MessageReply reply = MessageReply.newBuilder().setValue(email).build();
@@ -111,12 +111,11 @@ public class CreateEmailServer extends newHireImplBase {
 		// for each email in the array check if the passed in name matches and if so
 		// delete the matching email
 		String email = "deleted";
-		System.out.print(emails.size());
 		for (int i = 0; i < emails.size(); i++) {
-			System.out.print(emails.get(i));
+			System.out.print("Email deleted: "+emails.get(i));
 			if (emails.get(i).contains(request.getText())) {
 				emails.remove(i);
-				EmailDeleted reply = EmailDeleted.newBuilder().setValue(email).build();
+				EmailDeleted reply = EmailDeleted.newBuilder().setValue("hey").build();
 				responseObserver.onNext(reply);
 				break;
 			} else {
@@ -132,7 +131,6 @@ public class CreateEmailServer extends newHireImplBase {
 	// see all email's
 	public void seeEmails(Emails request, StreamObserver<AllEmails> responseObserver) {
 		// for each email in the array respond to the client with the email
-		System.out.println("array size: "+emails.size());
 		if (emails.size() > 0) {
 			for (int i = 0; i < emails.size(); i++) {
 				String email = emails.get(i);

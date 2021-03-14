@@ -143,6 +143,7 @@ public class EmailGUI {
 		seeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				textResponse.setText(null);
 				String input = "hey";
 				Emails request = Emails.newBuilder().setText(input).build();
 
@@ -185,6 +186,15 @@ public class EmailGUI {
 
 		JButton deleteButton = new JButton("Delete Email");
 		panel_service_2.add(deleteButton);
+
+		deleteButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String name = deleteEmail.getText();
+				EmailToDelete request = EmailToDelete.newBuilder().setText(name).build();
+				EmailDeleted response = blockingStub.deleteEmail(request);
+			}
+		});
 
 	}
 }
