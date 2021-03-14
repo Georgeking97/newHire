@@ -57,7 +57,6 @@ public class EmailClient {
 			Iterator<AllEmails> responces = blockingStub.seeEmails(request);
 			while (responces.hasNext()) {
 				AllEmails temp = responces.next();
-				System.out.println(temp.getValue());
 				if (compare.equals(temp.getValue())) {
 					System.out.println("See emails method passed its test");
 				} else {

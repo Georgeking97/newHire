@@ -137,6 +137,7 @@ public class CreateEmailServer extends newHireImplBase {
 			for (int i = 0; i < emails.size(); i++) {
 				String email = emails.get(i);
 				AllEmails reply = AllEmails.newBuilder().setValue(email).build();
+				System.out.println("email: "+email);
 				responseObserver.onNext(reply);
 			}
 		} else {
