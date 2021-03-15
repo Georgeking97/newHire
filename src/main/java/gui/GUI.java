@@ -120,7 +120,11 @@ public class GUI {
 	}
 
 	private void initializer() {
-		JFrame frame = new JFrame("Client");
+		frame = new JFrame();
+		frame.setTitle("Client - Service Controller");
+		frame.setBounds(100, 100, 500, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		createUI(frame);
 	}
 
@@ -148,6 +152,16 @@ public class GUI {
 		tabbedPane.addTab("Tab 1", null, panel1, "Tab 1 tooltip");
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
+		// adding the second tab
+		panel2.setLayout(new GridLayout(1, 1));
+		tabbedPane.addTab("Tab 2", null, panel2, "Tab 2 tooltip");
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_2);
+
+		// adding the third tab
+		panel3.setLayout(new GridLayout(1, 1));
+		tabbedPane.addTab("Tab 3", null, panel3, "Tab 3 tooltip");
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_2);
+
 		// formatting the sections for tab 1
 		p1.setAlignmentX(0.6f);
 		p1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
@@ -155,41 +169,34 @@ public class GUI {
 		p2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p3.setAlignmentX(0.6f);
 		p3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		// adding the sections to the first tab
-		panel1.add(p1);
-		panel1.add(p2);
-		panel1.add(p3);
 
-		// adding the second tab
-		panel2.setLayout(new GridLayout(1, 1));
-		tabbedPane.addTab("Tab 2", null, panel2, "Tab 2 tooltip");
-		tabbedPane.setMnemonicAt(0, KeyEvent.VK_2);
-
-		// formatting the sections
+		// formatting the sections for tab 2
 		p4.setAlignmentX(0.6f);
 		p4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p5.setAlignmentX(0.6f);
 		p5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p6.setAlignmentX(0.6f);
 		p6.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		// adding the sections to the tab
-		panel2.add(p4);
-		panel2.add(p5);
-		panel2.add(p6);
 
-		// adding the third tab
-		panel3.setLayout(new GridLayout(1, 1));
-		tabbedPane.addTab("Tab 3", null, panel3, "Tab 3 tooltip");
-		tabbedPane.setMnemonicAt(0, KeyEvent.VK_2);
-
-		// formatting the sections
+		// formatting the sections for tab 3
 		p7.setAlignmentX(0.6f);
 		p7.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p8.setAlignmentX(0.6f);
 		p8.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p9.setAlignmentX(0.6f);
 		p9.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		// adding the sections to the tab
+
+		// adding the sections to the first tab
+		panel1.add(p1);
+		panel1.add(p2);
+		panel1.add(p3);
+
+		// adding the sections to the second tab
+		panel2.add(p4);
+		panel2.add(p5);
+		panel2.add(p6);
+
+		// adding the sections to the third tab
 		panel3.add(p7);
 		panel3.add(p8);
 		panel3.add(p9);
