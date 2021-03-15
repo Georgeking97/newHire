@@ -15,7 +15,6 @@ service newHire{
 	rpc deleteEmail(EmailToDelete) returns (EmailDeleted);
 	//see all email
 	rpc seeEmails(Emails) returns (stream AllEmails);
-	
 }
 
 message MessageRequest{

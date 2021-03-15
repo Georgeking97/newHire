@@ -32,6 +32,7 @@ public class EmailGUI {
 
 	private static newHireBlockingStub blockingStub;
 	private static newHireStub asyncStub;
+	private static newHireBlockingStub blockingStub2;
 
 	private static ServiceInfo serviceinfo;
 
@@ -56,7 +57,7 @@ public class EmailGUI {
 	}
 
 	public EmailGUI() {
-		String email_service_type = "_email._tcp.local.";
+		String email_service_type = "_http._tcp.local.";
 		// discovering services
 		discoverService(email_service_type);
 		String host = serviceinfo.getHostAddresses()[0];
@@ -65,7 +66,8 @@ public class EmailGUI {
 
 		blockingStub = newHireGrpc.newBlockingStub(channel);
 		asyncStub = newHireGrpc.newStub(channel);
-
+		blockingStub2 = newHireGrpc.newBlockingStub(channel);
+		
 		initializer();
 	}
 
@@ -99,12 +101,6 @@ public class EmailGUI {
 		public void serviceResolved(ServiceEvent event) {
 			System.out.println("Service resolved: " + event.getInfo());
 			serviceinfo = event.getInfo();
-			System.out.println("Host: " + serviceinfo.getHostAddresses()[0]);
-			System.out.println("Port: " + serviceinfo.getPort());
-			System.out.println("Type: " + serviceinfo.getType());
-			System.out.println("Name:  " + serviceinfo.getName());
-			System.out.println("Server: " + serviceinfo.getServer().replace(".local", ""));
-			System.out.println("Description/Properties: " + serviceinfo.getNiceTextString());
 		}
 	}
 
@@ -121,25 +117,91 @@ public class EmailGUI {
 		BoxLayout bl = new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS);
 
 		frame.getContentPane().setLayout(bl);
+		
 		// panel for creating email's
 		JPanel panel_service_1 = new JPanel();
 		panel_service_1.setAlignmentX(0.6f);
 		frame.getContentPane().add(panel_service_1);
 		panel_service_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
 		// panel for deleting email's
 		JPanel panel_service_2 = new JPanel();
 		panel_service_2.setAlignmentX(0.6f);
 		frame.getContentPane().add(panel_service_2);
 		panel_service_2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
 		// panel for seeing all email's
 		JPanel panel_service_3 = new JPanel();
 		panel_service_3.setAlignmentX(0.6f);
 		frame.getContentPane().add(panel_service_3);
 		panel_service_3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
+		
+		// test panel for other service
+		JPanel panel_service_4 = new JPanel();
+		panel_service_4.setAlignmentX(0.6f);
+		frame.getContentPane().add(panel_service_4);
+		panel_service_4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		// creating the components for each service
 		JButton seeButton = new JButton("See email's");
 		panel_service_3.add(seeButton);
 
+		JScrollPane scrollPane = new JScrollPane(textResponse);
+		panel_service_3.add(scrollPane);
+
+		JLabel createEmailName = new JLabel("Enter Name:");
+		panel_service_1.add(createEmailName);
+
+		createEmail = new JTextField();
+		panel_service_1.add(createEmail);
+		createEmail.setColumns(10);
+
+		JLabel lblNewLabel_2 = new JLabel("Enter Name:");
+		panel_service_2.add(lblNewLabel_2);
+
+		deleteEmail = new JTextField();
+		panel_service_2.add(deleteEmail);
+		deleteEmail.setColumns(10);
+
+		JButton deleteButton = new JButton("Delete Email");
+		panel_service_2.add(deleteButton);
+
+		JButton createButton = new JButton("Create Email");
+		panel_service_1.add(createButton);
+		
+		JLabel createPermission = new JLabel("Enter Permission:");
+		panel_service_4.add(createPermission);
+		
+		JTextField createPermissionTxt = new JTextField();
+		panel_service_4.add(createPermissionTxt);
+		createPermissionTxt.setColumns(10);
+		
+		JButton createCard = new JButton("Add Permission");
+		panel_service_4.add(createCard);
+		
+		JButton submitCard = new JButton("Create Card");
+		panel_service_4.add(submitCard);
+		
+		createCard.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String permission = createPermissionTxt.getText();
+				MessageRequest request = MessageRequest.newBuilder().setText(permission).build();
+			}	
+		});
+
+		// for when the user clicks delete email
+		deleteButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String name = deleteEmail.getText();
+				EmailToDelete request = EmailToDelete.newBuilder().setText(name).build();
+				EmailDeleted response = blockingStub.deleteEmail(request);
+				deleteEmail.setText(null);
+			}
+		});
+		
+		// for when the user clicks to see all emails
 		seeButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -155,44 +217,14 @@ public class EmailGUI {
 			}
 		});
 
-		JScrollPane scrollPane = new JScrollPane(textResponse);
-		panel_service_3.add(scrollPane);
-
-		JLabel createEmailName = new JLabel("Enter Name:");
-		panel_service_1.add(createEmailName);
-
-		createEmail = new JTextField();
-		panel_service_1.add(createEmail);
-		createEmail.setColumns(10);
-
-		JButton createButton = new JButton("Create Email");
-		panel_service_1.add(createButton);
-
+		// for when the user clicks create email
 		createButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String name = createEmail.getText();
 				MessageRequest request = MessageRequest.newBuilder().setText(name).build();
 				MessageReply response = blockingStub.sendMessage(request);
-			}
-		});
-
-		JLabel lblNewLabel_2 = new JLabel("Enter Name:");
-		panel_service_2.add(lblNewLabel_2);
-
-		deleteEmail = new JTextField();
-		panel_service_2.add(deleteEmail);
-		deleteEmail.setColumns(10);
-
-		JButton deleteButton = new JButton("Delete Email");
-		panel_service_2.add(deleteButton);
-
-		deleteButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				String name = deleteEmail.getText();
-				EmailToDelete request = EmailToDelete.newBuilder().setText(name).build();
-				EmailDeleted response = blockingStub.deleteEmail(request);
+				createEmail.setText(null);
 			}
 		});
 

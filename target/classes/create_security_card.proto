@@ -3,25 +3,25 @@ syntax = "proto3";
 
 //give a number of configuration options
 option java_multiple_files = true;
-option java_package = "newHire.create.security.card";
+option java_package = "create.security.card";
 option java_outer_classname = "newHire2ServiceImpl";
 
-package newHire;
+package newHire1;
 
-service newHire{
+service newHire1{
 	//creating the security card 
-	rpc sendMessage(stream MessageRequest) returns (MessageReply);
+	rpc createCard(stream card) returns (cardCreated);
 	//seeing all security cards
 	rpc seeCards(RequestCards) returns (CardsReturned);
 	//delete security card
 	rpc deleteCard(SpecifyCard) returns (CardDeleted);
 }
 
-message MessageRequest{
+message card{
 	string text = 1;
 }
 
-message MessageReply{
+message cardCreated{
 	string value = 1;
 }
 

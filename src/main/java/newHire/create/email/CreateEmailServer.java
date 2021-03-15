@@ -66,7 +66,6 @@ public class CreateEmailServer extends newHireImplBase {
 	}
 
 	private void registerService(Properties prop) {
-
 		try {
 			// creating an instance of JmDNS
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
