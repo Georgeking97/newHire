@@ -9,26 +9,19 @@ import newHire.create.email.newHireGrpc.newHireBlockingStub;
 import newHire.create.email.newHireGrpc.newHireStub;
 
 public class EmailClient {
-
 	private static newHireBlockingStub blockingStub;
-	private static newHireStub asyncStub;
-
 	public static void main(String[] args) {
 		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build();
 		blockingStub = newHireGrpc.newBlockingStub(channel);
-		asyncStub = newHireGrpc.newStub(channel);
-
 		sendMessage();
 		deleteEmail();
 		seeEmails();
-
 	}
 
 	public static void sendMessage() {
 		String name = "George";
 		MessageRequest request = MessageRequest.newBuilder().setText(name).build();
 		MessageReply reply = blockingStub.sendMessage(request);
-
 		String compare = "George@gmail.com";
 		if (compare.equals(reply.getValue())) {
 			System.out.println("Create email method passed its test");

@@ -66,7 +66,6 @@ public class GUI {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-
 			}
 		});
 	}
@@ -97,12 +96,10 @@ public class GUI {
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (InterruptedException e) {
-
 			e.printStackTrace();
 		}
 	}
 
-	// class that contains the service listener methods
 	private static class MyServiceListener implements ServiceListener {
 
 		public void serviceAdded(ServiceEvent event) {
@@ -122,9 +119,8 @@ public class GUI {
 	private void initializer() {
 		frame = new JFrame();
 		frame.setTitle("Client - Service Controller");
-		frame.setBounds(100, 100, 500, 300);
+		frame.setBounds(100, 100, 500, 500);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		createUI(frame);
 	}
 
@@ -134,6 +130,11 @@ public class GUI {
 		JPanel panel1 = new JPanel(false);
 		JPanel panel2 = new JPanel(false);
 		JPanel panel3 = new JPanel(false);
+		// setting layout to allow horizontal stacking
+		BoxLayout boxlayout1 = new BoxLayout(panel1, BoxLayout.Y_AXIS);
+		BoxLayout boxlayout2 = new BoxLayout(panel2, BoxLayout.Y_AXIS);
+		BoxLayout boxlayout3 = new BoxLayout(panel3, BoxLayout.Y_AXIS);
+
 		// sections for tab 1
 		JPanel p1 = new JPanel();
 		JPanel p2 = new JPanel();
@@ -148,19 +149,34 @@ public class GUI {
 		JPanel p9 = new JPanel();
 
 		// adding the first tab
-		panel1.setLayout(new GridLayout(1, 1));
+		panel1.setLayout(boxlayout1);
 		tabbedPane.addTab("Tab 1", null, panel1, "Tab 1 tooltip");
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
 
 		// adding the second tab
-		panel2.setLayout(new GridLayout(1, 1));
+		panel2.setLayout(boxlayout2);
 		tabbedPane.addTab("Tab 2", null, panel2, "Tab 2 tooltip");
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_2);
 
 		// adding the third tab
-		panel3.setLayout(new GridLayout(1, 1));
+		panel3.setLayout(boxlayout3);
 		tabbedPane.addTab("Tab 3", null, panel3, "Tab 3 tooltip");
 		tabbedPane.setMnemonicAt(0, KeyEvent.VK_2);
+
+		// adding the sections to the first tab
+		panel1.add(p1);
+		panel1.add(p2);
+		panel1.add(p3);
+
+		// adding the sections to the second tab
+		panel2.add(p4);
+		panel2.add(p5);
+		panel2.add(p6);
+
+		// adding the sections to the third tab
+		panel3.add(p7);
+		panel3.add(p8);
+		panel3.add(p9);
 
 		// formatting the sections for tab 1
 		p1.setAlignmentX(0.6f);
@@ -185,21 +201,6 @@ public class GUI {
 		p8.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p9.setAlignmentX(0.6f);
 		p9.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		// adding the sections to the first tab
-		panel1.add(p1);
-		panel1.add(p2);
-		panel1.add(p3);
-
-		// adding the sections to the second tab
-		panel2.add(p4);
-		panel2.add(p5);
-		panel2.add(p6);
-
-		// adding the sections to the third tab
-		panel3.add(p7);
-		panel3.add(p8);
-		panel3.add(p9);
 
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
