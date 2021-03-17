@@ -82,7 +82,7 @@ public class CreateEmailServer extends newHireImplBase {
 		for (int i = 0; i < emails.size(); i++) {
 			if (emails.get(i).contains(request.getText())) {
 				emails.remove(i);
-				EmailDeleted reply = EmailDeleted.newBuilder().setValue("Email deleted: " + emails.get(i)).build();
+				EmailDeleted reply = EmailDeleted.newBuilder().setValue("Email deleted: ").build();
 				responseObserver.onNext(reply);
 				break;
 			} else {

@@ -41,16 +41,17 @@ import create.security.card.cardCreated;
 import create.security.card.newHire1Grpc;
 import create.security.card.newHire1Grpc.newHire1BlockingStub;
 import create.security.card.newHire1Grpc.newHire1Stub;
+import java.awt.ScrollPane;
 
 public class GUI {
-
 	private static newHireBlockingStub blockingStub;
-	private static newHireStub asyncStub;
 	private static newHire1BlockingStub blockingStub2;
 	private static newHire1Stub asyncStub2;
 	private static ServiceInfo serviceinfo;
 	private JFrame frame;
-	
+	private JTextField EnterEmailCreateTxt;
+	private JTextField EnterEmailDeleteTxt;
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
@@ -67,16 +68,15 @@ public class GUI {
 
 	public GUI() {
 		String email_service_type = "_http._tcp.local.";
-		// discovering services
 		discoverService(email_service_type);
 		String host = serviceinfo.getHostAddresses()[0];
 		int port = serviceinfo.getPort();
 		ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
 
 		blockingStub = newHireGrpc.newBlockingStub(channel);
-		asyncStub = newHireGrpc.newStub(channel);
 		blockingStub2 = newHire1Grpc.newBlockingStub(channel);
 		asyncStub2 = newHire1Grpc.newStub(channel);
+
 		initializer();
 	}
 
@@ -96,7 +96,6 @@ public class GUI {
 	}
 
 	private static class MyServiceListener implements ServiceListener {
-
 		public void serviceAdded(ServiceEvent event) {
 			System.out.println("Service added: " + event.getInfo());
 		}
@@ -121,81 +120,117 @@ public class GUI {
 
 	private void createUI(JFrame frame2) {
 		JTabbedPane tabbedPane = new JTabbedPane();
-		// tabs
 		JPanel panel1 = new JPanel(false);
 		JPanel panel2 = new JPanel(false);
 		JPanel panel3 = new JPanel(false);
-		// setting layout to allow horizontal stacking
-		BoxLayout boxlayout1 = new BoxLayout(panel1, BoxLayout.Y_AXIS);
-		BoxLayout boxlayout2 = new BoxLayout(panel2, BoxLayout.Y_AXIS);
-		BoxLayout boxlayout3 = new BoxLayout(panel3, BoxLayout.Y_AXIS);
-
-		// sections for tab 1
 		JPanel p1 = new JPanel();
 		JPanel p2 = new JPanel();
 		JPanel p3 = new JPanel();
-		// sections for tab 2
 		JPanel p4 = new JPanel();
 		JPanel p5 = new JPanel();
 		JPanel p6 = new JPanel();
-		// sections for tab 3
 		JPanel p7 = new JPanel();
 		JPanel p8 = new JPanel();
 		JPanel p9 = new JPanel();
 
-		// adding the first tab
-		panel1.setLayout(boxlayout1);
-		tabbedPane.addTab("Tab 1", null, panel1, "Tab 1 tooltip");
-		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+		BoxLayout boxlayout1 = new BoxLayout(panel1, BoxLayout.Y_AXIS);
+		BoxLayout boxlayout2 = new BoxLayout(panel2, BoxLayout.Y_AXIS);
+		BoxLayout boxlayout3 = new BoxLayout(panel3, BoxLayout.Y_AXIS);
 
-		// adding the second tab
-		panel2.setLayout(boxlayout2);
-		tabbedPane.addTab("Tab 2", null, panel2, "Tab 2 tooltip");
-		tabbedPane.setMnemonicAt(0, KeyEvent.VK_2);
-
-		// adding the third tab
-		panel3.setLayout(boxlayout3);
-		tabbedPane.addTab("Tab 3", null, panel3, "Tab 3 tooltip");
-		tabbedPane.setMnemonicAt(0, KeyEvent.VK_2);
-
-		// adding the sections to the first tab
-		panel1.add(p1);
-		panel1.add(p2);
-		panel1.add(p3);
-
-		// adding the sections to the second tab
-		panel2.add(p4);
-		panel2.add(p5);
-		panel2.add(p6);
-
-		// adding the sections to the third tab
-		panel3.add(p7);
-		panel3.add(p8);
-		panel3.add(p9);
-
-		// formatting the sections for tab 1
 		p1.setAlignmentX(0.6f);
 		p1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p2.setAlignmentX(0.6f);
 		p2.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p3.setAlignmentX(0.6f);
 		p3.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		// formatting the sections for tab 2
 		p4.setAlignmentX(0.6f);
 		p4.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p5.setAlignmentX(0.6f);
 		p5.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p6.setAlignmentX(0.6f);
 		p6.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-
-		// formatting the sections for tab 3
 		p7.setAlignmentX(0.6f);
 		p7.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p8.setAlignmentX(0.6f);
 		p8.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		p9.setAlignmentX(0.6f);
 		p9.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+
+		panel1.setLayout(boxlayout1);
+		tabbedPane.addTab("Tab 1", null, panel1, "Tab 1 tooltip");
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_1);
+		panel2.setLayout(boxlayout2);
+		tabbedPane.addTab("Tab 2", null, panel2, "Tab 2 tooltip");
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_2);
+		panel3.setLayout(boxlayout3);
+		tabbedPane.addTab("Tab 3", null, panel3, "Tab 3 tooltip");
+		tabbedPane.setMnemonicAt(0, KeyEvent.VK_2);
+
+		panel1.add(p1);
+		panel1.add(p2);
+		panel1.add(p3);
+		panel2.add(p4);
+		panel2.add(p5);
+		panel2.add(p6);
+		panel3.add(p7);
+		panel3.add(p8);
+		panel3.add(p9);
+
+		JTextArea textResponse = new JTextArea(3, 20);
+		textResponse.setLineWrap(true);
+		textResponse.setWrapStyleWord(true);
+
+		JLabel EnterEmailCreateLabel = new JLabel("Enter Email");
+		p1.add(EnterEmailCreateLabel);
+
+		EnterEmailCreateTxt = new JTextField();
+		p1.add(EnterEmailCreateTxt);
+		EnterEmailCreateTxt.setColumns(10);
+
+		JButton EnterEmailCreateBtn = new JButton("Create Email");
+		EnterEmailCreateBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name = EnterEmailCreateTxt.getText();
+				EmailToCreate request = EmailToCreate.newBuilder().setText(name).build();
+				EmailCreated response = blockingStub.createEmail(request);
+			}
+		});
+		p1.add(EnterEmailCreateBtn);
+
+		JLabel EnterEmailDeleteLabel = new JLabel("Enter Email");
+		p2.add(EnterEmailDeleteLabel);
+
+		EnterEmailDeleteTxt = new JTextField();
+		p2.add(EnterEmailDeleteTxt);
+		EnterEmailDeleteTxt.setColumns(10);
+
+		JButton EnterEmailDeleteBtn = new JButton("Delete Email");
+		EnterEmailDeleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String name = EnterEmailDeleteTxt.getText();
+				EmailToDelete request = EmailToDelete.newBuilder().setText(name).build();
+				EmailDeleted response = blockingStub.deleteEmail(request);
+			}
+		});
+		p2.add(EnterEmailDeleteBtn);
+
+		JButton SeeEmailBtn = new JButton("See Email's");
+		SeeEmailBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textResponse.setText(null);
+				String input = "hey";
+				Emails request = Emails.newBuilder().setText(input).build();
+				Iterator<AllEmails> response = blockingStub.seeEmails(request);
+				while (response.hasNext()) {
+					AllEmails temp = response.next();
+					textResponse.append("reply: " + temp.getValue());
+				}
+			}
+		});
+		p3.add(SeeEmailBtn);
+
+		JScrollPane SeeEmailScroll = new JScrollPane(textResponse);
+		p3.add(SeeEmailScroll);
 
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
