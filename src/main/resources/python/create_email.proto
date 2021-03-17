@@ -9,9 +9,9 @@ option objc_class_prefix = "HLW";
 package newHire;
 
 service newHire{
-	rpc createEmail(EmailToCreate) returns (EmailCreated);
-	rpc deleteEmail(EmailToDelete) returns (EmailDeleted);
-	rpc seeEmails(Emails) returns (stream AllEmails);
+	rpc createEmail(EmailToCreate) returns (EmailCreated) {}
+	rpc deleteEmail(EmailToDelete) returns (EmailDeleted) {}
+	rpc seeEmails(Emails) returns (stream AllEmails) {}
 }
 
 message EmailToCreate{

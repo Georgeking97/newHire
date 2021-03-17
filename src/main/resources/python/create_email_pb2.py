@@ -19,7 +19,7 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   syntax='proto3',
   serialized_options=b'\n\030grpc.examples.helloworldB\017HelloWorldProtoP\001\242\002\003HLW',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x12\x63reate_email.proto\x12\x07newHire\"\x1d\n\rEmailToCreate\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1d\n\x0c\x45mailCreated\x12\r\n\x05value\x18\x01 \x01(\t\"\x1d\n\rEmailToDelete\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1d\n\x0c\x45mailDeleted\x12\r\n\x05value\x18\x01 \x01(\t\"\x16\n\x06\x45mails\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1a\n\tAllEmails\x12\r\n\x05value\x18\x01 \x01(\t2\xb9\x01\n\x07newHire\x12<\n\x0b\x63reateEmail\x12\x16.newHire.EmailToCreate\x1a\x15.newHire.EmailCreated\x12<\n\x0b\x64\x65leteEmail\x12\x16.newHire.EmailToDelete\x1a\x15.newHire.EmailDeleted\x12\x32\n\tseeEmails\x12\x0f.newHire.Emails\x1a\x12.newHire.AllEmails0\x01\x42\x33\n\x18grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3'
+  serialized_pb=b'\n\x12\x63reate_email.proto\x12\x07newHire\"\x1d\n\rEmailToCreate\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1d\n\x0c\x45mailCreated\x12\r\n\x05value\x18\x01 \x01(\t\"\x1d\n\rEmailToDelete\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1d\n\x0c\x45mailDeleted\x12\r\n\x05value\x18\x01 \x01(\t\"\x16\n\x06\x45mails\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1a\n\tAllEmails\x12\r\n\x05value\x18\x01 \x01(\t2\xbf\x01\n\x07newHire\x12>\n\x0b\x63reateEmail\x12\x16.newHire.EmailToCreate\x1a\x15.newHire.EmailCreated\"\x00\x12>\n\x0b\x64\x65leteEmail\x12\x16.newHire.EmailToDelete\x1a\x15.newHire.EmailDeleted\"\x00\x12\x34\n\tseeEmails\x12\x0f.newHire.Emails\x1a\x12.newHire.AllEmails\"\x00\x30\x01\x42\x33\n\x18grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3'
 )
 
 
@@ -277,7 +277,7 @@ _NEWHIRE = _descriptor.ServiceDescriptor(
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
   serialized_start=208,
-  serialized_end=393,
+  serialized_end=399,
   methods=[
   _descriptor.MethodDescriptor(
     name='createEmail',
