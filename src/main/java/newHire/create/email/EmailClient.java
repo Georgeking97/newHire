@@ -6,7 +6,6 @@ import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.StatusRuntimeException;
 import newHire.create.email.newHireGrpc.newHireBlockingStub;
-import newHire.create.email.newHireGrpc.newHireStub;
 
 public class EmailClient {
 	private static newHireBlockingStub blockingStub;
@@ -20,8 +19,8 @@ public class EmailClient {
 
 	public static void sendMessage() {
 		String name = "George";
-		MessageRequest request = MessageRequest.newBuilder().setText(name).build();
-		MessageReply reply = blockingStub.sendMessage(request);
+		EmailToCreate request = EmailToCreate.newBuilder().setText(name).build();
+		EmailCreated reply = blockingStub.createEmail(request);
 		String compare = "George@gmail.com";
 		if (compare.equals(reply.getValue())) {
 			System.out.println("Create email method passed its test");
@@ -35,7 +34,6 @@ public class EmailClient {
 		EmailToDelete request = EmailToDelete.newBuilder().setText(name).build();
 		EmailDeleted reply = blockingStub.deleteEmail(request);
 		String compare = "No email was found";
-		System.out.println(reply.getValue());
 		if (compare.equals(reply.getValue())) {
 			System.out.println("Delete email method passed its test");
 		} else {

@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.InetAddress;
-
+import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.jmdns.JmDNS;
@@ -12,10 +12,12 @@ import javax.jmdns.ServiceInfo;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-
+import io.grpc.stub.StreamObserver;
 import newHire.create.permissions.newHireGrpc.newHireImplBase;
 
 public class CreatePermissionsServer extends newHireImplBase {
+	ArrayList<String> permissions = new ArrayList<>();
+
 	public static void main(String[] args) {
 		CreatePermissionsServer classObj = new CreatePermissionsServer();
 		Properties prop = classObj.getProperties();
@@ -67,4 +69,48 @@ public class CreatePermissionsServer extends newHireImplBase {
 			e.printStackTrace();
 		}
 	}
+
+	public StreamObserver<MessageRequest> sendMessage(StreamObserver<MessageReply> responseObserver) {
+		return new StreamObserver<MessageRequest>() {
+			String message;
+
+			@Override
+			public void onNext(MessageRequest value) {
+				System.out.println("Messaged recieved: " + value.getText());
+				MessageReply reply = MessageReply.newBuilder().setValue(message.toString()).build();
+				responseObserver.onNext(reply);
+			}
+
+			@Override
+			public void onError(Throwable t) {
+				t.printStackTrace();
+			}
+
+			@Override
+			public void onCompleted() {
+				System.out.println("Service completed...");
+				responseObserver.onCompleted();
+			}
+
+		};
+	}
+
+	public void setPermissions(NewPermission request, StreamObserver<CreatedPermission> responseObserver) {
+		String permission = request.getText();
+		permissions.add(permission);
+		String response = "Your permission has been created ";
+		CreatedPermission reply = CreatedPermission.newBuilder().setValue(response + permission).build();
+		responseObserver.onNext(reply);
+		responseObserver.onCompleted();
+	}
+
+	public void seePermissions(RequestPermissions request, StreamObserver<AllPermissions> responseObserver) {
+		for (int i = 0; i < permissions.size(); i++) {
+			String permission = permissions.get(i);
+			AllPermissions reply = AllPermissions.newBuilder().setValue(permission).build();
+			responseObserver.onNext(reply);
+		}
+		responseObserver.onCompleted();
+	}
+
 }

@@ -3,8 +3,8 @@
 
 package newHire.create.email;
 
-public interface MessageReplyOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:newHire.MessageReply)
+public interface EmailCreatedOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:newHire.EmailCreated)
     com.google.protobuf.MessageOrBuilder {
 
   /**

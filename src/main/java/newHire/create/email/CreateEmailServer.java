@@ -12,9 +12,12 @@ import javax.jmdns.ServiceInfo;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
+import io.grpc.stub.StreamObserver;
 import newHire.create.email.newHireGrpc.newHireImplBase;
 
 public class CreateEmailServer extends newHireImplBase {
+	ArrayList<String> emails = new ArrayList<>();
+
 	public static void main(String[] args) {
 		CreateEmailServer emailservice = new CreateEmailServer();
 		Properties prop = emailservice.getProperties();
@@ -64,5 +67,46 @@ public class CreateEmailServer extends newHireImplBase {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public void createEmail(EmailToCreate request, StreamObserver<EmailCreated> responseObserver) {
+		String email = request.getText() + "@gmail.com";
+		System.out.println("Email created: " + email);
+		emails.add(email);
+		EmailCreated reply = EmailCreated.newBuilder().setValue(email).build();
+		responseObserver.onNext(reply);
+		responseObserver.onCompleted();
+	}
+
+	public void deleteEmail(EmailToDelete request, StreamObserver<EmailDeleted> responseObserver) {
+		for (int i = 0; i < emails.size(); i++) {
+			if (emails.get(i).contains(request.getText())) {
+				emails.remove(i);
+				EmailDeleted reply = EmailDeleted.newBuilder().setValue("Email deleted: " + emails.get(i)).build();
+				responseObserver.onNext(reply);
+				break;
+			} else {
+				String noEmail = "No email was found";
+				EmailDeleted reply = EmailDeleted.newBuilder().setValue(noEmail).build();
+				responseObserver.onNext(reply);
+			}
+		}
+		responseObserver.onCompleted();
+	}
+
+	public void seeEmails(Emails request, StreamObserver<AllEmails> responseObserver) {
+		if (emails.size() > 0) {
+			for (int i = 0; i < emails.size(); i++) {
+				String email = emails.get(i);
+				AllEmails reply = AllEmails.newBuilder().setValue(email).build();
+				System.out.println("email: " + email);
+				responseObserver.onNext(reply);
+			}
+		} else {
+			String response = "There was no emails";
+			AllEmails reply = AllEmails.newBuilder().setValue(response).build();
+			responseObserver.onNext(reply);
+		}
+		responseObserver.onCompleted();
 	}
 }

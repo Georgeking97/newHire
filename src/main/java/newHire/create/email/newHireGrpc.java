@@ -27,36 +27,36 @@ public final class newHireGrpc {
   public static final String SERVICE_NAME = "newHire.newHire";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<newHire.create.email.MessageRequest,
-      newHire.create.email.MessageReply> getSendMessageMethod;
+  private static volatile io.grpc.MethodDescriptor<newHire.create.email.EmailToCreate,
+      newHire.create.email.EmailCreated> getCreateEmailMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "sendMessage",
-      requestType = newHire.create.email.MessageRequest.class,
-      responseType = newHire.create.email.MessageReply.class,
+      fullMethodName = SERVICE_NAME + '/' + "createEmail",
+      requestType = newHire.create.email.EmailToCreate.class,
+      responseType = newHire.create.email.EmailCreated.class,
       methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<newHire.create.email.MessageRequest,
-      newHire.create.email.MessageReply> getSendMessageMethod() {
-    io.grpc.MethodDescriptor<newHire.create.email.MessageRequest, newHire.create.email.MessageReply> getSendMessageMethod;
-    if ((getSendMessageMethod = newHireGrpc.getSendMessageMethod) == null) {
+  public static io.grpc.MethodDescriptor<newHire.create.email.EmailToCreate,
+      newHire.create.email.EmailCreated> getCreateEmailMethod() {
+    io.grpc.MethodDescriptor<newHire.create.email.EmailToCreate, newHire.create.email.EmailCreated> getCreateEmailMethod;
+    if ((getCreateEmailMethod = newHireGrpc.getCreateEmailMethod) == null) {
       synchronized (newHireGrpc.class) {
-        if ((getSendMessageMethod = newHireGrpc.getSendMessageMethod) == null) {
-          newHireGrpc.getSendMessageMethod = getSendMessageMethod = 
-              io.grpc.MethodDescriptor.<newHire.create.email.MessageRequest, newHire.create.email.MessageReply>newBuilder()
+        if ((getCreateEmailMethod = newHireGrpc.getCreateEmailMethod) == null) {
+          newHireGrpc.getCreateEmailMethod = getCreateEmailMethod = 
+              io.grpc.MethodDescriptor.<newHire.create.email.EmailToCreate, newHire.create.email.EmailCreated>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
               .setFullMethodName(generateFullMethodName(
-                  "newHire.newHire", "sendMessage"))
+                  "newHire.newHire", "createEmail"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  newHire.create.email.MessageRequest.getDefaultInstance()))
+                  newHire.create.email.EmailToCreate.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  newHire.create.email.MessageReply.getDefaultInstance()))
-                  .setSchemaDescriptor(new newHireMethodDescriptorSupplier("sendMessage"))
+                  newHire.create.email.EmailCreated.getDefaultInstance()))
+                  .setSchemaDescriptor(new newHireMethodDescriptorSupplier("createEmail"))
                   .build();
           }
         }
      }
-     return getSendMessageMethod;
+     return getCreateEmailMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<newHire.create.email.EmailToDelete,
@@ -151,19 +151,13 @@ public final class newHireGrpc {
   public static abstract class newHireImplBase implements io.grpc.BindableService {
 
     /**
-     * <pre>
-     *create an email
-     * </pre>
      */
-    public void sendMessage(newHire.create.email.MessageRequest request,
-        io.grpc.stub.StreamObserver<newHire.create.email.MessageReply> responseObserver) {
-      asyncUnimplementedUnaryCall(getSendMessageMethod(), responseObserver);
+    public void createEmail(newHire.create.email.EmailToCreate request,
+        io.grpc.stub.StreamObserver<newHire.create.email.EmailCreated> responseObserver) {
+      asyncUnimplementedUnaryCall(getCreateEmailMethod(), responseObserver);
     }
 
     /**
-     * <pre>
-     *delete an email
-     * </pre>
      */
     public void deleteEmail(newHire.create.email.EmailToDelete request,
         io.grpc.stub.StreamObserver<newHire.create.email.EmailDeleted> responseObserver) {
@@ -171,9 +165,6 @@ public final class newHireGrpc {
     }
 
     /**
-     * <pre>
-     *see all email
-     * </pre>
      */
     public void seeEmails(newHire.create.email.Emails request,
         io.grpc.stub.StreamObserver<newHire.create.email.AllEmails> responseObserver) {
@@ -183,12 +174,12 @@ public final class newHireGrpc {
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getSendMessageMethod(),
+            getCreateEmailMethod(),
             asyncUnaryCall(
               new MethodHandlers<
-                newHire.create.email.MessageRequest,
-                newHire.create.email.MessageReply>(
-                  this, METHODID_SEND_MESSAGE)))
+                newHire.create.email.EmailToCreate,
+                newHire.create.email.EmailCreated>(
+                  this, METHODID_CREATE_EMAIL)))
           .addMethod(
             getDeleteEmailMethod(),
             asyncUnaryCall(
@@ -226,20 +217,14 @@ public final class newHireGrpc {
     }
 
     /**
-     * <pre>
-     *create an email
-     * </pre>
      */
-    public void sendMessage(newHire.create.email.MessageRequest request,
-        io.grpc.stub.StreamObserver<newHire.create.email.MessageReply> responseObserver) {
+    public void createEmail(newHire.create.email.EmailToCreate request,
+        io.grpc.stub.StreamObserver<newHire.create.email.EmailCreated> responseObserver) {
       asyncUnaryCall(
-          getChannel().newCall(getSendMessageMethod(), getCallOptions()), request, responseObserver);
+          getChannel().newCall(getCreateEmailMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
-     * <pre>
-     *delete an email
-     * </pre>
      */
     public void deleteEmail(newHire.create.email.EmailToDelete request,
         io.grpc.stub.StreamObserver<newHire.create.email.EmailDeleted> responseObserver) {
@@ -248,9 +233,6 @@ public final class newHireGrpc {
     }
 
     /**
-     * <pre>
-     *see all email
-     * </pre>
      */
     public void seeEmails(newHire.create.email.Emails request,
         io.grpc.stub.StreamObserver<newHire.create.email.AllEmails> responseObserver) {
@@ -278,19 +260,13 @@ public final class newHireGrpc {
     }
 
     /**
-     * <pre>
-     *create an email
-     * </pre>
      */
-    public newHire.create.email.MessageReply sendMessage(newHire.create.email.MessageRequest request) {
+    public newHire.create.email.EmailCreated createEmail(newHire.create.email.EmailToCreate request) {
       return blockingUnaryCall(
-          getChannel(), getSendMessageMethod(), getCallOptions(), request);
+          getChannel(), getCreateEmailMethod(), getCallOptions(), request);
     }
 
     /**
-     * <pre>
-     *delete an email
-     * </pre>
      */
     public newHire.create.email.EmailDeleted deleteEmail(newHire.create.email.EmailToDelete request) {
       return blockingUnaryCall(
@@ -298,9 +274,6 @@ public final class newHireGrpc {
     }
 
     /**
-     * <pre>
-     *see all email
-     * </pre>
      */
     public java.util.Iterator<newHire.create.email.AllEmails> seeEmails(
         newHire.create.email.Emails request) {
@@ -328,20 +301,14 @@ public final class newHireGrpc {
     }
 
     /**
-     * <pre>
-     *create an email
-     * </pre>
      */
-    public com.google.common.util.concurrent.ListenableFuture<newHire.create.email.MessageReply> sendMessage(
-        newHire.create.email.MessageRequest request) {
+    public com.google.common.util.concurrent.ListenableFuture<newHire.create.email.EmailCreated> createEmail(
+        newHire.create.email.EmailToCreate request) {
       return futureUnaryCall(
-          getChannel().newCall(getSendMessageMethod(), getCallOptions()), request);
+          getChannel().newCall(getCreateEmailMethod(), getCallOptions()), request);
     }
 
     /**
-     * <pre>
-     *delete an email
-     * </pre>
      */
     public com.google.common.util.concurrent.ListenableFuture<newHire.create.email.EmailDeleted> deleteEmail(
         newHire.create.email.EmailToDelete request) {
@@ -350,7 +317,7 @@ public final class newHireGrpc {
     }
   }
 
-  private static final int METHODID_SEND_MESSAGE = 0;
+  private static final int METHODID_CREATE_EMAIL = 0;
   private static final int METHODID_DELETE_EMAIL = 1;
   private static final int METHODID_SEE_EMAILS = 2;
 
@@ -371,9 +338,9 @@ public final class newHireGrpc {
     @java.lang.SuppressWarnings("unchecked")
     public void invoke(Req request, io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_SEND_MESSAGE:
-          serviceImpl.sendMessage((newHire.create.email.MessageRequest) request,
-              (io.grpc.stub.StreamObserver<newHire.create.email.MessageReply>) responseObserver);
+        case METHODID_CREATE_EMAIL:
+          serviceImpl.createEmail((newHire.create.email.EmailToCreate) request,
+              (io.grpc.stub.StreamObserver<newHire.create.email.EmailCreated>) responseObserver);
           break;
         case METHODID_DELETE_EMAIL:
           serviceImpl.deleteEmail((newHire.create.email.EmailToDelete) request,
@@ -444,7 +411,7 @@ public final class newHireGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new newHireFileDescriptorSupplier())
-              .addMethod(getSendMessageMethod())
+              .addMethod(getCreateEmailMethod())
               .addMethod(getDeleteEmailMethod())
               .addMethod(getSeeEmailsMethod())
               .build();

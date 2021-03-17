@@ -48,14 +48,9 @@ public class GUI {
 	private static newHireStub asyncStub;
 	private static newHire1BlockingStub blockingStub2;
 	private static newHire1Stub asyncStub2;
-
 	private static ServiceInfo serviceinfo;
-
 	private JFrame frame;
-	private JTextField createEmail;
-	private JTextField deleteEmail;
-	private JTextArea textResponse;
-
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			@Override
