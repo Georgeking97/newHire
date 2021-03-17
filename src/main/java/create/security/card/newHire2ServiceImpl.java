@@ -58,13 +58,13 @@ public final class newHire2ServiceImpl {
       "alue\030\001 \001(\t\"\034\n\014RequestCards\022\014\n\004text\030\001 \001(\t" +
       "\"\036\n\rCardsReturned\022\r\n\005value\030\001 \001(\t\"\033\n\013Spec" +
       "ifyCard\022\014\n\004text\030\001 \001(\t\"\034\n\013CardDeleted\022\r\n\005" +
-      "value\030\001 \001(\t2\272\001\n\010newHire1\0225\n\ncreateCard\022\016" +
+      "value\030\001 \001(\t2\274\001\n\010newHire1\0225\n\ncreateCard\022\016" +
       ".newHire1.card\032\025.newHire1.cardCreated(\001\022" +
-      ";\n\010seeCards\022\026.newHire1.RequestCards\032\027.ne" +
-      "wHire1.CardsReturned\022:\n\ndeleteCard\022\025.new" +
-      "Hire1.SpecifyCard\032\025.newHire1.CardDeleted" +
-      "B-\n\024create.security.cardB\023newHire2Servic" +
-      "eImplP\001b\006proto3"
+      "=\n\010seeCards\022\026.newHire1.RequestCards\032\027.ne" +
+      "wHire1.CardsReturned0\001\022:\n\ndeleteCard\022\025.n" +
+      "ewHire1.SpecifyCard\032\025.newHire1.CardDelet" +
+      "edB-\n\024create.security.cardB\023newHire2Serv" +
+      "iceImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {

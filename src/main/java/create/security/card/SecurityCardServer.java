@@ -17,6 +17,7 @@ import io.grpc.stub.StreamObserver;
 
 public class SecurityCardServer extends newHire1ImplBase {
 	ArrayList<String> cards = new ArrayList<>();
+
 	public static void main(String[] args) {
 		SecurityCardServer classObj = new SecurityCardServer();
 		Properties prop = classObj.getProperties();
@@ -67,7 +68,7 @@ public class SecurityCardServer extends newHire1ImplBase {
 			e.printStackTrace();
 		}
 	}
-
+	@Override
 	public StreamObserver<card> createCard(StreamObserver<cardCreated> responseObserver) {
 		return new StreamObserver<card>() {
 			ArrayList<String> list = new ArrayList<>();
@@ -99,17 +100,17 @@ public class SecurityCardServer extends newHire1ImplBase {
 			}
 		};
 	}
-
+	@Override
 	public void seeCards(RequestCards request, StreamObserver<CardsReturned> responseObserver) {
 		for (int i = 0; i < cards.size(); i++) {
 			String card = cards.get(i);
-			System.out.println("this is the card value that is being sent back to the client: "+card);
+			System.out.println("this is the card value that is being sent back to the client: " + card);
 			CardsReturned reply = CardsReturned.newBuilder().setValue(card).build();
 			responseObserver.onNext(reply);
 		}
 		responseObserver.onCompleted();
 	}
-
+	@Override
 	public void deleteCard(SpecifyCard request, StreamObserver<CardDeleted> responseObserver) {
 		for (int i = 0; i < cards.size(); i++) {
 			if (cards.get(i).contains(request.getText())) {

@@ -12,7 +12,7 @@ service newHire1{
 	//creating the security card 
 	rpc createCard(stream card) returns (cardCreated);
 	//seeing all security cards
-	rpc seeCards(RequestCards) returns (CardsReturned);
+	rpc seeCards(RequestCards) returns (stream CardsReturned);
 	//delete security card
 	rpc deleteCard(SpecifyCard) returns (CardDeleted);
 }

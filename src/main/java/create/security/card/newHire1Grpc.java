@@ -66,7 +66,7 @@ public final class newHire1Grpc {
       fullMethodName = SERVICE_NAME + '/' + "seeCards",
       requestType = create.security.card.RequestCards.class,
       responseType = create.security.card.CardsReturned.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+      methodType = io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
   public static io.grpc.MethodDescriptor<create.security.card.RequestCards,
       create.security.card.CardsReturned> getSeeCardsMethod() {
     io.grpc.MethodDescriptor<create.security.card.RequestCards, create.security.card.CardsReturned> getSeeCardsMethod;
@@ -75,7 +75,7 @@ public final class newHire1Grpc {
         if ((getSeeCardsMethod = newHire1Grpc.getSeeCardsMethod) == null) {
           newHire1Grpc.getSeeCardsMethod = getSeeCardsMethod = 
               io.grpc.MethodDescriptor.<create.security.card.RequestCards, create.security.card.CardsReturned>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setType(io.grpc.MethodDescriptor.MethodType.SERVER_STREAMING)
               .setFullMethodName(generateFullMethodName(
                   "newHire1.newHire1", "seeCards"))
               .setSampledToLocalTracing(true)
@@ -191,7 +191,7 @@ public final class newHire1Grpc {
                   this, METHODID_CREATE_CARD)))
           .addMethod(
             getSeeCardsMethod(),
-            asyncUnaryCall(
+            asyncServerStreamingCall(
               new MethodHandlers<
                 create.security.card.RequestCards,
                 create.security.card.CardsReturned>(
@@ -243,7 +243,7 @@ public final class newHire1Grpc {
      */
     public void seeCards(create.security.card.RequestCards request,
         io.grpc.stub.StreamObserver<create.security.card.CardsReturned> responseObserver) {
-      asyncUnaryCall(
+      asyncServerStreamingCall(
           getChannel().newCall(getSeeCardsMethod(), getCallOptions()), request, responseObserver);
     }
 
@@ -282,8 +282,9 @@ public final class newHire1Grpc {
      *seeing all security cards
      * </pre>
      */
-    public create.security.card.CardsReturned seeCards(create.security.card.RequestCards request) {
-      return blockingUnaryCall(
+    public java.util.Iterator<create.security.card.CardsReturned> seeCards(
+        create.security.card.RequestCards request) {
+      return blockingServerStreamingCall(
           getChannel(), getSeeCardsMethod(), getCallOptions(), request);
     }
 
@@ -314,17 +315,6 @@ public final class newHire1Grpc {
     protected newHire1FutureStub build(io.grpc.Channel channel,
         io.grpc.CallOptions callOptions) {
       return new newHire1FutureStub(channel, callOptions);
-    }
-
-    /**
-     * <pre>
-     *seeing all security cards
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<create.security.card.CardsReturned> seeCards(
-        create.security.card.RequestCards request) {
-      return futureUnaryCall(
-          getChannel().newCall(getSeeCardsMethod(), getCallOptions()), request);
     }
 
     /**

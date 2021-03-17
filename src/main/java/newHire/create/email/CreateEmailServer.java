@@ -79,17 +79,21 @@ public class CreateEmailServer extends newHireImplBase {
 	}
 
 	public void deleteEmail(EmailToDelete request, StreamObserver<EmailDeleted> responseObserver) {
-		for (int i = 0; i < emails.size(); i++) {
-			if (emails.get(i).contains(request.getText())) {
-				emails.remove(i);
-				EmailDeleted reply = EmailDeleted.newBuilder().setValue("Email deleted: ").build();
-				responseObserver.onNext(reply);
-				break;
-			} else {
-				String noEmail = "No email was found";
-				EmailDeleted reply = EmailDeleted.newBuilder().setValue(noEmail).build();
-				responseObserver.onNext(reply);
+		if (emails.size() > 0) {
+			for (int i = 0; i < emails.size(); i++) {
+				if (emails.get(i).contains(request.getText())) {
+					emails.remove(i);
+					EmailDeleted reply = EmailDeleted.newBuilder().setValue("Email deleted: ").build();
+					responseObserver.onNext(reply);
+					break;
+				} else {
+					EmailDeleted reply = EmailDeleted.newBuilder().setValue("No Email was found").build();
+					responseObserver.onNext(reply);
+				}
 			}
+		} else {
+			EmailDeleted reply = EmailDeleted.newBuilder().setValue("No Email was found").build();
+			responseObserver.onNext(reply);
 		}
 		responseObserver.onCompleted();
 	}
@@ -99,7 +103,7 @@ public class CreateEmailServer extends newHireImplBase {
 			for (int i = 0; i < emails.size(); i++) {
 				String email = emails.get(i);
 				AllEmails reply = AllEmails.newBuilder().setValue(email).build();
-				System.out.println("email: " + email);
+				System.out.println("Email " + emails.get(i) + ": " + email);
 				responseObserver.onNext(reply);
 			}
 		} else {
