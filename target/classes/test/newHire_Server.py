@@ -8,9 +8,8 @@ import create_email_pb2
 import create_email_pb2_grpc
 import socket
 import queue
-import argparse
 import socket
-import os
+import jpysocket
 
 class newHirepython(create_email_pb2_grpc.newHirepythonServicer):
     
@@ -32,6 +31,7 @@ class newHirepython(create_email_pb2_grpc.newHirepythonServicer):
                     return create_email_pb2.EmailDeleted(value='no email found')
         else:
             return create_email_pb2.EmailDeleted(value='No emails to delete')
+        
     def seeEmails(self, request, context):
         self.emails
         if (len(self.emails)) > 0:
@@ -41,11 +41,21 @@ class newHirepython(create_email_pb2_grpc.newHirepythonServicer):
             print('No emails to print')
     
 def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
-    create_email_pb2_grpc.add_newHirepythonServicer_to_server(newHirepython(), server)
-    server.add_insecure_port('[::]:50051')
-    server.start()
-    server.wait_for_termination()
+    host='localhost' 
+    port=50051    
+    s=socket.socket() 
+    s.bind((host,port)) 
+    s.listen(5) 
+    print("Socket Is Listening....")
+    connection,address=s.accept() 
+    print("Connected To ",address)
+    msgsend=jpysocket.jpyencode("Thank You For Connecting.") 
+    connection.send(msgsend) 
+    msgrecv=connection.recv(1024) 
+    msgrecv=jpysocket.jpydecode(msgrecv) 
+    print("From Client: ",msgrecv)
+    s.close() 
+    print("Connection Closed.")
     
 def register():
     global zeroconf

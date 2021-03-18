@@ -6,8 +6,12 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.InetAddress;
+import java.net.Socket;
 import java.net.UnknownHostException;
 import java.util.Iterator;
 
@@ -61,10 +65,8 @@ public class GUI {
 	public GUI() {
 		String email_service_type = "_http._tcp.local.";
 		discoverService(email_service_type);
-		String host = serviceinfo.getHostAddresses()[0];
-		int port = serviceinfo.getPort();
-		ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
 
+		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build();
 		blockingStub = newHireGrpc.newBlockingStub(channel);
 		blockingStub2 = newHire1Grpc.newBlockingStub(channel);
 		asyncStub2 = newHire1Grpc.newStub(channel);
@@ -184,8 +186,31 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				String name = EnterEmailCreateTxt.getText();
 				EmailToCreate request = EmailToCreate.newBuilder().setText(name).build();
-				EmailCreated response = blockingStub.createEmail(request);
+				blockingStub.createEmail(request);
 				EnterEmailCreateTxt.setText("");
+			}
+		});
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			Socket socket;
+
+			public void actionPerformed(ActionEvent e) {
+				String name = EnterEmailCreateTxt.getText();
+				int pythonhost = 50051;
+				String pythonhostname = "Localhost";
+				try {
+					socket = new Socket(pythonhostname, pythonhost);
+					DataOutputStream dout = new DataOutputStream(socket.getOutputStream());
+					DataInputStream in = new DataInputStream(socket.getInputStream());
+					String msg = (String) in.readUTF();
+					System.out.println("Server: " + msg);
+					dout.writeUTF(name);
+					dout.flush();
+					dout.close();
+					socket.close();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				}
 			}
 		});
 		p1.add(EnterEmailCreateBtn);
@@ -202,7 +227,7 @@ public class GUI {
 			public void actionPerformed(ActionEvent e) {
 				String name = EnterEmailDeleteTxt.getText();
 				EmailToDelete request = EmailToDelete.newBuilder().setText(name).build();
-				EmailDeleted response = blockingStub.deleteEmail(request);
+				blockingStub.deleteEmail(request);
 				EnterEmailDeleteTxt.setText("");
 			}
 		});
@@ -221,6 +246,9 @@ public class GUI {
 				}
 			}
 		});
+
+		
+		p3.add(btnNewButton);
 		p3.add(SeeEmailBtn);
 
 		JScrollPane SeeEmailScroll = new JScrollPane(textResponse);
