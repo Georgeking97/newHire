@@ -6,9 +6,9 @@ option java_package = "grpc.examples.helloworld";
 option java_outer_classname = "HelloWorldProto";
 option objc_class_prefix = "HLW";
 
-package newHire;
+package newHirepython;
 
-service newHire{
+service newHirepython{
 	rpc createEmail(EmailToCreate) returns (EmailCreated) {}
 	rpc deleteEmail(EmailToDelete) returns (EmailDeleted) {}
 	rpc seeEmails(Emails) returns (stream AllEmails) {}

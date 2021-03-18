@@ -15,11 +15,11 @@ _sym_db = _symbol_database.Default()
 
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='create_email.proto',
-  package='newHire',
+  package='newHirepython',
   syntax='proto3',
   serialized_options=b'\n\030grpc.examples.helloworldB\017HelloWorldProtoP\001\242\002\003HLW',
   create_key=_descriptor._internal_create_key,
-  serialized_pb=b'\n\x12\x63reate_email.proto\x12\x07newHire\"\x1d\n\rEmailToCreate\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1d\n\x0c\x45mailCreated\x12\r\n\x05value\x18\x01 \x01(\t\"\x1d\n\rEmailToDelete\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1d\n\x0c\x45mailDeleted\x12\r\n\x05value\x18\x01 \x01(\t\"\x16\n\x06\x45mails\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1a\n\tAllEmails\x12\r\n\x05value\x18\x01 \x01(\t2\xbf\x01\n\x07newHire\x12>\n\x0b\x63reateEmail\x12\x16.newHire.EmailToCreate\x1a\x15.newHire.EmailCreated\"\x00\x12>\n\x0b\x64\x65leteEmail\x12\x16.newHire.EmailToDelete\x1a\x15.newHire.EmailDeleted\"\x00\x12\x34\n\tseeEmails\x12\x0f.newHire.Emails\x1a\x12.newHire.AllEmails\"\x00\x30\x01\x42\x33\n\x18grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3'
+  serialized_pb=b'\n\x12\x63reate_email.proto\x12\rnewHirepython\"\x1d\n\rEmailToCreate\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1d\n\x0c\x45mailCreated\x12\r\n\x05value\x18\x01 \x01(\t\"\x1d\n\rEmailToDelete\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1d\n\x0c\x45mailDeleted\x12\r\n\x05value\x18\x01 \x01(\t\"\x16\n\x06\x45mails\x12\x0c\n\x04text\x18\x01 \x01(\t\"\x1a\n\tAllEmails\x12\r\n\x05value\x18\x01 \x01(\t2\xe9\x01\n\rnewHirepython\x12J\n\x0b\x63reateEmail\x12\x1c.newHirepython.EmailToCreate\x1a\x1b.newHirepython.EmailCreated\"\x00\x12J\n\x0b\x64\x65leteEmail\x12\x1c.newHirepython.EmailToDelete\x1a\x1b.newHirepython.EmailDeleted\"\x00\x12@\n\tseeEmails\x12\x15.newHirepython.Emails\x1a\x18.newHirepython.AllEmails\"\x00\x30\x01\x42\x33\n\x18grpc.examples.helloworldB\x0fHelloWorldProtoP\x01\xa2\x02\x03HLWb\x06proto3'
 )
 
 
@@ -27,14 +27,14 @@ DESCRIPTOR = _descriptor.FileDescriptor(
 
 _EMAILTOCREATE = _descriptor.Descriptor(
   name='EmailToCreate',
-  full_name='newHire.EmailToCreate',
+  full_name='newHirepython.EmailToCreate',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='text', full_name='newHire.EmailToCreate.text', index=0,
+      name='text', full_name='newHirepython.EmailToCreate.text', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -52,21 +52,21 @@ _EMAILTOCREATE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=31,
-  serialized_end=60,
+  serialized_start=37,
+  serialized_end=66,
 )
 
 
 _EMAILCREATED = _descriptor.Descriptor(
   name='EmailCreated',
-  full_name='newHire.EmailCreated',
+  full_name='newHirepython.EmailCreated',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='value', full_name='newHire.EmailCreated.value', index=0,
+      name='value', full_name='newHirepython.EmailCreated.value', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -84,21 +84,21 @@ _EMAILCREATED = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=62,
-  serialized_end=91,
+  serialized_start=68,
+  serialized_end=97,
 )
 
 
 _EMAILTODELETE = _descriptor.Descriptor(
   name='EmailToDelete',
-  full_name='newHire.EmailToDelete',
+  full_name='newHirepython.EmailToDelete',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='text', full_name='newHire.EmailToDelete.text', index=0,
+      name='text', full_name='newHirepython.EmailToDelete.text', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -116,21 +116,21 @@ _EMAILTODELETE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=93,
-  serialized_end=122,
+  serialized_start=99,
+  serialized_end=128,
 )
 
 
 _EMAILDELETED = _descriptor.Descriptor(
   name='EmailDeleted',
-  full_name='newHire.EmailDeleted',
+  full_name='newHirepython.EmailDeleted',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='value', full_name='newHire.EmailDeleted.value', index=0,
+      name='value', full_name='newHirepython.EmailDeleted.value', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -148,21 +148,21 @@ _EMAILDELETED = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=124,
-  serialized_end=153,
+  serialized_start=130,
+  serialized_end=159,
 )
 
 
 _EMAILS = _descriptor.Descriptor(
   name='Emails',
-  full_name='newHire.Emails',
+  full_name='newHirepython.Emails',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='text', full_name='newHire.Emails.text', index=0,
+      name='text', full_name='newHirepython.Emails.text', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -180,21 +180,21 @@ _EMAILS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=155,
-  serialized_end=177,
+  serialized_start=161,
+  serialized_end=183,
 )
 
 
 _ALLEMAILS = _descriptor.Descriptor(
   name='AllEmails',
-  full_name='newHire.AllEmails',
+  full_name='newHirepython.AllEmails',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   create_key=_descriptor._internal_create_key,
   fields=[
     _descriptor.FieldDescriptor(
-      name='value', full_name='newHire.AllEmails.value', index=0,
+      name='value', full_name='newHirepython.AllEmails.value', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=b"".decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -212,8 +212,8 @@ _ALLEMAILS = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=179,
-  serialized_end=205,
+  serialized_start=185,
+  serialized_end=211,
 )
 
 DESCRIPTOR.message_types_by_name['EmailToCreate'] = _EMAILTOCREATE
@@ -227,61 +227,61 @@ _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 EmailToCreate = _reflection.GeneratedProtocolMessageType('EmailToCreate', (_message.Message,), {
   'DESCRIPTOR' : _EMAILTOCREATE,
   '__module__' : 'create_email_pb2'
-  # @@protoc_insertion_point(class_scope:newHire.EmailToCreate)
+  # @@protoc_insertion_point(class_scope:newHirepython.EmailToCreate)
   })
 _sym_db.RegisterMessage(EmailToCreate)
 
 EmailCreated = _reflection.GeneratedProtocolMessageType('EmailCreated', (_message.Message,), {
   'DESCRIPTOR' : _EMAILCREATED,
   '__module__' : 'create_email_pb2'
-  # @@protoc_insertion_point(class_scope:newHire.EmailCreated)
+  # @@protoc_insertion_point(class_scope:newHirepython.EmailCreated)
   })
 _sym_db.RegisterMessage(EmailCreated)
 
 EmailToDelete = _reflection.GeneratedProtocolMessageType('EmailToDelete', (_message.Message,), {
   'DESCRIPTOR' : _EMAILTODELETE,
   '__module__' : 'create_email_pb2'
-  # @@protoc_insertion_point(class_scope:newHire.EmailToDelete)
+  # @@protoc_insertion_point(class_scope:newHirepython.EmailToDelete)
   })
 _sym_db.RegisterMessage(EmailToDelete)
 
 EmailDeleted = _reflection.GeneratedProtocolMessageType('EmailDeleted', (_message.Message,), {
   'DESCRIPTOR' : _EMAILDELETED,
   '__module__' : 'create_email_pb2'
-  # @@protoc_insertion_point(class_scope:newHire.EmailDeleted)
+  # @@protoc_insertion_point(class_scope:newHirepython.EmailDeleted)
   })
 _sym_db.RegisterMessage(EmailDeleted)
 
 Emails = _reflection.GeneratedProtocolMessageType('Emails', (_message.Message,), {
   'DESCRIPTOR' : _EMAILS,
   '__module__' : 'create_email_pb2'
-  # @@protoc_insertion_point(class_scope:newHire.Emails)
+  # @@protoc_insertion_point(class_scope:newHirepython.Emails)
   })
 _sym_db.RegisterMessage(Emails)
 
 AllEmails = _reflection.GeneratedProtocolMessageType('AllEmails', (_message.Message,), {
   'DESCRIPTOR' : _ALLEMAILS,
   '__module__' : 'create_email_pb2'
-  # @@protoc_insertion_point(class_scope:newHire.AllEmails)
+  # @@protoc_insertion_point(class_scope:newHirepython.AllEmails)
   })
 _sym_db.RegisterMessage(AllEmails)
 
 
 DESCRIPTOR._options = None
 
-_NEWHIRE = _descriptor.ServiceDescriptor(
-  name='newHire',
-  full_name='newHire.newHire',
+_NEWHIREPYTHON = _descriptor.ServiceDescriptor(
+  name='newHirepython',
+  full_name='newHirepython.newHirepython',
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
   create_key=_descriptor._internal_create_key,
-  serialized_start=208,
-  serialized_end=399,
+  serialized_start=214,
+  serialized_end=447,
   methods=[
   _descriptor.MethodDescriptor(
     name='createEmail',
-    full_name='newHire.newHire.createEmail',
+    full_name='newHirepython.newHirepython.createEmail',
     index=0,
     containing_service=None,
     input_type=_EMAILTOCREATE,
@@ -291,7 +291,7 @@ _NEWHIRE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='deleteEmail',
-    full_name='newHire.newHire.deleteEmail',
+    full_name='newHirepython.newHirepython.deleteEmail',
     index=1,
     containing_service=None,
     input_type=_EMAILTODELETE,
@@ -301,7 +301,7 @@ _NEWHIRE = _descriptor.ServiceDescriptor(
   ),
   _descriptor.MethodDescriptor(
     name='seeEmails',
-    full_name='newHire.newHire.seeEmails',
+    full_name='newHirepython.newHirepython.seeEmails',
     index=2,
     containing_service=None,
     input_type=_EMAILS,
@@ -310,8 +310,8 @@ _NEWHIRE = _descriptor.ServiceDescriptor(
     create_key=_descriptor._internal_create_key,
   ),
 ])
-_sym_db.RegisterServiceDescriptor(_NEWHIRE)
+_sym_db.RegisterServiceDescriptor(_NEWHIREPYTHON)
 
-DESCRIPTOR.services_by_name['newHire'] = _NEWHIRE
+DESCRIPTOR.services_by_name['newHirepython'] = _NEWHIREPYTHON
 
 # @@protoc_insertion_point(module_scope)

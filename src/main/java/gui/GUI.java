@@ -3,14 +3,12 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.FlowLayout;
-import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.jmdns.JmDNS;
@@ -29,19 +27,13 @@ import javax.swing.JTextField;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.stub.StreamObserver;
+
 import newHire.create.email.*;
 import newHire.create.email.newHireGrpc.newHireBlockingStub;
-import newHire.create.email.newHireGrpc.newHireStub;
 
-import javax.swing.SwingConstants;
-
-import create.security.card.card;
-import create.security.card.cardCreated;
 import create.security.card.newHire1Grpc;
 import create.security.card.newHire1Grpc.newHire1BlockingStub;
 import create.security.card.newHire1Grpc.newHire1Stub;
-import java.awt.ScrollPane;
 
 public class GUI {
 	private static newHireBlockingStub blockingStub;
@@ -193,6 +185,7 @@ public class GUI {
 				String name = EnterEmailCreateTxt.getText();
 				EmailToCreate request = EmailToCreate.newBuilder().setText(name).build();
 				EmailCreated response = blockingStub.createEmail(request);
+				EnterEmailCreateTxt.setText("");
 			}
 		});
 		p1.add(EnterEmailCreateBtn);
@@ -210,6 +203,7 @@ public class GUI {
 				String name = EnterEmailDeleteTxt.getText();
 				EmailToDelete request = EmailToDelete.newBuilder().setText(name).build();
 				EmailDeleted response = blockingStub.deleteEmail(request);
+				EnterEmailDeleteTxt.setText("");
 			}
 		});
 		p2.add(EnterEmailDeleteBtn);

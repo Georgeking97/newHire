@@ -5,7 +5,7 @@ import grpc
 import create_email_pb2 as create__email__pb2
 
 
-class newHireStub(object):
+class newHirepythonStub(object):
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -15,23 +15,23 @@ class newHireStub(object):
             channel: A grpc.Channel.
         """
         self.createEmail = channel.unary_unary(
-                '/newHire.newHire/createEmail',
+                '/newHirepython.newHirepython/createEmail',
                 request_serializer=create__email__pb2.EmailToCreate.SerializeToString,
                 response_deserializer=create__email__pb2.EmailCreated.FromString,
                 )
         self.deleteEmail = channel.unary_unary(
-                '/newHire.newHire/deleteEmail',
+                '/newHirepython.newHirepython/deleteEmail',
                 request_serializer=create__email__pb2.EmailToDelete.SerializeToString,
                 response_deserializer=create__email__pb2.EmailDeleted.FromString,
                 )
         self.seeEmails = channel.unary_stream(
-                '/newHire.newHire/seeEmails',
+                '/newHirepython.newHirepython/seeEmails',
                 request_serializer=create__email__pb2.Emails.SerializeToString,
                 response_deserializer=create__email__pb2.AllEmails.FromString,
                 )
 
 
-class newHireServicer(object):
+class newHirepythonServicer(object):
     """Missing associated documentation comment in .proto file."""
 
     def createEmail(self, request, context):
@@ -53,7 +53,7 @@ class newHireServicer(object):
         raise NotImplementedError('Method not implemented!')
 
 
-def add_newHireServicer_to_server(servicer, server):
+def add_newHirepythonServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'createEmail': grpc.unary_unary_rpc_method_handler(
                     servicer.createEmail,
@@ -72,12 +72,12 @@ def add_newHireServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'newHire.newHire', rpc_method_handlers)
+            'newHirepython.newHirepython', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
 
 
  # This class is part of an EXPERIMENTAL API.
-class newHire(object):
+class newHirepython(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -91,7 +91,7 @@ class newHire(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/newHire.newHire/createEmail',
+        return grpc.experimental.unary_unary(request, target, '/newHirepython.newHirepython/createEmail',
             create__email__pb2.EmailToCreate.SerializeToString,
             create__email__pb2.EmailCreated.FromString,
             options, channel_credentials,
@@ -108,7 +108,7 @@ class newHire(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_unary(request, target, '/newHire.newHire/deleteEmail',
+        return grpc.experimental.unary_unary(request, target, '/newHirepython.newHirepython/deleteEmail',
             create__email__pb2.EmailToDelete.SerializeToString,
             create__email__pb2.EmailDeleted.FromString,
             options, channel_credentials,
@@ -125,7 +125,7 @@ class newHire(object):
             wait_for_ready=None,
             timeout=None,
             metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/newHire.newHire/seeEmails',
+        return grpc.experimental.unary_stream(request, target, '/newHirepython.newHirepython/seeEmails',
             create__email__pb2.Emails.SerializeToString,
             create__email__pb2.AllEmails.FromString,
             options, channel_credentials,
