@@ -102,25 +102,34 @@ public class SecurityCardServer extends newHire1ImplBase {
 	}
 	@Override
 	public void seeCards(RequestCards request, StreamObserver<CardsReturned> responseObserver) {
-		for (int i = 0; i < cards.size(); i++) {
-			String card = cards.get(i);
-			System.out.println("this is the card value that is being sent back to the client: " + card);
-			CardsReturned reply = CardsReturned.newBuilder().setValue(card).build();
+		if(cards.size() > 0) {
+			for (int i = 0; i < cards.size(); i++) {
+				String card = cards.get(i);
+				System.out.println("this is the card value that is being sent back to the client: " + card);
+				CardsReturned reply = CardsReturned.newBuilder().setValue(card).build();
+				responseObserver.onNext(reply);
+			}
+		} else {
+			CardsReturned reply = CardsReturned.newBuilder().setValue("No cards to see").build();
 			responseObserver.onNext(reply);
 		}
 		responseObserver.onCompleted();
 	}
 	@Override
 	public void deleteCard(SpecifyCard request, StreamObserver<CardDeleted> responseObserver) {
-		for (int i = 0; i < cards.size(); i++) {
-			if (cards.get(i).contains(request.getText())) {
-				cards.remove(i);
-				break;
+		if(cards.size() > 0) {
+			for (int i = 0; i < cards.size(); i++) {
+				if (cards.get(i).contains(request.getText())) {
+					cards.remove(i);
+					CardDeleted reply = CardDeleted.newBuilder().setValue("Card deleted").build();
+					responseObserver.onNext(reply);
+					break;
+				}
 			}
+		} else {
+			CardDeleted reply = CardDeleted.newBuilder().setValue("No cards to delete").build();
+			responseObserver.onNext(reply);
 		}
-		String response = "Card deleted...";
-		CardDeleted reply = CardDeleted.newBuilder().setValue(response).build();
-		responseObserver.onNext(reply);
 		responseObserver.onCompleted();
 	}
 
