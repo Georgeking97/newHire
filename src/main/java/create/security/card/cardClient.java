@@ -70,7 +70,7 @@ public class cardClient {
 
 			@Override
 			public void onError(Throwable t) {
-
+				t.printStackTrace();
 			}
 
 			@Override
@@ -81,13 +81,10 @@ public class cardClient {
 		StreamObserver<card> requestObserver = asyncStub.createCard(responseObserver);
 		try {
 			requestObserver.onNext(card.newBuilder().setText(requestMessage1).build());
-			System.out.println("All messages recieved, the card has been created");
 			Thread.sleep(500);
 			requestObserver.onNext(card.newBuilder().setText(requestMessage2).build());
-			System.out.println("All messages recieved, the card has been created");
 			Thread.sleep(500);
 			requestObserver.onNext(card.newBuilder().setText(requestMessage3).build());
-			System.out.println("All messages recieved, the card has been created");
 			Thread.sleep(500);
 			requestObserver.onCompleted();
 			Thread.sleep(10000);

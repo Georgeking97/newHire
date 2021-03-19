@@ -102,6 +102,7 @@ public class SecurityCardServer extends newHire1ImplBase {
 	}
 	@Override
 	public void seeCards(RequestCards request, StreamObserver<CardsReturned> responseObserver) {
+		System.out.println("See cards request started");
 		if(cards.size() > 0) {
 			for (int i = 0; i < cards.size(); i++) {
 				String card = cards.get(i);
@@ -113,10 +114,13 @@ public class SecurityCardServer extends newHire1ImplBase {
 			CardsReturned reply = CardsReturned.newBuilder().setValue("No cards to see").build();
 			responseObserver.onNext(reply);
 		}
+		System.out.println("See cards request finished");
 		responseObserver.onCompleted();
 	}
 	@Override
 	public void deleteCard(SpecifyCard request, StreamObserver<CardDeleted> responseObserver) {
+		System.out.println("delete cards request started");
+		System.out.println("The request sent to the server was: "+request.getText());
 		if(cards.size() > 0) {
 			for (int i = 0; i < cards.size(); i++) {
 				if (cards.get(i).contains(request.getText())) {
@@ -130,6 +134,7 @@ public class SecurityCardServer extends newHire1ImplBase {
 			CardDeleted reply = CardDeleted.newBuilder().setValue("No cards to delete").build();
 			responseObserver.onNext(reply);
 		}
+		System.out.println("delete cards request finished");
 		responseObserver.onCompleted();
 	}
 

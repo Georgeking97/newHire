@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.jmdns.JmDNS;
@@ -31,16 +32,23 @@ import javax.swing.JTextField;
 
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
+import io.grpc.stub.StreamObserver;
 
 import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
 
+import create.security.card.CardDeleted;
+import create.security.card.CardsReturned;
+import create.security.card.RequestCards;
+import create.security.card.SpecifyCard;
+import create.security.card.card;
+import create.security.card.cardCreated;
 import create.security.card.newHire1Grpc;
 import create.security.card.newHire1Grpc.newHire1BlockingStub;
 import create.security.card.newHire1Grpc.newHire1Stub;
 
 public class GUI {
-	
+
 	private static newHire1BlockingStub blockingStub2;
 
 	private static newHire1Stub asyncStub2;
@@ -49,6 +57,9 @@ public class GUI {
 	private JFrame frame;
 	private JTextField EnterEmailCreateTxt;
 	private JTextField EnterEmailDeleteTxt;
+	private JTextField addSecurityPermissionTxt;
+	private JTextField cardDeleteTxt;
+	ArrayList<String> cards = new ArrayList<>();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -67,7 +78,9 @@ public class GUI {
 	public GUI() {
 		String email_service_type = "_http._tcp.local.";
 		discoverService(email_service_type);
-		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build();
+		String host = serviceinfo.getHostAddresses()[0];
+		int port = serviceinfo.getPort();
+		ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
 		blockingStub2 = newHire1Grpc.newBlockingStub(channel);
 		asyncStub2 = newHire1Grpc.newStub(channel);
 
@@ -164,8 +177,93 @@ public class GUI {
 		panel1.add(p2);
 		panel1.add(p3);
 		panel2.add(p4);
+
+		JLabel addSecurityPermissionLbl = new JLabel("Enter Security permission");
+		p4.add(addSecurityPermissionLbl);
+
+		addSecurityPermissionTxt = new JTextField();
+		p4.add(addSecurityPermissionTxt);
+		addSecurityPermissionTxt.setColumns(10);
+
+		JButton addSecurityPermissionBtn = new JButton("Add permission to card");
+		addSecurityPermissionBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				cards.add(addSecurityPermissionTxt.getText());
+				addSecurityPermissionTxt.setText("");
+			}
+		});
+		p4.add(addSecurityPermissionBtn);
+
+		JButton createSecurityCardBtn = new JButton("Create card");
+		createSecurityCardBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("The size of the array when being sent to the create card method: "+cards.size());
+				for(int i=0;i<cards.size();i++) {
+					System.out.println("The card value is: "+cards.get(i));
+				}
+				StreamObserver<cardCreated> responseObserver = new StreamObserver<cardCreated>() {
+
+					@Override
+					public void onNext(cardCreated value) {
+						System.out.println("message recieved");
+					}
+
+					@Override
+					public void onError(Throwable t) {
+						t.printStackTrace();
+					}
+
+					@Override
+					public void onCompleted() {
+						System.out.println("request complete");
+						cards.clear();
+					}
+				};
+
+				StreamObserver<card> requestObserver = asyncStub2.createCard(responseObserver);
+				try {
+					if (cards.size() > 0) {
+						for (int i = 0; i < cards.size(); i++) {
+							requestObserver.onNext(card.newBuilder().setText(cards.get(i).toString()).build());
+							Thread.sleep(1000);
+							
+						}
+						requestObserver.onCompleted();
+					} else {
+						System.out.println("No permissions to create a card have been set");
+					}
+					Thread.sleep(500);
+				} catch (RuntimeException e1) {
+					e1.printStackTrace();
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		p4.add(createSecurityCardBtn);
 		panel2.add(p5);
+
+		JLabel cardDeleteLbl = new JLabel("Enter Card to Delete");
+		p5.add(cardDeleteLbl);
+
+		cardDeleteTxt = new JTextField();
+		p5.add(cardDeleteTxt);
+		cardDeleteTxt.setColumns(10);
+
+		JButton cardDeleteBtn = new JButton("Delete Card");
+		cardDeleteBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String card = cardDeleteTxt.getText().toString();
+				SpecifyCard request = SpecifyCard.newBuilder().setText(card).build();
+				CardDeleted response = blockingStub2.deleteCard(request);
+				cardDeleteTxt.setText("");
+			}
+		});
+		p5.add(cardDeleteBtn);
 		panel2.add(p6);
+
+		JButton SeeCardsBtn = new JButton("See Cards");
+		p6.add(SeeCardsBtn);
 		panel3.add(p7);
 		panel3.add(p8);
 		panel3.add(p9);
@@ -182,11 +280,6 @@ public class GUI {
 		EnterEmailCreateTxt.setColumns(10);
 
 		JButton EnterEmailCreateBtn = new JButton("Create Email");
-		EnterEmailCreateBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
 
 		p1.add(EnterEmailCreateBtn);
 
@@ -198,11 +291,6 @@ public class GUI {
 		EnterEmailDeleteTxt.setColumns(10);
 
 		JButton EnterEmailDeleteBtn = new JButton("Delete Email");
-		EnterEmailDeleteBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-
-			}
-		});
 		p2.add(EnterEmailDeleteBtn);
 
 		JButton SeeEmailBtn = new JButton("See Email's");
@@ -213,9 +301,25 @@ public class GUI {
 		});
 
 		p3.add(SeeEmailBtn);
-
+		
 		JScrollPane SeeEmailScroll = new JScrollPane(textResponse);
 		p3.add(SeeEmailScroll);
+
+		JScrollPane seeCardsScroll = new JScrollPane(textResponse);
+		p6.add(seeCardsScroll);
+		
+		SeeCardsBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textResponse.setText("");
+				String requestMessage = "request";
+				RequestCards request = RequestCards.newBuilder().setText(requestMessage).build();
+				Iterator<CardsReturned> response = blockingStub2.seeCards(request);
+				while(response.hasNext()) {
+					CardsReturned temp = response.next();
+					textResponse.append(temp.getValue().toString());
+				}
+			}
+		});
 
 		frame.getContentPane().add(tabbedPane, BorderLayout.CENTER);
 
