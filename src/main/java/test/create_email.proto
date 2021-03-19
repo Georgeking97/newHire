@@ -14,6 +14,8 @@ service newHirepython{
 	rpc seeEmails(Emails) returns (stream AllEmails) {}
 }
 
+
+
 message EmailToCreate{
 	string text = 1;
 }

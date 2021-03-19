@@ -36,27 +36,18 @@ class newHirepython(create_email_pb2_grpc.newHirepythonServicer):
         self.emails
         if (len(self.emails)) > 0:
             for p in self.emails:
-                return create_email_pb2.EmailDeleted(p)
+                yield create_email_pb2.EmailDeleted(value=p)
         else:
-            print('No emails to print')
+            return create_email_pb2.EmailDeleted(value='no email to see')
     
 def serve():
-    host='localhost' 
-    port=50051    
-    s=socket.socket() 
-    s.bind((host,port)) 
-    s.listen(5) 
-    print("Socket Is Listening....")
-    connection,address=s.accept() 
-    print("Connected To ",address)
-    msgsend=jpysocket.jpyencode("Thank You For Connecting.") 
-    connection.send(msgsend) 
-    msgrecv=connection.recv(1024) 
-    msgrecv=jpysocket.jpydecode(msgrecv) 
-    print("From Client: ",msgrecv)
-    s.close() 
-    print("Connection Closed.")
-    
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    create_email_pb2_grpc.add_newHirepythonServicer_to_server(newHirepython(), server)
+    server.add_insecure_port('[::]:50051')
+    server.start()
+    print('Server started...')
+    server.wait_for_termination()
+
 def register():
     global zeroconf
     desc = {'path': 'email.properties'}
@@ -71,7 +62,7 @@ def register():
     )
     zeroconf = Zeroconf()
     zeroconf.register_service(info)
-    print('registered!')
+    print('registered...')
     
     
 def getProp():
@@ -89,5 +80,6 @@ if __name__ == "__main__":
     getProp()
     register()
     serve()
-
+    
+    
     

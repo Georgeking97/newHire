@@ -10,7 +10,6 @@ create\security\card\CardDeleted$Builder.class
 create\security\card\newHire1Grpc$newHire1BlockingStub.class
 newHire\create\email\newHireGrpc$MethodHandlers.class
 newHire\create\email\AllEmailsOrBuilder.class
-newHire\create\email\EmailClient.class
 newHire\create\permissions\newHire2ServiceImpl.class
 create\security\card\CardDeletedOrBuilder.class
 newHire\create\email\EmailDeleted.class
@@ -28,7 +27,6 @@ newHire\create\email\EmailToCreateOrBuilder.class
 newHire\create\permissions\newHireGrpc$newHireImplBase.class
 newHire\create\permissions\newHireGrpc$newHireFutureStub.class
 create\security\card\cardCreated$1.class
-newHire\create\email\CreateEmailServer.class
 newHire\create\email\EmailToDelete$Builder.class
 newHire\create\email\newHire2ServiceImpl$1.class
 newHire\create\email\AllEmails$1.class

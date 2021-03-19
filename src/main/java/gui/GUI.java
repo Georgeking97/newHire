@@ -32,17 +32,19 @@ import javax.swing.JTextField;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 
-import newHire.create.email.*;
-import newHire.create.email.newHireGrpc.newHireBlockingStub;
+import org.python.core.PyObject;
+import org.python.util.PythonInterpreter;
 
 import create.security.card.newHire1Grpc;
 import create.security.card.newHire1Grpc.newHire1BlockingStub;
 import create.security.card.newHire1Grpc.newHire1Stub;
 
 public class GUI {
-	private static newHireBlockingStub blockingStub;
+	
 	private static newHire1BlockingStub blockingStub2;
+
 	private static newHire1Stub asyncStub2;
+
 	private static ServiceInfo serviceinfo;
 	private JFrame frame;
 	private JTextField EnterEmailCreateTxt;
@@ -65,9 +67,7 @@ public class GUI {
 	public GUI() {
 		String email_service_type = "_http._tcp.local.";
 		discoverService(email_service_type);
-
 		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50051).usePlaintext().build();
-		blockingStub = newHireGrpc.newBlockingStub(channel);
 		blockingStub2 = newHire1Grpc.newBlockingStub(channel);
 		asyncStub2 = newHire1Grpc.newStub(channel);
 
@@ -184,35 +184,10 @@ public class GUI {
 		JButton EnterEmailCreateBtn = new JButton("Create Email");
 		EnterEmailCreateBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String name = EnterEmailCreateTxt.getText();
-				EmailToCreate request = EmailToCreate.newBuilder().setText(name).build();
-				blockingStub.createEmail(request);
-				EnterEmailCreateTxt.setText("");
-			}
-		});
-		JButton btnNewButton = new JButton("New button");
-		btnNewButton.addActionListener(new ActionListener() {
-			Socket socket;
 
-			public void actionPerformed(ActionEvent e) {
-				String name = EnterEmailCreateTxt.getText();
-				int pythonhost = 50051;
-				String pythonhostname = "Localhost";
-				try {
-					socket = new Socket(pythonhostname, pythonhost);
-					DataOutputStream dout = new DataOutputStream(socket.getOutputStream());
-					DataInputStream in = new DataInputStream(socket.getInputStream());
-					String msg = (String) in.readUTF();
-					System.out.println("Server: " + msg);
-					dout.writeUTF(name);
-					dout.flush();
-					dout.close();
-					socket.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
 			}
 		});
+
 		p1.add(EnterEmailCreateBtn);
 
 		JLabel EnterEmailDeleteLabel = new JLabel("Enter Email");
@@ -225,10 +200,7 @@ public class GUI {
 		JButton EnterEmailDeleteBtn = new JButton("Delete Email");
 		EnterEmailDeleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String name = EnterEmailDeleteTxt.getText();
-				EmailToDelete request = EmailToDelete.newBuilder().setText(name).build();
-				blockingStub.deleteEmail(request);
-				EnterEmailDeleteTxt.setText("");
+
 			}
 		});
 		p2.add(EnterEmailDeleteBtn);
@@ -236,19 +208,10 @@ public class GUI {
 		JButton SeeEmailBtn = new JButton("See Email's");
 		SeeEmailBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textResponse.setText(null);
-				String input = "hey";
-				Emails request = Emails.newBuilder().setText(input).build();
-				Iterator<AllEmails> response = blockingStub.seeEmails(request);
-				while (response.hasNext()) {
-					AllEmails temp = response.next();
-					textResponse.append("reply: " + temp.getValue());
-				}
+
 			}
 		});
 
-		
-		p3.add(btnNewButton);
 		p3.add(SeeEmailBtn);
 
 		JScrollPane SeeEmailScroll = new JScrollPane(textResponse);

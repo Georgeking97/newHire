@@ -5,15 +5,31 @@ import grpc
 
 import create_email_pb2
 import create_email_pb2_grpc
+from pip._internal.network.utils import response_chunks
 
-def run():
+def create():
     with grpc.insecure_channel('localhost:50051') as channel:
-        stub = create_email_pb2_grpc.newHireStub(channel)
+        stub = create_email_pb2_grpc.newHirepythonStub(channel)
         response = stub.createEmail(create_email_pb2.EmailToCreate(text='george'))
     
-    print("Greeter client received: " + response.value)
+    print("client received: " + response.value)
     
-
+def delete():
+    with grpc.insecure_channel('localhost:50051') as channel:
+        stub = create_email_pb2_grpc.newHirepythonStub(channel)
+        response = stub.deleteEmail(create_email_pb2.EmailToDelete(text='george@gmail.com'))
+    
+    print("client received: " + response.value)
+    
+def see():
+    with grpc.insecure_channel('localhost:50051') as channel:
+        
+        stub = create_email_pb2_grpc.newHirepythonStub(channel)
+        response = stub.seeEmails(create_email_pb2.Emails(text='hey'))
+        for resp in response:
+            yield print("hey")
+    
 if __name__ == '__main__':
     logging.basicConfig()
-    run()
+    create()
+    see()
