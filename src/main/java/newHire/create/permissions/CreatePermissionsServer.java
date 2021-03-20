@@ -116,10 +116,14 @@ public class CreatePermissionsServer extends newHireImplBase {
 	}
 
 	public void seePermissions(RequestPermissions request, StreamObserver<AllPermissions> responseObserver) {
-		for (int i = 0; i < permissions.size(); i++) {
-			String permission = permissions.get(i);
-			AllPermissions reply = AllPermissions.newBuilder().setValue(permission).build();
-			responseObserver.onNext(reply);
+		if(permissions.size() < 0) {
+			for (int i = 0; i < permissions.size(); i++) {
+				String permission = permissions.get(i);
+				AllPermissions reply = AllPermissions.newBuilder().setValue(permission).build();
+				responseObserver.onNext(reply);
+			}
+		} else {
+			AllPermissions reply = AllPermissions.newBuilder().setValue("No permissions to see").build();
 		}
 		responseObserver.onCompleted();
 	}
