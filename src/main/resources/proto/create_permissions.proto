@@ -10,7 +10,7 @@ package newHire;
 
 service newHire{
 	//setting permissions 
-	rpc sendMessage(stream MessageRequest) returns (stream MessageReply);
+	rpc Permissions(stream permissionRequest) returns (stream permissionResponse);
 	//seeing all available permissions
 	rpc seePermissions(RequestPermissions) returns (stream AllPermissions);
 	//creating a new permission
@@ -18,11 +18,11 @@ service newHire{
 	
 }
 
-message MessageRequest{
+message permissionRequest{
 	string text = 1;
 }
 
-message MessageReply{
+message permissionResponse{
 	string value = 1;
 }
 

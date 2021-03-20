@@ -15,15 +15,15 @@ public final class newHire2ServiceImpl {
         (com.google.protobuf.ExtensionRegistryLite) registry);
   }
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_newHire_MessageRequest_descriptor;
+    internal_static_newHire_permissionRequest_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_newHire_MessageRequest_fieldAccessorTable;
+      internal_static_newHire_permissionRequest_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_newHire_MessageReply_descriptor;
+    internal_static_newHire_permissionResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessageV3.FieldAccessorTable
-      internal_static_newHire_MessageReply_fieldAccessorTable;
+      internal_static_newHire_permissionResponse_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_newHire_RequestPermissions_descriptor;
   static final 
@@ -53,19 +53,20 @@ public final class newHire2ServiceImpl {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\030create_permissions.proto\022\007newHire\"\036\n\016M" +
-      "essageRequest\022\014\n\004text\030\001 \001(\t\"\035\n\014MessageRe" +
-      "ply\022\r\n\005value\030\001 \001(\t\"\"\n\022RequestPermissions" +
-      "\022\014\n\004text\030\001 \001(\t\"\037\n\016AllPermissions\022\r\n\005valu" +
-      "e\030\001 \001(\t\"\035\n\rNewPermission\022\014\n\004text\030\001 \001(\t\"\"" +
-      "\n\021CreatedPermission\022\r\n\005value\030\001 \001(\t2\334\001\n\007n" +
-      "ewHire\022A\n\013sendMessage\022\027.newHire.MessageR" +
-      "equest\032\025.newHire.MessageReply(\0010\001\022H\n\016see" +
-      "Permissions\022\033.newHire.RequestPermissions" +
-      "\032\027.newHire.AllPermissions0\001\022D\n\016setPermis" +
-      "sions\022\026.newHire.NewPermission\032\032.newHire." +
-      "CreatedPermissionB3\n\032newHire.create.perm" +
-      "issionsB\023newHire2ServiceImplP\001b\006proto3"
+      "\n\030create_permissions.proto\022\007newHire\"!\n\021p" +
+      "ermissionRequest\022\014\n\004text\030\001 \001(\t\"#\n\022permis" +
+      "sionResponse\022\r\n\005value\030\001 \001(\t\"\"\n\022RequestPe" +
+      "rmissions\022\014\n\004text\030\001 \001(\t\"\037\n\016AllPermission" +
+      "s\022\r\n\005value\030\001 \001(\t\"\035\n\rNewPermission\022\014\n\004tex" +
+      "t\030\001 \001(\t\"\"\n\021CreatedPermission\022\r\n\005value\030\001 " +
+      "\001(\t2\345\001\n\007newHire\022J\n\013Permissions\022\032.newHire" +
+      ".permissionRequest\032\033.newHire.permissionR" +
+      "esponse(\0010\001\022H\n\016seePermissions\022\033.newHire." +
+      "RequestPermissions\032\027.newHire.AllPermissi" +
+      "ons0\001\022D\n\016setPermissions\022\026.newHire.NewPer" +
+      "mission\032\032.newHire.CreatedPermissionB3\n\032n" +
+      "ewHire.create.permissionsB\023newHire2Servi" +
+      "ceImplP\001b\006proto3"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
         new com.google.protobuf.Descriptors.FileDescriptor.    InternalDescriptorAssigner() {
@@ -79,17 +80,17 @@ public final class newHire2ServiceImpl {
       .internalBuildGeneratedFileFrom(descriptorData,
         new com.google.protobuf.Descriptors.FileDescriptor[] {
         }, assigner);
-    internal_static_newHire_MessageRequest_descriptor =
+    internal_static_newHire_permissionRequest_descriptor =
       getDescriptor().getMessageTypes().get(0);
-    internal_static_newHire_MessageRequest_fieldAccessorTable = new
+    internal_static_newHire_permissionRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_newHire_MessageRequest_descriptor,
+        internal_static_newHire_permissionRequest_descriptor,
         new java.lang.String[] { "Text", });
-    internal_static_newHire_MessageReply_descriptor =
+    internal_static_newHire_permissionResponse_descriptor =
       getDescriptor().getMessageTypes().get(1);
-    internal_static_newHire_MessageReply_fieldAccessorTable = new
+    internal_static_newHire_permissionResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessageV3.FieldAccessorTable(
-        internal_static_newHire_MessageReply_descriptor,
+        internal_static_newHire_permissionResponse_descriptor,
         new java.lang.String[] { "Value", });
     internal_static_newHire_RequestPermissions_descriptor =
       getDescriptor().getMessageTypes().get(2);

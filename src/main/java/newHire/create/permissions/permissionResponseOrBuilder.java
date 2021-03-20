@@ -3,8 +3,8 @@
 
 package newHire.create.permissions;
 
-public interface MessageReplyOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:newHire.MessageReply)
+public interface permissionResponseOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:newHire.permissionResponse)
     com.google.protobuf.MessageOrBuilder {
 
   /**

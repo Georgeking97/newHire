@@ -3,8 +3,8 @@
 
 package newHire.create.permissions;
 
-public interface MessageRequestOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:newHire.MessageRequest)
+public interface permissionRequestOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:newHire.permissionRequest)
     com.google.protobuf.MessageOrBuilder {
 
   /**

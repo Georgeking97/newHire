@@ -27,36 +27,36 @@ public final class newHireGrpc {
   public static final String SERVICE_NAME = "newHire.newHire";
 
   // Static method descriptors that strictly reflect the proto.
-  private static volatile io.grpc.MethodDescriptor<newHire.create.permissions.MessageRequest,
-      newHire.create.permissions.MessageReply> getSendMessageMethod;
+  private static volatile io.grpc.MethodDescriptor<newHire.create.permissions.permissionRequest,
+      newHire.create.permissions.permissionResponse> getPermissionsMethod;
 
   @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "sendMessage",
-      requestType = newHire.create.permissions.MessageRequest.class,
-      responseType = newHire.create.permissions.MessageReply.class,
+      fullMethodName = SERVICE_NAME + '/' + "Permissions",
+      requestType = newHire.create.permissions.permissionRequest.class,
+      responseType = newHire.create.permissions.permissionResponse.class,
       methodType = io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
-  public static io.grpc.MethodDescriptor<newHire.create.permissions.MessageRequest,
-      newHire.create.permissions.MessageReply> getSendMessageMethod() {
-    io.grpc.MethodDescriptor<newHire.create.permissions.MessageRequest, newHire.create.permissions.MessageReply> getSendMessageMethod;
-    if ((getSendMessageMethod = newHireGrpc.getSendMessageMethod) == null) {
+  public static io.grpc.MethodDescriptor<newHire.create.permissions.permissionRequest,
+      newHire.create.permissions.permissionResponse> getPermissionsMethod() {
+    io.grpc.MethodDescriptor<newHire.create.permissions.permissionRequest, newHire.create.permissions.permissionResponse> getPermissionsMethod;
+    if ((getPermissionsMethod = newHireGrpc.getPermissionsMethod) == null) {
       synchronized (newHireGrpc.class) {
-        if ((getSendMessageMethod = newHireGrpc.getSendMessageMethod) == null) {
-          newHireGrpc.getSendMessageMethod = getSendMessageMethod = 
-              io.grpc.MethodDescriptor.<newHire.create.permissions.MessageRequest, newHire.create.permissions.MessageReply>newBuilder()
+        if ((getPermissionsMethod = newHireGrpc.getPermissionsMethod) == null) {
+          newHireGrpc.getPermissionsMethod = getPermissionsMethod = 
+              io.grpc.MethodDescriptor.<newHire.create.permissions.permissionRequest, newHire.create.permissions.permissionResponse>newBuilder()
               .setType(io.grpc.MethodDescriptor.MethodType.BIDI_STREAMING)
               .setFullMethodName(generateFullMethodName(
-                  "newHire.newHire", "sendMessage"))
+                  "newHire.newHire", "Permissions"))
               .setSampledToLocalTracing(true)
               .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  newHire.create.permissions.MessageRequest.getDefaultInstance()))
+                  newHire.create.permissions.permissionRequest.getDefaultInstance()))
               .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  newHire.create.permissions.MessageReply.getDefaultInstance()))
-                  .setSchemaDescriptor(new newHireMethodDescriptorSupplier("sendMessage"))
+                  newHire.create.permissions.permissionResponse.getDefaultInstance()))
+                  .setSchemaDescriptor(new newHireMethodDescriptorSupplier("Permissions"))
                   .build();
           }
         }
      }
-     return getSendMessageMethod;
+     return getPermissionsMethod;
   }
 
   private static volatile io.grpc.MethodDescriptor<newHire.create.permissions.RequestPermissions,
@@ -155,9 +155,9 @@ public final class newHireGrpc {
      *setting permissions 
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<newHire.create.permissions.MessageRequest> sendMessage(
-        io.grpc.stub.StreamObserver<newHire.create.permissions.MessageReply> responseObserver) {
-      return asyncUnimplementedStreamingCall(getSendMessageMethod(), responseObserver);
+    public io.grpc.stub.StreamObserver<newHire.create.permissions.permissionRequest> permissions(
+        io.grpc.stub.StreamObserver<newHire.create.permissions.permissionResponse> responseObserver) {
+      return asyncUnimplementedStreamingCall(getPermissionsMethod(), responseObserver);
     }
 
     /**
@@ -183,12 +183,12 @@ public final class newHireGrpc {
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
-            getSendMessageMethod(),
+            getPermissionsMethod(),
             asyncBidiStreamingCall(
               new MethodHandlers<
-                newHire.create.permissions.MessageRequest,
-                newHire.create.permissions.MessageReply>(
-                  this, METHODID_SEND_MESSAGE)))
+                newHire.create.permissions.permissionRequest,
+                newHire.create.permissions.permissionResponse>(
+                  this, METHODID_PERMISSIONS)))
           .addMethod(
             getSeePermissionsMethod(),
             asyncServerStreamingCall(
@@ -230,10 +230,10 @@ public final class newHireGrpc {
      *setting permissions 
      * </pre>
      */
-    public io.grpc.stub.StreamObserver<newHire.create.permissions.MessageRequest> sendMessage(
-        io.grpc.stub.StreamObserver<newHire.create.permissions.MessageReply> responseObserver) {
+    public io.grpc.stub.StreamObserver<newHire.create.permissions.permissionRequest> permissions(
+        io.grpc.stub.StreamObserver<newHire.create.permissions.permissionResponse> responseObserver) {
       return asyncBidiStreamingCall(
-          getChannel().newCall(getSendMessageMethod(), getCallOptions()), responseObserver);
+          getChannel().newCall(getPermissionsMethod(), getCallOptions()), responseObserver);
     }
 
     /**
@@ -331,7 +331,7 @@ public final class newHireGrpc {
 
   private static final int METHODID_SEE_PERMISSIONS = 0;
   private static final int METHODID_SET_PERMISSIONS = 1;
-  private static final int METHODID_SEND_MESSAGE = 2;
+  private static final int METHODID_PERMISSIONS = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -368,9 +368,9 @@ public final class newHireGrpc {
     public io.grpc.stub.StreamObserver<Req> invoke(
         io.grpc.stub.StreamObserver<Resp> responseObserver) {
       switch (methodId) {
-        case METHODID_SEND_MESSAGE:
-          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.sendMessage(
-              (io.grpc.stub.StreamObserver<newHire.create.permissions.MessageReply>) responseObserver);
+        case METHODID_PERMISSIONS:
+          return (io.grpc.stub.StreamObserver<Req>) serviceImpl.permissions(
+              (io.grpc.stub.StreamObserver<newHire.create.permissions.permissionResponse>) responseObserver);
         default:
           throw new AssertionError();
       }
@@ -422,7 +422,7 @@ public final class newHireGrpc {
         if (result == null) {
           serviceDescriptor = result = io.grpc.ServiceDescriptor.newBuilder(SERVICE_NAME)
               .setSchemaDescriptor(new newHireFileDescriptorSupplier())
-              .addMethod(getSendMessageMethod())
+              .addMethod(getPermissionsMethod())
               .addMethod(getSeePermissionsMethod())
               .addMethod(getSetPermissionsMethod())
               .build();

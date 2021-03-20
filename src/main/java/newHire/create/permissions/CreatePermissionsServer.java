@@ -1,5 +1,7 @@
 package newHire.create.permissions;
 
+import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +12,7 @@ import java.util.Properties;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 
+import create.security.card.card;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
@@ -26,7 +29,6 @@ public class CreatePermissionsServer extends newHireImplBase {
 		try {
 			Server server = ServerBuilder.forPort(port).addService(classObj).build().start();
 			System.out.println("Server started, awaiting RPC calls...");
-
 			server.awaitTermination();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -70,15 +72,26 @@ public class CreatePermissionsServer extends newHireImplBase {
 		}
 	}
 
-	public StreamObserver<MessageRequest> sendMessage(StreamObserver<MessageReply> responseObserver) {
-		return new StreamObserver<MessageRequest>() {
-			String message;
+	public StreamObserver<permissionRequest> permissions(StreamObserver<permissionResponse> responseObserver) {
+		return new StreamObserver<permissionRequest>() {
 
 			@Override
-			public void onNext(MessageRequest value) {
-				System.out.println("Messaged recieved: " + value.getText());
-				MessageReply reply = MessageReply.newBuilder().setValue(message.toString()).build();
-				responseObserver.onNext(reply);
+			public void onNext(permissionRequest value) {
+				System.out.println("started setting permissions method");
+				if (permissions.size() > 0) {
+					for (String s : permissions) {
+						if (s.equals(value.toString())) {
+							permissionResponse reply = permissionResponse.newBuilder().setValue("ya boi got the values: " + value.getText()).build();
+							responseObserver.onNext(reply);
+						} else {
+							permissionResponse reply = permissionResponse.newBuilder().setValue("This isn't a valid permission to set: "+value.getText()).build();
+							responseObserver.onNext(reply);
+						}
+					}
+				} else {
+					permissionResponse reply = permissionResponse.newBuilder().setValue("sorry dude not your day").build();
+					responseObserver.onNext(reply);
+				}
 			}
 
 			@Override
@@ -88,10 +101,8 @@ public class CreatePermissionsServer extends newHireImplBase {
 
 			@Override
 			public void onCompleted() {
-				System.out.println("Service completed...");
-				responseObserver.onCompleted();
+				System.out.println("the stream is done son");
 			}
-
 		};
 	}
 
@@ -112,5 +123,4 @@ public class CreatePermissionsServer extends newHireImplBase {
 		}
 		responseObserver.onCompleted();
 	}
-
 }
