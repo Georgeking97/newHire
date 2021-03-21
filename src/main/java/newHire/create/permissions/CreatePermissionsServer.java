@@ -68,23 +68,20 @@ public class CreatePermissionsServer extends newHireImplBase {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public StreamObserver<permissionRequest> permissions(StreamObserver<permissionResponse> responseObserver) {
 		return new StreamObserver<permissionRequest>() {
 			@Override
 			public void onNext(permissionRequest value) {
-				System.out.println("started setting permissions method");
-				System.out.println("The value is: "+value.getText().toString());
 				if (permissions.size() > 0) {
-					for (int i=0; i<permissions.size();i++) {
-						System.out.println("The values in the for loop are: "+permissions.get(i));
+					for (int i = 0; i < permissions.size(); i++) {
 						if (permissions.get(i).equals(value.getText().toString())) {
 							permissionResponse reply = permissionResponse.newBuilder().setValue("Your permission has been set: " + value.getText()).build();
 							responseObserver.onNext(reply);
 							break;
 						} else {
-							permissionResponse reply = permissionResponse.newBuilder().setValue("This isn't a valid permission to set: "+value.getText()).build();
+							permissionResponse reply = permissionResponse.newBuilder().setValue("This isn't a valid permission to set: " + value.getText()).build();
 							responseObserver.onNext(reply);
 							break;
 						}
@@ -102,11 +99,11 @@ public class CreatePermissionsServer extends newHireImplBase {
 
 			@Override
 			public void onCompleted() {
-				System.out.println("the stream is done son");
+
 			}
 		};
 	}
-	
+
 	@Override
 	public void setPermissions(NewPermission request, StreamObserver<CreatedPermission> responseObserver) {
 		String permission = request.getText();
@@ -116,24 +113,21 @@ public class CreatePermissionsServer extends newHireImplBase {
 		responseObserver.onNext(reply);
 		responseObserver.onCompleted();
 	}
-	
+
 	@Override
 	public void seePermissions(RequestPermissions request, StreamObserver<AllPermissions> responseObserver) {
-		System.out.println("see permissions started");
-		System.out.println("The request we got was: "+ request.getText());
-		System.out.println("The size of permissions is: "+permissions.size());
-		if(permissions.size() > 0) {
+		System.out.println(permissions.size());
+		if (permissions.size() > 0) {
 			for (int i = 0; i < permissions.size(); i++) {
 				String permission = permissions.get(i);
 				AllPermissions reply = AllPermissions.newBuilder().setValue(permission).build();
-				System.out.println("this is the permission value that is being sent back to the client: " + reply.getValue().toString());
 				responseObserver.onNext(reply);
 			}
 		} else {
 			AllPermissions reply = AllPermissions.newBuilder().setValue("No permissions to see").build();
+			System.out.println(reply + "hey");
 			responseObserver.onNext(reply);
 		}
 		responseObserver.onCompleted();
-		System.out.println("see permissions finished");
 	}
 }

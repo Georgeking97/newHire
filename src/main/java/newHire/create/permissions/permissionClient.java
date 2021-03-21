@@ -17,7 +17,6 @@ public class permissionClient {
 		ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 50052).usePlaintext().build();
 		blockingStub = newHireGrpc.newBlockingStub(channel);
 		asyncStub = newHireGrpc.newStub(channel);
-
 		permissions();
 		setPermissions();
 		seePermissions();
@@ -30,8 +29,7 @@ public class permissionClient {
 
 			@Override
 			public void onNext(AllPermissions value) {
-				System.out.println("Requested recieved, streaming cards");
-				System.out.println(value.getValue().toString());
+				System.out.println("Available permission: " + value.getValue().toString());
 			}
 
 			@Override
@@ -41,10 +39,9 @@ public class permissionClient {
 
 			@Override
 			public void onCompleted() {
-				System.out.println("Stream is completed, all cards show");
+				System.out.println("Stream is completed, all permissions show");
 			}
 		};
-		
 		asyncStub.seePermissions(request, responseObserver);
 		try {
 			Thread.sleep(15000);
@@ -58,11 +55,8 @@ public class permissionClient {
 		NewPermission request = NewPermission.newBuilder().setText(requestMessage).build();
 		try {
 			CreatedPermission response = blockingStub.setPermissions(request);
-			System.out.println(response.getValue().toString());
-			Thread.sleep(1000);
+			System.out.println("The server responded back with: "+response.getValue().toString());
 		} catch (StatusRuntimeException e) {
-			e.printStackTrace();
-		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
@@ -73,8 +67,7 @@ public class permissionClient {
 
 			@Override
 			public void onNext(permissionResponse value) {
-				System.out.println("The server is recieving your requests");
-				System.out.println("The response is: "+value.getValue().toString());
+				System.out.println("The response is: " + value.getValue().toString());
 			}
 
 			@Override
@@ -83,27 +76,26 @@ public class permissionClient {
 			}
 
 			@Override
-			public void onCompleted() {	
+			public void onCompleted() {
 				System.out.println("The server has recieved all your requests");
 			}
 		};
-		
+
 		StreamObserver<permissionRequest> requestObserver = asyncStub.permissions(responseObserver);
-			try {
-				requestObserver.onNext(permissionRequest.newBuilder().setText(requestMessage).build());
-				Thread.sleep(new Random().nextInt(1000) + 500);
-				
-				
-			} catch (RuntimeException e) {
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-			try {
-				Thread.sleep(15000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
+		try {
+			requestObserver.onNext(permissionRequest.newBuilder().setText(requestMessage).build());
+			requestObserver.onCompleted();
+			Thread.sleep(new Random().nextInt(1000) + 500);
+
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		try {
+			Thread.sleep(15000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
