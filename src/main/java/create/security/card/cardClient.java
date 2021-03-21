@@ -31,6 +31,7 @@ public class cardClient {
 			@Override
 			public void onNext(CardsReturned value) {	
 				System.out.println("Requested recieved, streaming cards");
+				System.out.println(value.getValue().toString());
 			}
 
 			@Override
@@ -45,6 +46,11 @@ public class cardClient {
 		};
 		
 		asyncStub.seeCards(request, responseObserver);
+		try {
+			Thread.sleep(15000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private static void delete() {
@@ -52,7 +58,7 @@ public class cardClient {
 		SpecifyCard request = SpecifyCard.newBuilder().setText(requestMessage).build();
 		try {
 			CardDeleted response = blockingStub.deleteCard(request);
-			System.out.println("card deleted: " + response.getValue());
+			System.out.println("card deleted: " + response.getValue().toString());
 		} catch (StatusRuntimeException e) {
 			e.printStackTrace();
 		}

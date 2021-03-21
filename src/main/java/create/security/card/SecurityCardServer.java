@@ -68,6 +68,7 @@ public class SecurityCardServer extends newHire1ImplBase {
 			e.printStackTrace();
 		}
 	}
+	
 	@Override
 	public StreamObserver<card> createCard(StreamObserver<cardCreated> responseObserver) {
 		return new StreamObserver<card>() {
@@ -117,6 +118,7 @@ public class SecurityCardServer extends newHire1ImplBase {
 		System.out.println("See cards request finished");
 		responseObserver.onCompleted();
 	}
+	
 	@Override
 	public void deleteCard(SpecifyCard request, StreamObserver<CardDeleted> responseObserver) {
 		System.out.println("delete cards request started");

@@ -1,7 +1,5 @@
 package newHire.create.permissions;
 
-import static io.grpc.stub.ServerCalls.asyncUnimplementedStreamingCall;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -12,7 +10,6 @@ import java.util.Properties;
 import javax.jmdns.JmDNS;
 import javax.jmdns.ServiceInfo;
 
-import create.security.card.card;
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
 import io.grpc.stub.StreamObserver;
@@ -71,25 +68,29 @@ public class CreatePermissionsServer extends newHireImplBase {
 			e.printStackTrace();
 		}
 	}
-
+	
+	@Override
 	public StreamObserver<permissionRequest> permissions(StreamObserver<permissionResponse> responseObserver) {
 		return new StreamObserver<permissionRequest>() {
-
 			@Override
 			public void onNext(permissionRequest value) {
 				System.out.println("started setting permissions method");
+				System.out.println("The value is: "+value.getText().toString());
 				if (permissions.size() > 0) {
-					for (String s : permissions) {
-						if (s.equals(value.toString())) {
-							permissionResponse reply = permissionResponse.newBuilder().setValue("ya boi got the values: " + value.getText()).build();
+					for (int i=0; i<permissions.size();i++) {
+						System.out.println("The values in the for loop are: "+permissions.get(i));
+						if (permissions.get(i).equals(value.getText().toString())) {
+							permissionResponse reply = permissionResponse.newBuilder().setValue("Your permission has been set: " + value.getText()).build();
 							responseObserver.onNext(reply);
+							break;
 						} else {
 							permissionResponse reply = permissionResponse.newBuilder().setValue("This isn't a valid permission to set: "+value.getText()).build();
 							responseObserver.onNext(reply);
+							break;
 						}
 					}
 				} else {
-					permissionResponse reply = permissionResponse.newBuilder().setValue("sorry dude not your day").build();
+					permissionResponse reply = permissionResponse.newBuilder().setValue("There is no permissions available for setting right now").build();
 					responseObserver.onNext(reply);
 				}
 			}
@@ -105,26 +106,34 @@ public class CreatePermissionsServer extends newHireImplBase {
 			}
 		};
 	}
-
+	
+	@Override
 	public void setPermissions(NewPermission request, StreamObserver<CreatedPermission> responseObserver) {
 		String permission = request.getText();
 		permissions.add(permission);
-		String response = "Your permission has been created ";
+		String response = "Your permission has been created: ";
 		CreatedPermission reply = CreatedPermission.newBuilder().setValue(response + permission).build();
 		responseObserver.onNext(reply);
 		responseObserver.onCompleted();
 	}
-
+	
+	@Override
 	public void seePermissions(RequestPermissions request, StreamObserver<AllPermissions> responseObserver) {
-		if(permissions.size() < 0) {
+		System.out.println("see permissions started");
+		System.out.println("The request we got was: "+ request.getText());
+		System.out.println("The size of permissions is: "+permissions.size());
+		if(permissions.size() > 0) {
 			for (int i = 0; i < permissions.size(); i++) {
 				String permission = permissions.get(i);
 				AllPermissions reply = AllPermissions.newBuilder().setValue(permission).build();
+				System.out.println("this is the permission value that is being sent back to the client: " + reply.getValue().toString());
 				responseObserver.onNext(reply);
 			}
 		} else {
 			AllPermissions reply = AllPermissions.newBuilder().setValue("No permissions to see").build();
+			responseObserver.onNext(reply);
 		}
 		responseObserver.onCompleted();
+		System.out.println("see permissions finished");
 	}
 }
