@@ -71,7 +71,7 @@ public class GUI {
 	private JTextField SetPermissionTxt;
 
 	ArrayList<String> cards = new ArrayList<>();
-	ArrayList<String> permissions = new ArrayList<>();
+
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -88,28 +88,30 @@ public class GUI {
 	}
 
 	public GUI() {
-		String email_service_type = "_http._tcp.local.";
-		discoverService(email_service_type);
-
+		String service_type = "_http._tcp.local.";
+		// discovering all the servers broadcasting on the predefined service type
+		discoverService(service_type);
 		String host = serviceinfo.getHostAddresses()[0];
+		// due to having three services three channels need to be created to access all three services
 		ManagedChannel channel = ManagedChannelBuilder.forAddress(host, 50053).usePlaintext().build();
 		ManagedChannel channe2 = ManagedChannelBuilder.forAddress(host, 50052).usePlaintext().build();
-		// ManagedChannel channe3 = ManagedChannelBuilder.forAddress(host,
-		// 50053).usePlaintext().build();
-
+		// ManagedChannel channe3 = ManagedChannelBuilder.forAddress(host, 50053).usePlaintext().build();
+		
+		//granting access to the methods stored on the servers
 		blockingStub2 = newHire1Grpc.newBlockingStub(channel);
 		asyncStub2 = newHire1Grpc.newStub(channel);
-
 		blockingStub = newHireGrpc.newBlockingStub(channe2);
 		asyncStub = newHireGrpc.newStub(channe2);
 
 		initializer();
 	}
-
-	private void discoverService(String email_service_type) {
+	
+	// discovery service used to find devices broadcasting on the network based on their service type
+	// uses JmDNS
+	private void discoverService(String service_type) {
 		try {
 			JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
-			jmdns.addServiceListener(email_service_type, new MyServiceListener());
+			jmdns.addServiceListener(service_type, new MyServiceListener());
 			Thread.sleep(10000);
 			jmdns.close();
 		} catch (UnknownHostException e) {
@@ -120,7 +122,8 @@ public class GUI {
 			e.printStackTrace();
 		}
 	}
-
+	// listener used by the discovery service method, allows the addition and resolution of services
+	// that are broadcasting on the network
 	private static class MyServiceListener implements ServiceListener {
 		public void serviceAdded(ServiceEvent event) {
 			System.out.println("Service added: " + event.getInfo());
@@ -135,7 +138,7 @@ public class GUI {
 			serviceinfo = event.getInfo();
 		}
 	}
-
+	// creating the frame for the GUI
 	private void initializer() {
 		frame = new JFrame();
 		frame.setTitle("Client - Service Controller");
@@ -143,7 +146,7 @@ public class GUI {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		createUI(frame);
 	}
-
+	// customizing the GUI and adding functionality to it
 	private void createUI(JFrame frame2) {
 		JTabbedPane tabbedPane = new JTabbedPane();
 		JPanel panel1 = new JPanel(false);
@@ -216,6 +219,8 @@ public class GUI {
 		p4.add(addSecurityPermissionTxt);
 		addSecurityPermissionTxt.setColumns(10);
 
+		// Adds a security card permission to my cards array to be later sent over with my createSecurityCardBtn
+		// the permission is taken from the text field where the user inputs
 		JButton addSecurityPermissionBtn = new JButton("Add permission to card");
 		addSecurityPermissionBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -224,16 +229,16 @@ public class GUI {
 			}
 		});
 		p4.add(addSecurityPermissionBtn);
-
+		
+		// sends the contents of the card array to my security card server and creates the security card
 		JButton createSecurityCardBtn = new JButton("Create card");
 		createSecurityCardBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("The size of the array when being sent to the create card method: " + cards.size());
-				for (int i = 0; i < cards.size(); i++) {
-					System.out.println("The card value is: " + cards.get(i));
-				}
+				// Receives the response from the security card server
 				StreamObserver<cardCreated> responseObserver = new StreamObserver<cardCreated>() {
 					@Override
+					// when the server responds a pop up is show letting the user know their card has been created and
+					// what permissions are on that security card
 					public void onNext(cardCreated value) {
 						JOptionPane.showMessageDialog(frame, value.getValue());
 					}
@@ -247,13 +252,18 @@ public class GUI {
 						cards.clear();
 					}
 				};
+				// sends the requests to the security card server
 				StreamObserver<card> requestObserver = asyncStub2.createCard(responseObserver);
 				try {
+					// for each permission in the card array send a request to the server
+					// once the array is finished we close the stream and ask for a response back
+					// if there is no objects in the array we let the user know with a pop up
 					if (cards.size() > 0) {
 						for (int i = 0; i < cards.size(); i++) {
 							requestObserver.onNext(card.newBuilder().setText(cards.get(i).toString()).build());
 							Thread.sleep(1000);
 						}
+						// closing the stream once the for loop has gone through all objects in the card array
 						requestObserver.onCompleted();
 					} else {
 						System.out.println("No permissions to create a card have been set");
@@ -275,14 +285,20 @@ public class GUI {
 		cardDeleteTxt = new JTextField();
 		p5.add(cardDeleteTxt);
 		cardDeleteTxt.setColumns(10);
-
+		
+		// deleting a security card with a simple RPC call
 		JButton cardDeleteBtn = new JButton("Delete Card");
 		cardDeleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				// gets the card to be deleted by the taking the text in the text field by the button
+				// sends this value to the server and creates a pop up letting the user know that the card
+				// has been deleted
 				String card = cardDeleteTxt.getText();
 				SpecifyCard request = SpecifyCard.newBuilder().setText(card).build();
 				CardDeleted response = blockingStub2.deleteCard(request);
+				// creating the pop up to show the user the servers response 
 				JOptionPane.showMessageDialog(frame, response.getValue());
+				// clears the text field to allow the user to input more values after
 				cardDeleteTxt.setText("");
 			}
 		});
@@ -292,7 +308,10 @@ public class GUI {
 		JButton SeeCardsBtn = new JButton("See Cards");
 		p6.add(SeeCardsBtn);
 		panel3.add(p7);
-
+		// a server side streaming request that shows the user all current permissions available for setting
+		// uses a while loop to print every response that the server sends until there is no more
+		// the response in this instance isn't dependent on any specific request so we just send over
+		// a simple statement to trigger the response
 		JButton SeePermissionsBtn = new JButton("See Permissions");
 		SeePermissionsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -315,7 +334,11 @@ public class GUI {
 		CreatePermissionTxt = new JTextField();
 		p8.add(CreatePermissionTxt);
 		CreatePermissionTxt.setColumns(10);
-
+		
+		// in order for a user to be able to request a permission it must first exist
+		// by default no permissions exist. This is a simple RPC call that sends a request to
+		// the permission server that creates the permission the user inputs. A pop up is shown
+		// to the user to let them know their permission has been set
 		JButton CreatePermissionBtn = new JButton("Create Permission");
 		CreatePermissionBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -326,6 +349,7 @@ public class GUI {
 				CreatePermissionTxt.setText("");
 			}
 		});
+		
 		p8.add(CreatePermissionBtn);
 		panel3.add(p9);
 
@@ -335,9 +359,12 @@ public class GUI {
 		SetPermissionTxt = new JTextField();
 		p9.add(SetPermissionTxt);
 		SetPermissionTxt.setColumns(10);
-
-		JButton SetPermissionBtn2 = new JButton("Request Permission");
-		SetPermissionBtn2.addActionListener(new ActionListener() {
+		
+		// A bi-directional call between the client and the permissions server. Used to let a user set permissions and
+		// get instance notification that they have been set. Once the user enters a permission to be set the server responds
+		// and a pop up is created to inform the user. A time out is used to close the stream.
+		JButton SetPermissionBtn = new JButton("Request Permission");
+		SetPermissionBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StreamObserver<permissionResponse> responseObserver = new StreamObserver<permissionResponse>() {
 					@Override
@@ -354,6 +381,8 @@ public class GUI {
 
 					}
 				};
+				// sending the requests to the server based on what the user puts in the text field
+				// there is a delay between each request to ensure no conflicts
 				StreamObserver<permissionRequest> requestObserver = asyncStub.permissions(responseObserver);
 				try {
 					requestObserver.onNext(permissionRequest.newBuilder().setText(SetPermissionTxt.getText()).build());
@@ -365,7 +394,7 @@ public class GUI {
 				}
 			}
 		});
-		p9.add(SetPermissionBtn2);
+		p9.add(SetPermissionBtn);
 
 		JLabel EnterEmailCreateLabel = new JLabel("Enter Email");
 		p1.add(EnterEmailCreateLabel);
