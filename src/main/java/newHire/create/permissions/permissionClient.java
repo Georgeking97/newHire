@@ -55,7 +55,7 @@ public class permissionClient {
 		NewPermission request = NewPermission.newBuilder().setText(requestMessage).build();
 		try {
 			CreatedPermission response = blockingStub.setPermissions(request);
-			System.out.println("The server responded back with: "+response.getValue().toString());
+			System.out.println("The server responded back with: " + response.getValue().toString());
 		} catch (StatusRuntimeException e) {
 			e.printStackTrace();
 		}
@@ -85,13 +85,10 @@ public class permissionClient {
 		try {
 			requestObserver.onNext(permissionRequest.newBuilder().setText(requestMessage).build());
 			requestObserver.onCompleted();
-			Thread.sleep(new Random().nextInt(1000) + 500);
-
 		} catch (RuntimeException e) {
 			e.printStackTrace();
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
+		
 		try {
 			Thread.sleep(15000);
 		} catch (InterruptedException e) {

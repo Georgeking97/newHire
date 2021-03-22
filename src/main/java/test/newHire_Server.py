@@ -36,10 +36,11 @@ class newHirepython(create_email_pb2_grpc.newHirepythonServicer):
         self.emails
         if (len(self.emails)) > 0:
             for p in self.emails:
-                yield create_email_pb2.EmailDeleted(value=p)
+                yield create_email_pb2.AllEmails(value=p)
+                print('hey %s' % request.text)
         else:
-            return create_email_pb2.EmailDeleted(value='no email to see')
-    
+            yield create_email_pb2.AllEmails(value='no email to see')
+        
 def serve():
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
     create_email_pb2_grpc.add_newHirepythonServicer_to_server(newHirepython(), server)
@@ -80,6 +81,8 @@ if __name__ == "__main__":
     getProp()
     register()
     serve()
+
+
     
     
     

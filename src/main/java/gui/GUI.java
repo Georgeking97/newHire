@@ -24,6 +24,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -33,9 +34,15 @@ import javax.swing.JTextField;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
-
-import org.python.core.PyObject;
-import org.python.util.PythonInterpreter;
+import newHire.create.permissions.AllPermissions;
+import newHire.create.permissions.CreatedPermission;
+import newHire.create.permissions.NewPermission;
+import newHire.create.permissions.RequestPermissions;
+import newHire.create.permissions.newHireGrpc;
+import newHire.create.permissions.permissionRequest;
+import newHire.create.permissions.permissionResponse;
+import newHire.create.permissions.newHireGrpc.newHireBlockingStub;
+import newHire.create.permissions.newHireGrpc.newHireStub;
 
 import create.security.card.CardDeleted;
 import create.security.card.CardsReturned;
@@ -50,8 +57,9 @@ import create.security.card.newHire1Grpc.newHire1Stub;
 public class GUI {
 
 	private static newHire1BlockingStub blockingStub2;
-
 	private static newHire1Stub asyncStub2;
+	private static newHireBlockingStub blockingStub;
+	private static newHireStub asyncStub;
 
 	private static ServiceInfo serviceinfo;
 	private JFrame frame;
@@ -59,7 +67,11 @@ public class GUI {
 	private JTextField EnterEmailDeleteTxt;
 	private JTextField addSecurityPermissionTxt;
 	private JTextField cardDeleteTxt;
+	private JTextField CreatePermissionTxt;
+	private JTextField SetPermissionTxt;
+
 	ArrayList<String> cards = new ArrayList<>();
+	ArrayList<String> permissions = new ArrayList<>();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -78,11 +90,18 @@ public class GUI {
 	public GUI() {
 		String email_service_type = "_http._tcp.local.";
 		discoverService(email_service_type);
+
 		String host = serviceinfo.getHostAddresses()[0];
-		int port = serviceinfo.getPort();
-		ManagedChannel channel = ManagedChannelBuilder.forAddress(host, port).usePlaintext().build();
+		ManagedChannel channel = ManagedChannelBuilder.forAddress(host, 50053).usePlaintext().build();
+		ManagedChannel channe2 = ManagedChannelBuilder.forAddress(host, 50052).usePlaintext().build();
+		// ManagedChannel channe3 = ManagedChannelBuilder.forAddress(host,
+		// 50053).usePlaintext().build();
+
 		blockingStub2 = newHire1Grpc.newBlockingStub(channel);
 		asyncStub2 = newHire1Grpc.newStub(channel);
+
+		blockingStub = newHireGrpc.newBlockingStub(channe2);
+		asyncStub = newHireGrpc.newStub(channe2);
 
 		initializer();
 	}
@@ -178,6 +197,18 @@ public class GUI {
 		panel1.add(p3);
 		panel2.add(p4);
 
+		JTextArea textResponse = new JTextArea(3, 20);
+		textResponse.setLineWrap(true);
+		textResponse.setWrapStyleWord(true);
+
+		JTextArea textResponse2 = new JTextArea(3, 20);
+		textResponse.setLineWrap(true);
+		textResponse.setWrapStyleWord(true);
+
+		JTextArea textResponse3 = new JTextArea(3, 20);
+		textResponse.setLineWrap(true);
+		textResponse.setWrapStyleWord(true);
+
 		JLabel addSecurityPermissionLbl = new JLabel("Enter Security permission");
 		p4.add(addSecurityPermissionLbl);
 
@@ -197,36 +228,31 @@ public class GUI {
 		JButton createSecurityCardBtn = new JButton("Create card");
 		createSecurityCardBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("The size of the array when being sent to the create card method: "+cards.size());
-				for(int i=0;i<cards.size();i++) {
-					System.out.println("The card value is: "+cards.get(i));
+				System.out.println("The size of the array when being sent to the create card method: " + cards.size());
+				for (int i = 0; i < cards.size(); i++) {
+					System.out.println("The card value is: " + cards.get(i));
 				}
 				StreamObserver<cardCreated> responseObserver = new StreamObserver<cardCreated>() {
-
 					@Override
 					public void onNext(cardCreated value) {
-						System.out.println("message recieved");
+						JOptionPane.showMessageDialog(frame, value.getValue());
 					}
-
 					@Override
 					public void onError(Throwable t) {
 						t.printStackTrace();
 					}
-
 					@Override
 					public void onCompleted() {
 						System.out.println("request complete");
 						cards.clear();
 					}
 				};
-
 				StreamObserver<card> requestObserver = asyncStub2.createCard(responseObserver);
 				try {
 					if (cards.size() > 0) {
 						for (int i = 0; i < cards.size(); i++) {
 							requestObserver.onNext(card.newBuilder().setText(cards.get(i).toString()).build());
 							Thread.sleep(1000);
-							
 						}
 						requestObserver.onCompleted();
 					} else {
@@ -253,9 +279,10 @@ public class GUI {
 		JButton cardDeleteBtn = new JButton("Delete Card");
 		cardDeleteBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String card = cardDeleteTxt.getText().toString();
+				String card = cardDeleteTxt.getText();
 				SpecifyCard request = SpecifyCard.newBuilder().setText(card).build();
 				CardDeleted response = blockingStub2.deleteCard(request);
+				JOptionPane.showMessageDialog(frame, response.getValue());
 				cardDeleteTxt.setText("");
 			}
 		});
@@ -265,12 +292,80 @@ public class GUI {
 		JButton SeeCardsBtn = new JButton("See Cards");
 		p6.add(SeeCardsBtn);
 		panel3.add(p7);
+
+		JButton SeePermissionsBtn = new JButton("See Permissions");
+		SeePermissionsBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				textResponse.setText(null);
+				RequestPermissions request = RequestPermissions.newBuilder().setText("request").build();
+				Iterator<AllPermissions> response = blockingStub.seePermissions(request);
+				while (response.hasNext()) {
+					AllPermissions tmp = response.next();
+					textResponse.append("Permission: " + tmp.getValue() + "\n");
+				}
+			}
+		});
+
+		p7.add(SeePermissionsBtn);
 		panel3.add(p8);
+
+		JLabel CreatePermissionLbl = new JLabel("Enter Permission");
+		p8.add(CreatePermissionLbl);
+
+		CreatePermissionTxt = new JTextField();
+		p8.add(CreatePermissionTxt);
+		CreatePermissionTxt.setColumns(10);
+
+		JButton CreatePermissionBtn = new JButton("Create Permission");
+		CreatePermissionBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String requestMessage = CreatePermissionTxt.getText();
+				NewPermission request = NewPermission.newBuilder().setText(requestMessage).build();
+				CreatedPermission response = blockingStub.setPermissions(request);
+				JOptionPane.showMessageDialog(frame, response.getValue());
+				CreatePermissionTxt.setText("");
+			}
+		});
+		p8.add(CreatePermissionBtn);
 		panel3.add(p9);
 
-		JTextArea textResponse = new JTextArea(3, 20);
-		textResponse.setLineWrap(true);
-		textResponse.setWrapStyleWord(true);
+		JLabel SetPermissionLbl = new JLabel("Enter Permission");
+		p9.add(SetPermissionLbl);
+
+		SetPermissionTxt = new JTextField();
+		p9.add(SetPermissionTxt);
+		SetPermissionTxt.setColumns(10);
+
+		JButton SetPermissionBtn2 = new JButton("Request Permission");
+		SetPermissionBtn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StreamObserver<permissionResponse> responseObserver = new StreamObserver<permissionResponse>() {
+					@Override
+					public void onNext(permissionResponse value) {
+						JOptionPane.showMessageDialog(frame, value.getValue());
+						System.out.println("Response is: " + value.getValue());
+					}
+					@Override
+					public void onError(Throwable t) {
+						t.printStackTrace();
+					}
+					@Override
+					public void onCompleted() {
+
+					}
+				};
+				StreamObserver<permissionRequest> requestObserver = asyncStub.permissions(responseObserver);
+				try {
+					requestObserver.onNext(permissionRequest.newBuilder().setText(SetPermissionTxt.getText()).build());
+					Thread.sleep(1000);
+				} catch (RuntimeException e1) {
+					e1.printStackTrace();
+				} catch (InterruptedException e1) {
+					e1.printStackTrace();
+				}
+			}
+		});
+		p9.add(SetPermissionBtn2);
 
 		JLabel EnterEmailCreateLabel = new JLabel("Enter Email");
 		p1.add(EnterEmailCreateLabel);
@@ -301,22 +396,25 @@ public class GUI {
 		});
 
 		p3.add(SeeEmailBtn);
-		
-		JScrollPane SeeEmailScroll = new JScrollPane(textResponse);
+
+		JScrollPane SeePermissionsScroll = new JScrollPane(textResponse);
+		p7.add(SeePermissionsScroll);
+
+		JScrollPane SeeEmailScroll = new JScrollPane(textResponse2);
 		p3.add(SeeEmailScroll);
 
-		JScrollPane seeCardsScroll = new JScrollPane(textResponse);
+		JScrollPane seeCardsScroll = new JScrollPane(textResponse3);
 		p6.add(seeCardsScroll);
-		
+
 		SeeCardsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				textResponse.setText("");
+				textResponse3.setText("");
 				String requestMessage = "request";
 				RequestCards request = RequestCards.newBuilder().setText(requestMessage).build();
 				Iterator<CardsReturned> response = blockingStub2.seeCards(request);
-				while(response.hasNext()) {
+				while (response.hasNext()) {
 					CardsReturned temp = response.next();
-					textResponse.append(temp.getValue().toString());
+					textResponse3.append(temp.getValue().toString());
 				}
 			}
 		});

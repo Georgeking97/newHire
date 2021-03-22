@@ -71,6 +71,7 @@ public class CreatePermissionsServer extends newHireImplBase {
 
 	@Override
 	public StreamObserver<permissionRequest> permissions(StreamObserver<permissionResponse> responseObserver) {
+		System.out.println("Permissions started");
 		return new StreamObserver<permissionRequest>() {
 			@Override
 			public void onNext(permissionRequest value) {
@@ -91,12 +92,10 @@ public class CreatePermissionsServer extends newHireImplBase {
 					responseObserver.onNext(reply);
 				}
 			}
-
 			@Override
 			public void onError(Throwable t) {
 				t.printStackTrace();
 			}
-
 			@Override
 			public void onCompleted() {
 
@@ -106,26 +105,21 @@ public class CreatePermissionsServer extends newHireImplBase {
 
 	@Override
 	public void setPermissions(NewPermission request, StreamObserver<CreatedPermission> responseObserver) {
-		String permission = request.getText();
-		permissions.add(permission);
-		String response = "Your permission has been created: ";
-		CreatedPermission reply = CreatedPermission.newBuilder().setValue(response + permission).build();
+		permissions.add(request.getText());
+		CreatedPermission reply = CreatedPermission.newBuilder().setValue("Your permission has been created: " + request.getText()).build();
 		responseObserver.onNext(reply);
 		responseObserver.onCompleted();
 	}
 
 	@Override
 	public void seePermissions(RequestPermissions request, StreamObserver<AllPermissions> responseObserver) {
-		System.out.println(permissions.size());
 		if (permissions.size() > 0) {
 			for (int i = 0; i < permissions.size(); i++) {
-				String permission = permissions.get(i);
-				AllPermissions reply = AllPermissions.newBuilder().setValue(permission).build();
+				AllPermissions reply = AllPermissions.newBuilder().setValue(permissions.get(i)).build();
 				responseObserver.onNext(reply);
 			}
 		} else {
 			AllPermissions reply = AllPermissions.newBuilder().setValue("No permissions to see").build();
-			System.out.println(reply + "hey");
 			responseObserver.onNext(reply);
 		}
 		responseObserver.onCompleted();
