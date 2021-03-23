@@ -19,11 +19,16 @@ public class CreatePermissionsServer extends newHireImplBase {
     ArrayList<String> permissions = new ArrayList<>();
 
     public static void main(String[] args) {
+    	//creating an object of the class
         CreatePermissionsServer classObj = new CreatePermissionsServer();
+        //creating the property object 
         Properties prop = classObj.getProperties();
+        //setting the port for the server to register on and listen on
         int port = Integer.parseInt(prop.getProperty("service_port"));
+        //registering the service
         classObj.registerService(prop);
         try {
+        	//creating the server and starting it
             Server server = ServerBuilder.forPort(port).addService(classObj).build().start();
             System.out.println("Server started, awaiting RPC calls...");
             server.awaitTermination();
@@ -31,7 +36,7 @@ public class CreatePermissionsServer extends newHireImplBase {
             e.printStackTrace();
         }
     }
-
+    //property method for getting information from the properties file stored in resources
     private Properties getProperties() {
         Properties prop = null;
         try (InputStream input = new FileInputStream("src/main/resources/properties/permissions.properties")) {
@@ -47,7 +52,7 @@ public class CreatePermissionsServer extends newHireImplBase {
         }
         return prop;
     }
-
+    //registering the service so it can be discoverable by the GUI
     private void registerService(Properties prop) {
         try {
             JmDNS jmdns = JmDNS.create(InetAddress.getLocalHost());
@@ -55,6 +60,7 @@ public class CreatePermissionsServer extends newHireImplBase {
             String service_name = prop.getProperty("service_name");
             String service_description_properties = prop.getProperty("service_description");
             int service_port = Integer.parseInt(prop.getProperty("service_port"));
+            //creating the service and registering it using JmDNS
             ServiceInfo serviceInfo = ServiceInfo.create(service_type, service_name, service_port,
                     service_description_properties);
             jmdns.registerService(serviceInfo);
@@ -66,7 +72,9 @@ public class CreatePermissionsServer extends newHireImplBase {
             e.printStackTrace();
         }
     }
-
+    // bi-directional streaming allowing a user to set permissions and get an instant response. The user
+    // is only allowed set permissions which already exist. if they try to set a permission that doesn't exist
+    // or there is no permissions at all to set they are informed via a simple response message
     @Override
     public StreamObserver<permissionRequest> permissions(StreamObserver<permissionResponse> responseObserver) {
         System.out.println("Permissions started");
@@ -105,7 +113,7 @@ public class CreatePermissionsServer extends newHireImplBase {
             }
         };
     }
-
+    // a simple rpc call, allows a user to create permissions so that they can be set
     @Override
     public void setPermissions(NewPermission request, StreamObserver<CreatedPermission> responseObserver) {
         permissions.add(request.getText());
@@ -113,7 +121,8 @@ public class CreatePermissionsServer extends newHireImplBase {
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
     }
-
+    // a simple server side streaming rpc call, allows a user to see all available permissions. If there is no
+    // permissions to see a simple response message is sent instead
     @Override
     public void seePermissions(RequestPermissions request, StreamObserver<AllPermissions> responseObserver) {
         if (permissions.size() > 0) {
