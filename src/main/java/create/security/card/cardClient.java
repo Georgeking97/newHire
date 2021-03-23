@@ -31,7 +31,7 @@ public class cardClient {
 			@Override
 			public void onNext(CardsReturned value) {	
 				System.out.println("Requested recieved, streaming cards");
-				System.out.println(value.getValue().toString());
+				System.out.println(value.getValue());
 			}
 
 			@Override
@@ -58,7 +58,7 @@ public class cardClient {
 		SpecifyCard request = SpecifyCard.newBuilder().setText(requestMessage).build();
 		try {
 			CardDeleted response = blockingStub.deleteCard(request);
-			System.out.println("card deleted: " + response.getValue().toString());
+			System.out.println("card deleted: " + response.getValue());
 		} catch (StatusRuntimeException e) {
 			e.printStackTrace();
 		}
@@ -71,7 +71,7 @@ public class cardClient {
 		StreamObserver<cardCreated> responseObserver = new StreamObserver<cardCreated>() {
 			@Override
 			public void onNext(cardCreated value) {
-				System.out.println("Recieved message: " + value.getValue().toString());
+				System.out.println("Recieved message: " + value.getValue());
 			}
 
 			@Override

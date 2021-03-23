@@ -72,23 +72,23 @@ public class SecurityCardServer extends newHire1ImplBase {
 	@Override
 	public StreamObserver<card> createCard(StreamObserver<cardCreated> responseObserver) {
 		return new StreamObserver<card>() {
-			ArrayList<String> list = new ArrayList<>();
+			final ArrayList<String> list = new ArrayList<>();
 
 			@Override
 			public void onNext(card value) {
 				System.out.println("Recieving permissions for your security badge: " + value.getText());
 				list.add(value.getText());
 			}
-
+ 
 			@Override
 			public void onCompleted() {
 				StringBuilder sb = new StringBuilder();
 				String result = "";
 				System.out.println("All permissions recieved \n");
 				for (String p : list) {
-					result = sb.append(" " + p + " ").toString();
+					result = sb.append("" + p + " ").toString();
 				}
-				cards.add(result.toString());
+				cards.add(result);
 				System.out.println("Your security badge has been created with said permissions: " + result);
 				cardCreated reply = cardCreated.newBuilder().setValue(result).build();
 				responseObserver.onNext(reply);
@@ -108,7 +108,7 @@ public class SecurityCardServer extends newHire1ImplBase {
 			for (int i = 0; i < cards.size(); i++) {
 				String card = cards.get(i);
 				System.out.println("this is the card value that is being sent back to the client: " + card);
-				CardsReturned reply = CardsReturned.newBuilder().setValue(card).build();
+				CardsReturned reply = CardsReturned.newBuilder().setValue("The cards are: "+card).build();
 				responseObserver.onNext(reply);
 			}
 		} else {
@@ -126,10 +126,13 @@ public class SecurityCardServer extends newHire1ImplBase {
 		if(cards.size() > 0) {
 			for (int i = 0; i < cards.size(); i++) {
 				if (cards.get(i).contains(request.getText())) {
-					cards.remove(i);
-					CardDeleted reply = CardDeleted.newBuilder().setValue("Card deleted").build();
+					CardDeleted reply = CardDeleted.newBuilder().setValue("Card deleted: "+cards.get(i)).build();
 					responseObserver.onNext(reply);
+					cards.remove(i);
 					break;
+				} else {
+					CardDeleted reply = CardDeleted.newBuilder().setValue("No cards found with the following information: "+request.getText()).build();
+					responseObserver.onNext(reply);
 				}
 			}
 		} else {

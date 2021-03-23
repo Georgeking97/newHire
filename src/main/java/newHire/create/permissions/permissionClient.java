@@ -29,7 +29,7 @@ public class permissionClient {
 
 			@Override
 			public void onNext(AllPermissions value) {
-				System.out.println("Available permission: " + value.getValue().toString());
+				System.out.println("Available permission: " + value.getValue());
 			}
 
 			@Override
@@ -55,7 +55,7 @@ public class permissionClient {
 		NewPermission request = NewPermission.newBuilder().setText(requestMessage).build();
 		try {
 			CreatedPermission response = blockingStub.setPermissions(request);
-			System.out.println("The server responded back with: " + response.getValue().toString());
+			System.out.println("The server responded back with: " + response.getValue());
 		} catch (StatusRuntimeException e) {
 			e.printStackTrace();
 		}
@@ -67,7 +67,7 @@ public class permissionClient {
 
 			@Override
 			public void onNext(permissionResponse value) {
-				System.out.println("The response is: " + value.getValue().toString());
+				System.out.println("The response is: " + value.getValue());
 			}
 
 			@Override
