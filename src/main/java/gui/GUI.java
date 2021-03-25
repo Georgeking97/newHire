@@ -90,12 +90,10 @@ public class GUI {
 		discoverService(service_type);
 		String host = serviceinfo.getHostAddresses()[0];
 		// due to having three services three channels need to be created to access all
-		// three services
+		// three services, currently unable to access python
 		ManagedChannel channel = ManagedChannelBuilder.forAddress(host, 50053).usePlaintext().build();
 		ManagedChannel channe2 = ManagedChannelBuilder.forAddress(host, 50052).usePlaintext().build();
-		// ManagedChannel channe3 = ManagedChannelBuilder.forAddress(host,
-		// 50053).usePlaintext().build();
-
+		
 		// granting access to the methods stored on the servers
 		blockingStub2 = newHire1Grpc.newBlockingStub(channel);
 		asyncStub2 = newHire1Grpc.newStub(channel);
@@ -310,10 +308,14 @@ public class GUI {
 				// know
 				// that the card has been deleted
 				String card = cardDeleteTxt.getText();
-				SpecifyCard request = SpecifyCard.newBuilder().setText(card).build();
-				CardDeleted response = blockingStub2.deleteCard(request);
-				// creating the pop up to show the user the servers response
-				JOptionPane.showMessageDialog(frame, response.getValue());
+				if(card.isEmpty()) {
+					JOptionPane.showMessageDialog(frame, "Please enter a card to delete");
+				} else {
+					SpecifyCard request = SpecifyCard.newBuilder().setText(card).build();
+					CardDeleted response = blockingStub2.deleteCard(request);
+					// creating the pop up to show the user the servers response
+					JOptionPane.showMessageDialog(frame, response.getValue());
+				}
 				// clears the text field to allow the user to input more values after
 				cardDeleteTxt.setText("");
 			}

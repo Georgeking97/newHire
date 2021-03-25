@@ -1,0 +1,41 @@
+//this provides the version of protocol buffers to use
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "grpc.examples.helloworld";
+option java_outer_classname = "HelloWorldProto";
+option objc_class_prefix = "HLW";
+
+package newHirepython;
+
+service newHirepython{
+	rpc createEmail(EmailToCreate) returns (EmailCreated) {}
+	rpc deleteEmail(EmailToDelete) returns (EmailDeleted) {}
+	rpc seeEmails(Emails) returns (stream AllEmails) {}
+}
+
+
+
+message EmailToCreate{
+	string text = 1;
+}
+
+message EmailCreated{
+	string value = 1;
+}
+
+message EmailToDelete{
+	string text = 1;
+}
+
+message EmailDeleted{
+	string value = 1;
+}
+
+message Emails{
+	string text = 1;
+}
+
+message AllEmails{
+	string value = 1;
+}

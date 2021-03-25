@@ -21,6 +21,7 @@ public class cardClient {
 		create();
 		see();
 		delete();
+		see();
 	}
 
 	private static void see() {

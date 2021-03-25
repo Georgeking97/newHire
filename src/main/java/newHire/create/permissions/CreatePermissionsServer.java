@@ -116,9 +116,9 @@ public class CreatePermissionsServer extends newHireImplBase {
     // a simple rpc call, allows a user to create permissions so that they can be set
     @Override
     public void setPermissions(NewPermission request, StreamObserver<CreatedPermission> responseObserver) {
-        permissions.add(request.getText());
-        CreatedPermission reply = CreatedPermission.newBuilder().setValue("Your permission has been added: "+request.getText()).build();
-        responseObserver.onNext(reply);
+    	permissions.add(request.getText());
+		CreatedPermission reply = CreatedPermission.newBuilder().setValue("Your permission has been added: "+request.getText()).build();
+	    responseObserver.onNext(reply);
         responseObserver.onCompleted();
     }
     // a simple server side streaming rpc call, allows a user to see all available permissions. If there is no
